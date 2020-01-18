@@ -7,6 +7,13 @@ from .form import BookForm, SearchForm
 # from isbnlib import meta
 # from isbnlib.registry import bibformatters
 from isbnlib import canonical, meta, cover, desc
+from isbntools.app import *
+
+import json
+from urllib.request import urlopen
+
+import requests
+
 
 
 # Create your views here.
@@ -15,17 +22,23 @@ def isbn_search(isbn):
     # SERVICE = 'openl'
     # bibtex = bibformatters['bibtex']
     # print(bibtex(meta(isbn, SERVICE)))
-    isbn = canonical("9782744145261")
-    # data = meta(isbn)
-    # print(data)
-    Service = 'openl'
-    # Service = 'goob'
-    book = meta(isbn, Service)
-    print(book)
-    print(desc(isbn))
-    bookCover = cover(isbn)
-    print(bookCover)
-
+    # isbn = canonical("9780446310789")
+    # # data = meta(isbn)
+    # # print(data)
+    # Service = 'openl'
+    # # Service = 'goob'
+    # book = meta(isbn, Service)
+    # print(book)
+    # print(desc(isbn))
+    # bookCover = cover(isbn)
+    # print(bookCover)
+    # print(registry.bibformatters['labels'](meta(isbn)))
+    # data = urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:9782246567639')
+    # print(data.read())
+    r = requests.get('https://www.googleapis.com/books/v1/volumes?q=isbn:9782246567639')
+    print(r.text)
+    parsed = json.loads(r.text)
+    print(parsed['kind'])
 
 def main(request):
     if request.method == "POST":
