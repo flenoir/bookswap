@@ -15,30 +15,13 @@ from urllib.request import urlopen
 import requests
 
 
-
-# Create your views here.
-
 def isbn_search(isbn):
-    # SERVICE = 'openl'
-    # bibtex = bibformatters['bibtex']
-    # print(bibtex(meta(isbn, SERVICE)))
-    # isbn = canonical("9780446310789")
-    # # data = meta(isbn)
-    # # print(data)
-    # Service = 'openl'
-    # # Service = 'goob'
-    # book = meta(isbn, Service)
-    # print(book)
-    # print(desc(isbn))
-    # bookCover = cover(isbn)
-    # print(bookCover)
-    # print(registry.bibformatters['labels'](meta(isbn)))
-    # data = urlopen('https://www.googleapis.com/books/v1/volumes?q=isbn:9782246567639')
-    # print(data.read())
-    r = requests.get('https://www.googleapis.com/books/v1/volumes?q=isbn:9782246567639')
+    # Voir si pertinent de resoumettre la requette sur le titrre pour avoir la cover
+    r = requests.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ isbn)
     print(r.text)
     parsed = json.loads(r.text)
-    print(parsed['kind'])
+    # print(parsed['items'][0]['volumeInfo']['title'])
+    return parsed['items'][0]['volumeInfo']
 
 def main(request):
     if request.method == "POST":
@@ -47,12 +30,9 @@ def main(request):
     else:
         print('get')
         form = SearchForm(request.GET)
-        # print(form)
         if form.is_valid():
             data = form.cleaned_data["post"].casefold()
-            # print(data)
-            result = data
-            isbn_search(str(data))
+            result = isbn_search(str(data))
             context = {"form": form, "result": result}
             return render(request, "main.html", context)
         return render(request, "main.html", {"form": form})
