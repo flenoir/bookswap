@@ -8,4 +8,11 @@
     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  type=submit>Search</button>
 </form>
 
-{{ result.title}} {{ result.authors }} {{ result.description }}
+
+{% for item in result %}
+
+<ul>
+    <li>{{ item.volumeInfo.title }} {{ item.volumeInfo.authors }} {{ item.volumeInfo.description }}</li>
+</ul>
+
+{% endfor %}
