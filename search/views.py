@@ -8,7 +8,7 @@ import requests
 
 
 def isbn_text_search(isbn):
-    # Voir si pertinent de resoumettre la requette sur le titrre pour avoir la cover
+    # Voir si pertinent de resoumettre la requete sur le titre pour avoir la cover
     r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ isbn)
     print(r.text)
     parsed = json.loads(r.text)
@@ -25,13 +25,19 @@ def input_cleaner(search_data):
         print(error)
         return search_data
 
-# def book_save(data):
-#     try:
-#         book_to_save = Book(
-#             isbn=data.volumeInfo.isbn
-#             title=data.volumeInfo.title
-#             author=data.volumeInfo.author
-#         )
+def book_save(data):
+    # print(data)
+    try:
+        book_to_save = Book(
+            isbn=data['volumeInfo']['industryIdentifiers'][0]['identifier'],
+            title=data['volumeInfo']['title'],
+            author=data['volumeInfo']['authors'],
+        )
+        book_to_save.save()
+        print("saved")
+    except Exception as e:
+        print("not saved :", e)
+    
 
 
 
@@ -49,5 +55,6 @@ def main(request):
             # search on title
             result = isbn_text_search(str(checked_input))
             context = {"form": form, "result": result}
+            book_save(result[0])
             return render(request, "main.html", context)
         return render(request, "main.html", {"form": form})
