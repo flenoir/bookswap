@@ -25,6 +25,15 @@ def input_cleaner(search_data):
         print(error)
         return search_data
 
+# def book_save(data):
+#     try:
+#         book_to_save = Book(
+#             isbn=data.volumeInfo.isbn
+#             title=data.volumeInfo.title
+#             author=data.volumeInfo.author
+#         )
+
+
 
 def main(request):
     if request.method == "POST":
