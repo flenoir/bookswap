@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Book
+from users.models import CustomUser
 from django.urls import reverse_lazy
 from .form import BookForm, SearchForm
 
@@ -33,6 +34,8 @@ def save_book(request, isbn):
         for i in toto:
             if i['volumeInfo']['industryIdentifiers'][0]['identifier'] == isbn:
                 print("found match !")
+                print("user is:", request.user.username)
+                
                 # save book
 
                 try:
@@ -40,8 +43,21 @@ def save_book(request, isbn):
                         isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'],
                         title=i['volumeInfo']['title'],
                         author=i['volumeInfo']['authors'],
+                        cover=i['volumeInfo']['imageLinks']['thumbnail'],
+                        publisher = i['volumeInfo']['publisher'],
+                        description = i['volumeInfo']['description'],
+                        category = i['volumeInfo']['categories'],
+                        page_count  = i['volumeInfo']['pageCount'],
+                        state = "good condition",
+                        availability = True,
+                        published_date = i['volumeInfo']['publishedDate'][:10],
+
                     )
                     book_to_save.save()
+                    current_user = request.user
+                    book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
+                    current_user.user_books.add(book_to_associate)                    
+                    print("book_list is:", request.user.user_books)
                     print("saved")
                 except Exception as e:
                     print("not saved :", e)
