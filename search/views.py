@@ -69,6 +69,17 @@ def save_book(request, isbn):
 
     # print(data)
    
+def book_list(request, user_id):
+    # select all uuid of current user book list
+    # select all book_id on table user_book where current user is equal to customeruser_id
+    current_user_book_list = get_object_or_404(CustomUser, pk=user_id)
+    print(current_user_book_list.id)
+    books = CustomUser.objects.filter(user_books__isnull=False).filter(id=current_user_book_list.id)
+    main_book_list = [i for i in books]
+    # sub_books = [j.isbn for j in main_book_list[0].user_books.all()]
+    sub_books = [j.isbn for j in main_book_list[0].user_books.all()]
+    print(sub_books)
+    return render(request, 'main.html')
 
 
 
