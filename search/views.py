@@ -29,7 +29,7 @@ def input_cleaner(search_data):
 def save_book(request, isbn):
     if request.method == "POST":
         toto = request.session.get('temp_json')
-        print('toto is :', toto)
+        # print('toto is :', toto)
         print('isbn is :', isbn)
         for i in toto:
             if i['volumeInfo']['industryIdentifiers'][0]['identifier'] == isbn:
@@ -66,20 +66,22 @@ def save_book(request, isbn):
             else:
                 print("not matched")
         return render(request, 'main.html', {'result': toto})
-
+    else:
+        print("save method had been called !")
     # print(data)
    
-def book_list(request, user_id):
+def book_list(request):
     # select all uuid of current user book list
-    # select all book_id on table user_book where current user is equal to customeruser_id
-    current_user_book_list = get_object_or_404(CustomUser, pk=user_id)
-    print(current_user_book_list.id)
-    books = CustomUser.objects.filter(user_books__isnull=False).filter(id=current_user_book_list.id)
+    # current_user_book_list = get_object_or_404(CustomUser, pk=request.user.id)
+    # print(current_user_book_list.id)
+    print(request.user.id)
+    books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
     main_book_list = [i for i in books]
     # sub_books = [j.isbn for j in main_book_list[0].user_books.all()]
-    sub_books = [j.isbn for j in main_book_list[0].user_books.all()]
+    sub_books = [j for j in main_book_list[0].user_books.all()]
     print(sub_books)
-    return render(request, 'main.html')
+    context = {"full_list": sub_books}
+    return render(request, 'book_list.html', context)
 
 
 
@@ -100,6 +102,5 @@ def main(request):
             result = isbn_text_search(str(checked_input))
             request.session['temp_json'] = result
             context = {"form": form, "result": result}
-            # book_save(result[0])
             return render(request, "main.html", context)
         return render(request, "main.html", {"form": form})
