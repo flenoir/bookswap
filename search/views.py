@@ -58,6 +58,7 @@ def save_book(request, isbn):
                     book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
                     current_user.user_books.add(book_to_associate)                    
                     print("book_list is:", request.user.user_books)
+                    # maybe add a popup or flash notice message to say that book has been saved
                     print("saved")
                 except Exception as e:
                     print("not saved :", e)
@@ -69,19 +70,27 @@ def save_book(request, isbn):
     else:
         print("save method had been called !")
     # print(data)
+
+def remove_book(request, isbn):
+    if request.method == 'POST':
+        request.user.user_books.remove(isbn)
+        books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
+        main_book_list = [i for i in books]
+        sub_books = [j for j in main_book_list[0].user_books.all()]
+        context = {"full_list": sub_books}
+        return render(request, 'book_list.html', context)
+
    
 def book_list(request):
-    # select all uuid of current user book list
-    # current_user_book_list = get_object_or_404(CustomUser, pk=request.user.id)
-    # print(current_user_book_list.id)
-    print(request.user.id)
+    # select all uuid of current user book list    
     books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
     main_book_list = [i for i in books]
-    # sub_books = [j.isbn for j in main_book_list[0].user_books.all()]
     sub_books = [j for j in main_book_list[0].user_books.all()]
     print(sub_books)
     context = {"full_list": sub_books}
     return render(request, 'book_list.html', context)
+
+ 
 
 
 

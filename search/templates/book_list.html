@@ -14,7 +14,7 @@
                 <tr>
                     <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Cover</th>
                     <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Title</th>
-                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Author</th>
+                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Availability</th>
                     <th class="w-4/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Description</th> 
                     <th class="w-1/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Isbn</th>
                     <th class="w-1/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Actions</th>
@@ -26,15 +26,15 @@
                 <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Cover</span>
-                        <img src="{{ item.cover}}" alt="">
+                        <img src="{{ item.cover }}" alt="">
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Title</span>
                         {{  item.title }}
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Author</span>
-                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{  item.authors | stringformat:"s" | slice:"2:-2" }}</span>
+                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">availability</span>
+                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{  item.availability }}</span>
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-left border border-b block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Description</span>
@@ -42,14 +42,14 @@
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-left border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Description</span>
-                        <a href="#">{{ item.volumeInfo.industryIdentifiers.0.identifier }}</a>
+                        <a href="#">{{ item.uuid }}</a>
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
                         <button class="rounded bg-yellow-400 py-1 px-3 text-xs font-bold"><a href="#" class="text-blue-400 hover:text-blue-600 underline">Edit</a></button>
-                        <form method="post" action="#">
+                        <form method="post" action="{% url 'remove_book' item.uuid %}">
                             {% csrf_token %}
-                            <button type="submit" class="rounded bg-red-400 py-1 px-3 text-xs font-bold">Save</button>
+                            <button type="submit" class="rounded bg-red-400 py-1 px-3 text-xs font-bold">Remove</button>
                         </form>               
                     </td>
                 </tr>
