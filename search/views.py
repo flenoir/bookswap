@@ -9,6 +9,9 @@ import requests
 
 
 def isbn_text_search(isbn):
+    ''' 
+    make a search request based on title or authors 
+    '''
     # Voir si pertinent de resoumettre la requete sur le titre pour avoir la cover
     r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ isbn)
     # print(r.text)
@@ -17,6 +20,9 @@ def isbn_text_search(isbn):
     return parsed['items']
 
 def input_cleaner(search_data):
+    ''' 
+    make a search request based on isbn number
+    '''
     try:
         if type(int(search_data)):
             res = requests.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ str(search_data))
@@ -27,6 +33,9 @@ def input_cleaner(search_data):
         return search_data
 
 def save_book(request, isbn):
+    ''' 
+    save book on book table
+    '''
     if request.method == "POST":
         toto = request.session.get('temp_json')
         # print('toto is :', toto)
@@ -71,26 +80,36 @@ def save_book(request, isbn):
         print("save method had been called !")
     # print(data)
 
-def remove_book(request, isbn):
-    if request.method == 'POST':
-        request.user.user_books.remove(isbn)
-        books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
-        main_book_list = [i for i in books]
-        sub_books = [j for j in main_book_list[0].user_books.all()]
-        context = {"full_list": sub_books}
-        return render(request, 'book_list.html', context)
-
-   
-def book_list(request):
-    # select all uuid of current user book list    
+def book_search(request):
+    ''' 
+    select all uuid of current user book list
+    '''
     books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
     main_book_list = [i for i in books]
     sub_books = [j for j in main_book_list[0].user_books.all()]
     print(sub_books)
     context = {"full_list": sub_books}
+    return context
+
+def remove_book(request, isbn):
+    ''' 
+    remove book from user's list
+    '''
+    if request.method == 'POST':
+        request.user.user_books.remove(isbn)
+        context = book_search(request)       
+        return render(request, 'book_list.html', context)
+
+   
+def book_list(request): 
+    ''' 
+    list all books saved by an user
+    '''   
+    context = book_search(request)    
     return render(request, 'book_list.html', context)
 
- 
+
+
 
 
 
