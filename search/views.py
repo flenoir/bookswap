@@ -37,36 +37,73 @@ def save_book(request, isbn):
     save book on book table
     '''
     if request.method == "POST":
-        toto = request.session.get('temp_json')
-        # print('toto is :', toto)
+        data = request.session.get('temp_json')
+        # print('toto is :', datta)
         print('isbn is :', isbn)
-        for i in toto:
+        for i in data:
             if i['volumeInfo']['industryIdentifiers'][0]['identifier'] == isbn:
                 print("found match !")
                 print("user is:", request.user.username)
                 
                 # save book
 
-                try:
-                    book_to_save = Book(
-                        isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'],
-                        title=i['volumeInfo']['title'],
-                        author=i['volumeInfo']['authors'],
-                        cover=i['volumeInfo']['imageLinks']['thumbnail'],
-                        publisher = i['volumeInfo']['publisher'],
-                        description = i['volumeInfo']['description'],
-                        category = i['volumeInfo']['categories'],
-                        page_count  = i['volumeInfo']['pageCount'],
-                        state = "good condition",
-                        availability = True,
-                        published_date = i['volumeInfo']['publishedDate'][:10],
+                # book, created = Book.objects.get_or_create(isbn=isbn)
+                # print(book)
+                # print("created or not", created)
 
-                    )
-                    book_to_save.save()
-                    current_user = request.user
-                    book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
-                    current_user.user_books.add(book_to_associate)                    
-                    print("book_list is:", request.user.user_books)
+                try:
+                    book, not_yet_created = Book.objects.get_or_create(isbn=isbn)
+                    print(book)
+                    print("created or not", not_yet_created)
+
+                    if not_yet_created:
+                        print('pas encore en base de donnée')
+                        book.isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier']
+                        book.title=i['volumeInfo']['title']
+                        book.author=i['volumeInfo']['authors']
+                        book.cover=i['volumeInfo']['imageLinks']['thumbnail']
+                        book.publisher = i['volumeInfo']['publisher']
+                        book.description = i['volumeInfo']['description']
+                        book.category = i['volumeInfo']['categories']
+                        book.page_count  = i['volumeInfo']['pageCount']
+                        book.state = "good condition"
+                        book.availability = True
+                        book.published_date = i['volumeInfo']['publishedDate'][:10]
+                        book.save()
+                        print("je l'associe à l'utilisateur courant")
+                        current_user = request.user
+                        book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
+                        current_user.user_books.add(book_to_associate) 
+                    else:
+                        print("le livre {} existe deja".format(book))
+                        print("il existe déjà, mais j'essaye de l'associer à l'utilisateur courant")
+                        current_user = request.user
+                        book_to_associate, not_yet_associated = Book.objects.get_or_create(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
+                        if not_yet_associated:
+                            current_user.user_books.add(book_to_associate)
+                        else:
+                            print("the user already has this book in his book list !") 
+                        
+                    
+                    # book_to_save = Book(
+                    #     isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'],
+                    #     title=i['volumeInfo']['title'],
+                    #     author=i['volumeInfo']['authors'],
+                    #     cover=i['volumeInfo']['imageLinks']['thumbnail'],
+                    #     publisher = i['volumeInfo']['publisher'],
+                    #     description = i['volumeInfo']['description'],
+                    #     category = i['volumeInfo']['categories'],
+                    #     page_count  = i['volumeInfo']['pageCount'],
+                    #     state = "good condition",
+                    #     availability = True,
+                    #     published_date = i['volumeInfo']['publishedDate'][:10],
+
+                    # )
+                    # book_to_save.save()
+                    # current_user = request.user
+                    # book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
+                    # current_user.user_books.add(book_to_associate)                    
+                    # print("book_list is:", request.user.user_books)
                     # maybe add a popup or flash notice message to say that book has been saved
                     print("saved")
                 except Exception as e:
@@ -75,7 +112,7 @@ def save_book(request, isbn):
 
             else:
                 print("not matched")
-        return render(request, 'main.html', {'result': toto})
+        return render(request, 'main.html', {'result': data})
     else:
         print("save method had been called !")
     # print(data)
