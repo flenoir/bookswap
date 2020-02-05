@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'invitations',
     
 ]
 
@@ -175,3 +176,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'decidonscastelnau@gmail.com'
 EMAIL_HOST_PASSWORD = 'C45teln4u2K20!'
+
+ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'

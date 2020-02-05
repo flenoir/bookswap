@@ -10,6 +10,7 @@ django = "==2.2.8"
 psycopg2 = "*"
 django-allauth = "*"
 django-debug-toolbar = "*"
+django-invitations = "*"
 
 [requires]
 python_version = "3.6"

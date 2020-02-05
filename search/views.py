@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Book
 from users.models import CustomUser
 from django.urls import reverse_lazy
-from .form import BookForm, SearchForm
+from .form import BookForm, SearchForm, InviteForm
+from invitations.utils import get_invitation_model
 
 import json
 import requests
@@ -146,6 +147,13 @@ def book_list(request):
     return render(request, 'book_list.html', context)
 
 
+def invite_new_user(request):
+    if request.method == "POST":
+        Invitation = get_invitation_model()
+        invite = Invitation.create("obike@free.fr", inviter=request.user)
+        invite.send_invitation(request)
+        return render(request, 'main.html')
+
 
 
 
@@ -155,6 +163,14 @@ def main(request):
         print('post')
         # toto = request.session.get('temp_json')
         # print('toto is :', toto)
+        inviteform = InviteForm(request.POST)
+        if inviteform.is_valid():
+            print("valid")
+            cleaned_email = inviteform.cleaned_data["post"]
+            print("email is:", cleaned_email)
+            return render(request, "main.html")
+        # return render(request, "main.html", {"form": form})
+        print(inviteform.cleaned_data["post"])
         return render(request, 'main.html')
     else:
         print('get')
