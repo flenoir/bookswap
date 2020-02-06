@@ -136,6 +136,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = (
@@ -177,4 +183,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'decidonscastelnau@gmail.com'
 EMAIL_HOST_PASSWORD = 'C45teln4u2K20!'
 
-ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'

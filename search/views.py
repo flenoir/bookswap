@@ -14,10 +14,8 @@ def isbn_text_search(isbn):
     make a search request based on title or authors 
     '''
     # Voir si pertinent de resoumettre la requete sur le titre pour avoir la cover
-    r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ isbn)
-    # print(r.text)
+    r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ isbn)    
     parsed = json.loads(r.text)
-    # print(parsed['items'][0]['volumeInfo']['title'])  
     return parsed['items']
 
 def input_cleaner(search_data):
@@ -39,18 +37,14 @@ def save_book(request, isbn):
     '''
     if request.method == "POST":
         data = request.session.get('temp_json')
-        # print('toto is :', datta)
-        print('isbn is :', isbn)
+        
+        # print('isbn is :', isbn)
         for i in data:
             if i['volumeInfo']['industryIdentifiers'][0]['identifier'] == isbn:
                 print("found match !")
                 print("user is:", request.user.username)
                 
                 # save book
-
-                # book, created = Book.objects.get_or_create(isbn=isbn)
-                # print(book)
-                # print("created or not", created)
 
                 try:
                     book, not_yet_created = Book.objects.get_or_create(isbn=isbn)
@@ -85,27 +79,6 @@ def save_book(request, isbn):
                         else:
                             print("the user already has this book in his book list !") 
                         
-                    
-                    # book_to_save = Book(
-                    #     isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'],
-                    #     title=i['volumeInfo']['title'],
-                    #     author=i['volumeInfo']['authors'],
-                    #     cover=i['volumeInfo']['imageLinks']['thumbnail'],
-                    #     publisher = i['volumeInfo']['publisher'],
-                    #     description = i['volumeInfo']['description'],
-                    #     category = i['volumeInfo']['categories'],
-                    #     page_count  = i['volumeInfo']['pageCount'],
-                    #     state = "good condition",
-                    #     availability = True,
-                    #     published_date = i['volumeInfo']['publishedDate'][:10],
-
-                    # )
-                    # book_to_save.save()
-                    # current_user = request.user
-                    # book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
-                    # current_user.user_books.add(book_to_associate)                    
-                    # print("book_list is:", request.user.user_books)
-                    # maybe add a popup or flash notice message to say that book has been saved
                     print("saved")
                 except Exception as e:
                     print("not saved :", e)
@@ -116,7 +89,7 @@ def save_book(request, isbn):
         return render(request, 'main.html', {'result': data})
     else:
         print("save method had been called !")
-    # print(data)
+    
 
 def book_search(request):
     ''' 
@@ -147,10 +120,13 @@ def book_list(request):
     return render(request, 'book_list.html', context)
 
 
-def invite_new_user(request):
+def invite_new_user(request, email):
+    ''' 
+    invite new users to application
+    '''  
     if request.method == "POST":
         Invitation = get_invitation_model()
-        invite = Invitation.create("obike@free.fr", inviter=request.user)
+        invite = Invitation.create(email, inviter=request.user)
         invite.send_invitation(request)
         return render(request, 'main.html')
 
@@ -160,28 +136,27 @@ def invite_new_user(request):
 
 def main(request):
     if request.method == "POST":
-        print('post')
-        # toto = request.session.get('temp_json')
-        # print('toto is :', toto)
+        # print('post')        
         inviteform = InviteForm(request.POST)
         if inviteform.is_valid():
             print("valid")
             cleaned_email = inviteform.cleaned_data["post"]
             print("email is:", cleaned_email)
+            invite_new_user(request,cleaned_email)
             return render(request, "main.html")
-        # return render(request, "main.html", {"form": form})
-        print(inviteform.cleaned_data["post"])
         return render(request, 'main.html')
     else:
-        print('get')
+        # print('get')
         form = SearchForm(request.GET)
+        inviteform = InviteForm(request.GET)
         if form.is_valid():
             data = form.cleaned_data["post"].casefold()
+            invite_data = inviteform.cleaned_data["post"]
             # check if input is isbn number or title
             checked_input = input_cleaner(str(data))
             # search on title
             result = isbn_text_search(str(checked_input))
             request.session['temp_json'] = result
-            context = {"form": form, "result": result}
-            return render(request, "main.html", context)
-        return render(request, "main.html", {"form": form})
+            context = {"form": form, "inviteform": invite_data, "result": result}
+            return render(request, "main.html", context)    
+        return render(request, "main.html", {"form": form, "inviteform": inviteform})
