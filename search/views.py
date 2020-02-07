@@ -136,7 +136,7 @@ def invite_new_user(request, email):
 
 def main(request):
     if request.method == "POST":
-        # print('post')        
+        print('post')        
         inviteform = InviteForm(request.POST)
         if inviteform.is_valid():
             print("valid")
@@ -146,12 +146,14 @@ def main(request):
             return render(request, "main.html")
         return render(request, 'main.html')
     else:
-        # print('get')
+        print('get')
         form = SearchForm(request.GET)
-        inviteform = InviteForm(request.GET)
+        inviteform =  InviteForm()
+        print(inviteform)
         if form.is_valid():
             data = form.cleaned_data["post"].casefold()
-            invite_data = inviteform.cleaned_data["post"]
+            invite_data = inviteform
+            print("invite", invite_data)
             # check if input is isbn number or title
             checked_input = input_cleaner(str(data))
             # search on title
