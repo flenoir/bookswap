@@ -120,6 +120,13 @@ def book_list(request):
     return render(request, 'book_list.html', context)
 
 
+def book_detail(request, isbn):
+    print("isbn is : ", isbn)
+    current_book = Book.objects.filter(uuid=isbn)
+    print('les titres sont : ', current_book)
+    return render(request, "detail.html", {'book' : current_book})
+
+
 def invite_new_user(request, email):
     ''' 
     invite new users to application
