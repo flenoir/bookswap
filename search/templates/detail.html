@@ -3,11 +3,14 @@
 {% block first_row %}
  <h1>Detail page</h1>
 
- {% for item in book %}
+ 
+ <form method="post" enctype="multipart/form-data">
+ {% csrf_token %}
+ {{ form.as_p }}
+ <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  type=submit>Update</button>
+</form>
 
- <h2>{{ item.title }}</h2>
 
- {% endfor %}
 
 
 

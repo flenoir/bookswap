@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from users.models import CustomUser
 from django.urls import reverse_lazy
@@ -121,10 +121,17 @@ def book_list(request):
 
 
 def book_detail(request, isbn):
-    print("isbn is : ", isbn)
-    current_book = Book.objects.filter(uuid=isbn)
-    print('les titres sont : ', current_book)
-    return render(request, "detail.html", {'book' : current_book})
+    ''' 
+    Display details and update book
+    '''   
+    # print("isbn is : ", isbn)
+    current_book = Book.objects.filter(uuid=isbn).first()
+    form = BookForm(request.POST or None, instance=current_book)
+    if form.is_valid():
+        form.save()
+        return render(request, "detail.html", {'form' : form })
+    # print('les titres sont : ', form)
+    return render(request, "detail.html", {'form' : form })
 
 
 def invite_new_user(request, email):

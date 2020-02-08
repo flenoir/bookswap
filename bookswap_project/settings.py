@@ -42,13 +42,12 @@ INSTALLED_APPS = [
     'users',
     'pages',
     'debug_toolbar',
+    'invitations',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'invitations',
-    
 ]
 
 MIDDLEWARE = [

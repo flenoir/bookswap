@@ -1,13 +1,22 @@
-
+    
     {% load socialaccount %}
 
-    <h1>Bookswap HomePage</h1>
+    <h1>Bienvenu sur Bookswap !</h1>
 
-    {% if user.is_authenticated %}
-    <p>Welcome {{ user.username }} !!!</p>
-    <p><a href="{% url 'account_logout' %}">Log out</a>
-    {% else %}
-    <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
-    <p><a href="{% url 'account_login' %}">Log In </a></p>
-    <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
-    {% endif %}
+ 
+
+    <div class="w-full max-w-xs">
+        
+        {% if user.is_authenticated %}
+        <p>Welcome {{ user.username }} !!!</p>
+        <p><a href="{% url 'account_logout' %}">Log out</a>
+        {% else %}
+        <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
+        <p><a href="{% url 'account_login' %}">Log In </a></p>
+        <p><a href="{% provider_login_url 'google' %}">Log In with Gmail</a></p>
+        {% endif %}
+
+        <p class="text-center text-gray-500 text-xs">
+          &copy;2020 Acme Corp. All rights reserved.
+        </p>
+      </div>
