@@ -9,9 +9,9 @@
   <body class="bg-gray-200 flex flex-col content-center justify-center h-full items-center">
     {% block body %}
 
-    <div class="bg-white shadow-lg max-w-lg rounded-lg">
+    <div>
         {% if messages %}
-        <div class="flex m-2">
+        <div class="flex m-2 bg-orange-200 shadow-lg max-w-lg rounded-lg p-6 mb-4">
         <strong class="mr-2">Messages:</strong>
         <ul>
             {% for message in messages %}

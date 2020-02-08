@@ -18,8 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
-    path('', include('pages.urls')),
-    path('main/', include('search.urls')),
+    # path('', include('pages.urls')),
+    path('', include('search.urls')),
     # path('book_list/', include('search.urls')),
     path('admin/', admin.site.urls),
 
