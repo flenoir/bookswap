@@ -9,14 +9,22 @@ import json
 import requests
 
 
-def isbn_text_search(isbn):
+def isbn_text_search(words):
     ''' 
     make a search request based on title or authors 
     '''
     # Voir si pertinent de resoumettre la requete sur le titre pour avoir la cover
-    r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ isbn)    
-    parsed = json.loads(r.text)
+    r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
+    # print("searched data are : ", r.text)    
+    parsed = json.loads(r.text)    
+    # check if isbn identifier is not null
+    for x in parsed['items']:
+        if 'industryIdentifiers' not in x['volumeInfo']:            
+            parsed['items'].remove(x)            
+        else:
+            print("NO Isbn number")
     return parsed['items']
+
 
 def input_cleaner(search_data):
     ''' 
