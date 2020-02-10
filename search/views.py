@@ -56,10 +56,10 @@ def save_book(request, isbn):
 
                 try:
                     book, not_yet_created = Book.objects.get_or_create(isbn=isbn)
-                    print(book)
+                    print(book.title)
                     print("created or not", not_yet_created)
 
-                    if not_yet_created:
+                    if not_yet_created:                        
                         print('pas encore en base de donnée')
                         book.isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier']
                         book.title=i['volumeInfo']['title']
@@ -104,11 +104,12 @@ def book_search(request):
     select all uuid of current user book list
     '''
     books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
-    main_book_list = [i for i in books]
-    sub_books = [j for j in main_book_list[0].user_books.all()]
-    print(sub_books)
-    context = {"full_list": sub_books}
-    return context
+    if books:
+        main_book_list = [i for i in books]
+        sub_books = [j for j in main_book_list[0].user_books.all()]     
+        return {"full_list": sub_books}
+    else:
+        return {"full_list": ""}
 
 def remove_book(request, isbn):
     ''' 
