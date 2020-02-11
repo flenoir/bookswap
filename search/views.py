@@ -7,6 +7,7 @@ from invitations.utils import get_invitation_model
 
 import json
 import requests
+import dateparser
 
 
 def isbn_text_search(words):
@@ -15,7 +16,6 @@ def isbn_text_search(words):
     '''
     # Voir si pertinent de resoumettre la requete sur le titre pour avoir la cover
     r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
-    # print("searched data are : ", r.text)    
     parsed = json.loads(r.text)    
     # check if isbn identifier is not null
     for x in parsed['items']:
@@ -46,19 +46,14 @@ def save_book(request, isbn):
     if request.method == "POST":
         data = request.session.get('temp_json')
         
-        # print('isbn is :', isbn)
         for i in data:
             if i['volumeInfo']['industryIdentifiers'][0]['identifier'] == isbn:
                 print("found match !")
                 print("user is:", request.user.username)
                 
                 # save book
-
                 try:
-                    book, not_yet_created = Book.objects.get_or_create(isbn=isbn)
-                    print(book.title)
-                    print("created or not", not_yet_created)
-                    # current_user = request.user
+                    book, not_yet_created = Book.objects.get_or_create(isbn=isbn)                
                     
                     if not_yet_created:                        
                         print('pas encore en base de donnée')
@@ -71,22 +66,14 @@ def save_book(request, isbn):
                         book.category = i['volumeInfo'].get('categories', "uncategorized")
                         book.page_count  = i['volumeInfo'].get('pageCount', 0)
                         book.state = "good condition"
-                        book.availability = True
-                        book.published_date = i['volumeInfo']['publishedDate'][:10]
+                        book.availability = True                        
+                        cured_date = dateparser.parse(i['volumeInfo']['publishedDate'])
+                        book.published_date = cured_date.date()
                         book.save()
                         print("je l'associe à l'utilisateur courant")                        
-                        # book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
-                    request.user.user_books.add(book) 
-                        # else:
-                        #     print("le livre {} existe deja".format(book))
-                        #     print("il existe déjà, mais j'essaye de l'associer à l'utilisateur courant")                        
-                        #     # book_to_associate, not_yet_associated = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
-                        #     # if not_yet_associated:
-                        #     current_user.user_books.add(book)
-                            # else:
-                        #     print("the user already has this book in his book list !") 
-                        
+                    request.user.user_books.add(book)                        
                     print("saved")
+
                 except Exception as e:
                     print("not saved :", e)
     
@@ -132,13 +119,11 @@ def book_detail(request, isbn):
     ''' 
     Display details and update book
     '''   
-    # print("isbn is : ", isbn)
     current_book = Book.objects.filter(uuid=isbn).first()
     form = BookForm(request.POST or None, instance=current_book)
     if form.is_valid():
         form.save()
         return render(request, "detail.html", {'form' : form })
-    # print('les titres sont : ', form)
     return render(request, "detail.html", {'form' : form })
 
 

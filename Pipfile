@@ -11,6 +11,7 @@ psycopg2 = "*"
 django-allauth = "*"
 django-debug-toolbar = "*"
 django-invitations = "*"
+dateparser = "*"
 
 [requires]
 python_version = "3.6"
