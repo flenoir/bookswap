@@ -73,12 +73,38 @@
             </tbody>
         </table>
         
-  {% for book in library %}
 
-  <!-- <h2> {{ book.cover }} </h2> -->
-  <img src="{{ book.cover }}" alt="cover">
 
-  {% endfor %}
+  <div class="grid grid-flow-col grid-cols-5 grid-rows-5 gap-1 mt-1">
+
+    {% for book in library %}
+
+    <div class="">
+      <img src="{{ book.cover }}" alt="cover">
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   <!--Modal-->
