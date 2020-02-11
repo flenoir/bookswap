@@ -58,34 +58,33 @@ def save_book(request, isbn):
                     book, not_yet_created = Book.objects.get_or_create(isbn=isbn)
                     print(book.title)
                     print("created or not", not_yet_created)
-
+                    # current_user = request.user
+                    
                     if not_yet_created:                        
                         print('pas encore en base de donnée')
                         book.isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier']
                         book.title=i['volumeInfo']['title']
-                        book.author=i['volumeInfo']['authors']
+                        book.author=i['volumeInfo'].get('authors', "...")
                         book.cover=i['volumeInfo']['imageLinks']['thumbnail']
-                        book.publisher = i['volumeInfo']['publisher']
-                        book.description = i['volumeInfo']['description']
-                        book.category = i['volumeInfo']['categories']
-                        book.page_count  = i['volumeInfo']['pageCount']
+                        book.publisher = i['volumeInfo'].get('publisher', "...")
+                        book.description = i['volumeInfo'].get('description', "...")
+                        book.category = i['volumeInfo'].get('categories', "uncategorized")
+                        book.page_count  = i['volumeInfo'].get('pageCount', 0)
                         book.state = "good condition"
                         book.availability = True
                         book.published_date = i['volumeInfo']['publishedDate'][:10]
                         book.save()
-                        print("je l'associe à l'utilisateur courant")
-                        current_user = request.user
-                        book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
-                        current_user.user_books.add(book_to_associate) 
-                    else:
-                        print("le livre {} existe deja".format(book))
-                        print("il existe déjà, mais j'essaye de l'associer à l'utilisateur courant")
-                        current_user = request.user
-                        book_to_associate, not_yet_associated = Book.objects.get_or_create(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
-                        if not_yet_associated:
-                            current_user.user_books.add(book_to_associate)
-                        else:
-                            print("the user already has this book in his book list !") 
+                        print("je l'associe à l'utilisateur courant")                        
+                        # book_to_associate = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
+                    request.user.user_books.add(book) 
+                        # else:
+                        #     print("le livre {} existe deja".format(book))
+                        #     print("il existe déjà, mais j'essaye de l'associer à l'utilisateur courant")                        
+                        #     # book_to_associate, not_yet_associated = Book.objects.get(isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier'])
+                        #     # if not_yet_associated:
+                        #     current_user.user_books.add(book)
+                            # else:
+                        #     print("the user already has this book in his book list !") 
                         
                     print("saved")
                 except Exception as e:
@@ -154,7 +153,10 @@ def invite_new_user(request, email):
         return render(request, 'main.html')
 
 
-
+def get_all_users_books():
+    library = Book.objects.all()
+    print(library)
+    return library
 
 
 def main(request):
@@ -173,6 +175,7 @@ def main(request):
         form = SearchForm(request.GET)
         inviteform =  InviteForm()
         print(inviteform)
+        library = get_all_users_books()
         if form.is_valid():
             data = form.cleaned_data["post"].casefold()
             invite_data = inviteform
@@ -182,6 +185,6 @@ def main(request):
             # search on title
             result = isbn_text_search(str(checked_input))
             request.session['temp_json'] = result
-            context = {"form": form, "inviteform": invite_data, "result": result}
+            context = {"form": form, "inviteform": invite_data, "result": result, "library": library}
             return render(request, "main.html", context)    
-        return render(request, "main.html", {"form": form, "inviteform": inviteform})
+        return render(request, "main.html", {"form": form, "inviteform": inviteform, "library": library})

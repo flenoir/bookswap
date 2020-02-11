@@ -1,12 +1,13 @@
 {% load socialaccount %}
+{% load static %}
 
 <header class="border-b md:flex md:items-center md:justify-between p-4 pb-0 shadow-lg md:pb-4">
   
     <!-- Logo text or image -->
     <div class="flex items-center justify-between mb-4 md:mb-0">
       <h1 class="leading-none text-2xl text-grey-darkest">
-        <a class="no-underline text-grey-darkest hover:text-black" href="{% url 'main' %}">
-          BookSwap
+        <a class="no-underline text-grey-darkest hover:text-black" href="{% url 'main' %}">          
+          <img src="{% static 'images/bookswap_logo.JPG' %}" alt="bookswap_logo" style="width: 220px;">
         </a>
       </h1>
   
