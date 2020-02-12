@@ -82,12 +82,12 @@
         
 
 
-  <div class="flex flex-wrap">
+  <div class="flex flex-wrap m-4">
 
     {% for book in library %}
 
-    <div class="flex-2 justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 ml-4 mr-4 bg-orange-100">
-      <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover"></a>
+    <div class="flex-2 bg-orange-100 m-2">
+      <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover" class=" rounded-sm shadow-xl"></a>
     </div>
 
     {% endfor %}
