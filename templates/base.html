@@ -3,13 +3,16 @@
 <html class="h-full">
 <head>
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <script src="{% static 'js/modal.js' %}"></script>
+        <script src="{% static 'js/emailmodal.js' %}"></script>
+        <script src="{% static 'js/searchmodal.js' %}"></script>
 </head>
 
 <body class="bg-orange-100 flex-col "> 
         <!-- flex-col content-center justify-center items-center -->
 
         {% include 'navbar.html' %}
+        {% include 'modals.html' %}
+
 
 
 
@@ -21,8 +24,6 @@
 
 
         {% block second_row %}
-
-       
 
         {% endblock %}
     

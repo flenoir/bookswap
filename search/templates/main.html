@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block first_row %}
 
 <div class="flex flex-col" >
@@ -20,9 +21,11 @@
     </div>
 
 
+  {% if result %}
 
+    <div class="bg-orange-300">
 
-    <div class="bg-gray-800">
+      
 
         <table class="table-fixed">
             <thead>
@@ -37,7 +40,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in result %}
+
+              {% for item in result %}
+                
                 <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Cover</span>
@@ -72,15 +77,17 @@
                 {% endfor %}
             </tbody>
         </table>
+      
+      {% endif %}
         
 
 
-  <div class="grid grid-flow-col grid-cols-5 grid-rows-5 gap-1 mt-1">
+  <div class="flex flex-wrap">
 
     {% for book in library %}
 
-    <div class="">
-      <img src="{{ book.cover }}" alt="cover">
+    <div class="flex-2 justify-center w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 mb-4 ml-4 mr-4 bg-orange-100">
+      <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover"></a>
     </div>
 
     {% endfor %}
@@ -107,42 +114,7 @@
 
 
 
-  <!--Modal-->
-  <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-    
-    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-      
-      <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-        </svg>
-        <span class="text-sm">(Esc)</span>
-      </div>
 
-      
-      <div class="modal-content py-4 text-left px-6">
-        <!--Title-->
-        <div class="flex justify-between items-center pb-3">
-          <p class="text-2xl font-bold">Invite Friends to share his books</p>
-          <div class="modal-close cursor-pointer z-50">
-            <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-              <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-            </svg>
-          </div>
-        </div>
-
-        <!--Body-->
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ inviteform }}
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  type=submit>Send Invite</button>
-        </form>
-        
-
-      </div>
-    </div>
-  </div>
 
 
 
