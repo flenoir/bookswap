@@ -1,4 +1,4 @@
-window.onload=function(){
+window.addEventListener('load', function(){
  var opensearchmodal = document.querySelectorAll('.searchmodal-open')
  console.log("found search modal")
  for (var i = 0; i < opensearchmodal.length; i++) {
@@ -37,4 +37,6 @@ window.onload=function(){
    searchmodal.classList.toggle('pointer-events-none')
    body.classList.toggle('searchmodal-active')
  }
-}
+
+ 
+})

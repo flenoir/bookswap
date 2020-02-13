@@ -1,5 +1,6 @@
-window.onload=function(){
+window.addEventListener('load', function(){
 var openmodal = document.querySelectorAll('.modal-open')
+  console.log("found email modal")
     for (var i = 0; i < openmodal.length; i++) {
       openmodal[i].addEventListener('click', function(event){
     	event.preventDefault()
@@ -37,4 +38,4 @@ var openmodal = document.querySelectorAll('.modal-open')
       body.classList.toggle('modal-active')
     };
 
-}
+})
