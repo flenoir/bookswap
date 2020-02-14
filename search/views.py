@@ -158,19 +158,22 @@ def main(request):
         return render(request, 'main.html')
     else:
         print('get')
-        form = SearchForm(request.GET)
+        form = SearchForm(request.GET)        
         inviteform =  InviteForm()
-        print(inviteform)
         library = get_all_users_books()
         if form.is_valid():
             data = form.cleaned_data["post"].casefold()
             invite_data = inviteform
-            print("invite", invite_data)
-            # check if input is isbn number or title
-            checked_input = input_cleaner(str(data))
-            # search on title
-            result = isbn_text_search(str(checked_input))
-            request.session['temp_json'] = result
-            context = {"form": form, "inviteform": invite_data, "result": result, "library": library}
-            return render(request, "main.html", context)    
+            if data:
+                # check if input is isbn number or title
+                checked_input = input_cleaner(str(data))
+                # search on title
+                result = isbn_text_search(str(checked_input))
+                request.session['temp_json'] = result
+                context = {"form": form, "inviteform": invite_data, "result": result, "library": library}
+                return render(request, "main.html", context)
+            else:
+                context = {"form": form, "inviteform": invite_data, "library": library}
+                return render(request, "main.html", context)
+
         return render(request, "main.html", {"form": form, "inviteform": inviteform, "library": library})
