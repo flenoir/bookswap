@@ -12,6 +12,7 @@ django-allauth = "*"
 django-debug-toolbar = "*"
 django-invitations = "*"
 dateparser = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.6"

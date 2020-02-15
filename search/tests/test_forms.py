@@ -2,6 +2,7 @@ from django.test import TestCase
 from search.form import SearchForm, InviteForm
 
 class FormTests(TestCase):
+
     # test search form is valid
     def test_search_form_is_valid(self):
         form_data = {"post": "un sac de billes"}
