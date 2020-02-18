@@ -1,0 +1,794 @@
+{
+    "kind": "books#volumes",
+    "totalItems": 789,
+    "items": [
+     {
+      "kind": "books#volume",
+      "id": "WkIzJ41dACcC",
+      "etag": "SDWP14fCNwE",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/WkIzJ41dACcC",
+      "volumeInfo": {
+       "title": "Los Escritos de Juan Pablo Viscardo Y Guzman Precursor de la Independencia Hispanoamericana",
+       "authors": [
+        "Merle Edwin Simmons"
+       ],
+       "publisher": "Universidad Catolica Andres",
+       "publishedDate": "1983",
+       "readingModes": {
+        "text": false,
+        "image": true
+       },
+       "pageCount": 384,
+       "printType": "BOOK",
+       "categories": [
+        "South America"
+       ],
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "0.0.2.0.preview.1",
+       "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+       },
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=WkIzJ41dACcC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=WkIzJ41dACcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=WkIzJ41dACcC&pg=PA156&dq=pablo&hl=&cd=1&source=gbs_api",
+       "infoLink": "http://books.google.fr/books?id=WkIzJ41dACcC&dq=pablo&hl=&source=gbs_api",
+       "canonicalVolumeLink": "https://books.google.com/books/about/Los_Escritos_de_Juan_Pablo_Viscardo_Y_Gu.html?hl=&id=WkIzJ41dACcC"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "NOT_FOR_SALE",
+       "isEbook": false
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": false
+       },
+       "pdf": {
+        "isAvailable": false
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=WkIzJ41dACcC&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Urrelo, A. G. “El arequipeño D. Juan \u003cb\u003ePablo\u003c/b\u003e Vizcardo y Guzmán”. En Homenaje a \u003cbr\u003e\nJuan \u003cb\u003ePablo\u003c/b\u003e Viscardo y Guzmán, número especial de la Revista de la \u003cbr\u003e\nUniversidad de Arequipa (Arequipa, Perú), año XX:27 (Abril-Junio, 1948), 153-\u003cbr\u003e\n172. Ofrece&nbsp;..."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "wPkxDwAAQBAJ",
+      "etag": "jWz4d9BAM+w",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/wPkxDwAAQBAJ",
+      "volumeInfo": {
+       "title": "Pablo de la Courneuve",
+       "authors": [
+        "Cecile Roumiguiere"
+       ],
+       "publisher": "Seuil jeunesse",
+       "publishedDate": "2017-09-07T00:00:00+02:00",
+       "description": "Pour oublier l'angoisse de ses parents sans-papiers, pour ne pas entendre ceux qui le traitent de voleur, pour s'évader de ses leçons, Pablo marche dans les rues de sa nouvelle ville, La Courneuve. Le soleil de Colombie lui manque, il se sent seul et perdu. Jusqu'au jour où il doit aller récupérer une poupée dans le jardin de la Goule. La Goule ! Cette femme aux allures de squelette est-elle aussi effroyable qu'elle en a l'air ? Qui vole les cartes à l'école ? Pourquoi Nina vient-elle lui parler de sa vie dans un château ? Peut-être Georges, l'homme de la mairie, saura-t-il répondre à ces questions ? Petit à petit, des fils ses tissent entre Pablo et sa nouvelle vie. Et si le soleil pouvait briller aussi à la Courneuve... Avec tendresse et émotion, Cécile Roumiguière montre que l'apprentissage du bonheur commence au contact des autres.",
+       "industryIdentifiers": [
+        {
+         "type": "ISBN_13",
+         "identifier": "9791023509786"
+        }
+       ],
+       "readingModes": {
+        "text": true,
+        "image": true
+       },
+       "pageCount": 96,
+       "printType": "BOOK",
+       "categories": [
+        "Juvenile Fiction"
+       ],
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "1.1.2.0.preview.3",
+       "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+       },
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=wPkxDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=wPkxDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=wPkxDwAAQBAJ&pg=PT27&dq=pablo&hl=&cd=2&source=gbs_api",
+       "infoLink": "https://play.google.com/store/books/details?id=wPkxDwAAQBAJ&source=gbs_api",
+       "canonicalVolumeLink": "https://play.google.com/store/books/details?id=wPkxDwAAQBAJ"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "FOR_SALE",
+       "isEbook": true,
+       "listPrice": {
+        "amount": 7.49,
+        "currencyCode": "EUR"
+       },
+       "retailPrice": {
+        "amount": 7.49,
+        "currencyCode": "EUR"
+       },
+       "buyLink": "https://play.google.com/store/books/details?id=wPkxDwAAQBAJ&rdid=book-wPkxDwAAQBAJ&rdot=1&source=gbs_api",
+       "offers": [
+        {
+         "finskyOfferType": 1,
+         "listPrice": {
+          "amountInMicros": 7490000.0,
+          "currencyCode": "EUR"
+         },
+         "retailPrice": {
+          "amountInMicros": 7490000.0,
+          "currencyCode": "EUR"
+         },
+         "giftable": true
+        }
+       ]
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Pablo_de_la_Courneuve-sample-epub.acsm?id=wPkxDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Pablo_de_la_Courneuve-sample-pdf.acsm?id=wPkxDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=wPkxDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Dorian se baisse, lance son poing dans le ventre de \u003cb\u003ePablo\u003c/b\u003e. Le coup fait mal. \u003cbr\u003e\nAvez-vous vu le kangourou [...]1 ? Tête baissée, \u003cb\u003ePablo\u003c/b\u003e fonce de toute sa force \u003cbr\u003e\ndans la poitrine de Dorian. La respiration coupée, le garçon tombe à terre. [."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "U_vKDwAAQBAJ",
+      "etag": "qW/m0YoUsBk",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/U_vKDwAAQBAJ",
+      "volumeInfo": {
+       "title": "Pablo Escobar",
+       "subtitle": "L’homme en noir",
+       "authors": [
+        "Guy Deloeuvre"
+       ],
+       "publisher": "Laurent Poret",
+       "description": "Pablo Emilio Escobar Gaviria, né le 1er décembre 1949 à Rionegro, Antioquia, Colombie, et mort le 2 décembre 1993 à Medellín, Colombie, est un célèbre trafiquant colombien de cocaïne. À la tête du cartel de Medellín, il a été l'un des principaux barons de la drogue dans les années 1980. Son cartel, au sommet de sa carrière, fournit environ 80 % de la cocaïne aux États-Unis, faisant un chiffre d'affaires de 21,9 milliards $ par an. Souvent appelé, « le Roi de la Cocaïne », il est le criminel le plus riche de l'histoire, avec une fortune nette connue de 30 milliards $1 (équivalent à 54 milliards $ en 2016) au début des années 1990, faisant de lui un des hommes les plus riches au monde à cette époque.",
+       "readingModes": {
+        "text": true,
+        "image": true
+       },
+       "pageCount": 48,
+       "printType": "BOOK",
+       "categories": [
+        "Fiction"
+       ],
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "1.1.1.0.preview.3",
+       "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+       },
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=U_vKDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=U_vKDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=U_vKDwAAQBAJ&pg=PT41&dq=pablo&hl=&cd=3&source=gbs_api",
+       "infoLink": "https://play.google.com/store/books/details?id=U_vKDwAAQBAJ&source=gbs_api",
+       "canonicalVolumeLink": "https://play.google.com/store/books/details?id=U_vKDwAAQBAJ"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "FOR_SALE",
+       "isEbook": true,
+       "listPrice": {
+        "amount": 5.28,
+        "currencyCode": "EUR"
+       },
+       "retailPrice": {
+        "amount": 5.02,
+        "currencyCode": "EUR"
+       },
+       "buyLink": "https://play.google.com/store/books/details?id=U_vKDwAAQBAJ&rdid=book-U_vKDwAAQBAJ&rdot=1&source=gbs_api",
+       "offers": [
+        {
+         "finskyOfferType": 1,
+         "listPrice": {
+          "amountInMicros": 5280000.0,
+          "currencyCode": "EUR"
+         },
+         "retailPrice": {
+          "amountInMicros": 5020000.0,
+          "currencyCode": "EUR"
+         },
+         "giftable": true
+        }
+       ]
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Pablo_Escobar-sample-epub.acsm?id=U_vKDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Pablo_Escobar-sample-pdf.acsm?id=U_vKDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=U_vKDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Entretien avec Mark Bowden, auteur de l&#39;ouvrage de référence sur \u003cb\u003ePablo\u003c/b\u003e \u003cbr\u003e\nEscobar, Killing \u003cb\u003ePablo\u003c/b\u003e. Il raconte ici l&#39;ascension et la chute spectaculaires du \u003cbr\u003e\nnarcotrafiquant colombien. Mark Bowden est l&#39;auteur du livre-référence sur l&#39;\u003cbr\u003e\nascension et&nbsp;..."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "i9tXDwAAQBAJ",
+      "etag": "mSzEJVAVmdY",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/i9tXDwAAQBAJ",
+      "volumeInfo": {
+       "title": "Pablo, à la vie à la mort",
+       "authors": [
+        "Yves-Marie Clément"
+       ],
+       "publisher": "FeniXX",
+       "publishedDate": "2000-01-01T00:00:00+01:00",
+       "description": "Salvador de Bahia, Brésil. Orphelin, Pablo doit, comme chaque jour, réaliser son numéro d'acrobate, afin de gagner les quelques pièces dont il a besoin pour survivre. Quand on lui vole les diamants qu'il était chargé de livrer, il est contraint d'entrer dans une école de capoeira pour payer sa dette. Pablo est prêt à combattre pour retrouver sa liberté, mais qui est son véritable adversaire ?",
+       "industryIdentifiers": [
+        {
+         "type": "ISBN_13",
+         "identifier": "9782700261486"
+        },
+        {
+         "type": "ISBN_10",
+         "identifier": "2700261488"
+        }
+       ],
+       "readingModes": {
+        "text": true,
+        "image": true
+       },
+       "pageCount": 154,
+       "printType": "BOOK",
+       "categories": [
+        "Juvenile Fiction"
+       ],
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "1.3.3.0.preview.3",
+       "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+       },
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=i9tXDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=i9tXDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=i9tXDwAAQBAJ&pg=PT29&dq=pablo&hl=&cd=4&source=gbs_api",
+       "infoLink": "https://play.google.com/store/books/details?id=i9tXDwAAQBAJ&source=gbs_api",
+       "canonicalVolumeLink": "https://play.google.com/store/books/details?id=i9tXDwAAQBAJ"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "FOR_SALE",
+       "isEbook": true,
+       "listPrice": {
+        "amount": 5.99,
+        "currencyCode": "EUR"
+       },
+       "retailPrice": {
+        "amount": 5.99,
+        "currencyCode": "EUR"
+       },
+       "buyLink": "https://play.google.com/store/books/details?id=i9tXDwAAQBAJ&rdid=book-i9tXDwAAQBAJ&rdot=1&source=gbs_api",
+       "offers": [
+        {
+         "finskyOfferType": 1,
+         "listPrice": {
+          "amountInMicros": 5990000.0,
+          "currencyCode": "EUR"
+         },
+         "retailPrice": {
+          "amountInMicros": 5990000.0,
+          "currencyCode": "EUR"
+         },
+         "giftable": true
+        }
+       ]
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Pablo_%C3%A0_la_vie_%C3%A0_la_mort-sample-epub.acsm?id=i9tXDwAAQBAJ&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Pablo_%C3%A0_la_vie_%C3%A0_la_mort-sample-pdf.acsm?id=i9tXDwAAQBAJ&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=i9tXDwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "\u003cb\u003ePablo\u003c/b\u003e ouvre la portière. La chaleur lui tombe sur la tête comme un seau d&#39;eau \u003cbr\u003e\nbouillante. \u003cb\u003ePablo\u003c/b\u003e est habitué, il a la peau dure et tannée. Mario affiche un sourire. \u003cbr\u003e\nSon premier sourire. \u003cb\u003ePablo\u003c/b\u003e se trompe. C&#39;est sûrement le soleil qui le fait grimacer\u003cbr\u003e\n&nbsp;..."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "9EtfmLkotqsC",
+      "etag": "Yzfq13vl9Wk",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/9EtfmLkotqsC",
+      "volumeInfo": {
+       "title": "Rabindrânâth Tagore, Pablo Neruda, Aimé Césaire: pour un universel réconcilié",
+       "publisher": "UNESCO",
+       "industryIdentifiers": [
+        {
+         "type": "ISBN_10",
+         "identifier": "9230010022"
+        },
+        {
+         "type": "ISBN_13",
+         "identifier": "9789230010027"
+        }
+       ],
+       "readingModes": {
+        "text": false,
+        "image": true
+       },
+       "printType": "BOOK",
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "preview-1.0.0",
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=9EtfmLkotqsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=9EtfmLkotqsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=9EtfmLkotqsC&pg=PA191&dq=pablo&hl=&cd=5&source=gbs_api",
+       "infoLink": "http://books.google.fr/books?id=9EtfmLkotqsC&dq=pablo&hl=&source=gbs_api",
+       "canonicalVolumeLink": "https://books.google.com/books/about/Rabindr%C3%A2n%C3%A2th_Tagore_Pablo_Neruda_Aim%C3%A9.html?hl=&id=9EtfmLkotqsC"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "NOT_FOR_SALE",
+       "isEbook": false
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": false
+       },
+       "pdf": {
+        "isAvailable": false
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=9EtfmLkotqsC&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Au dos de la photographie accompagnée d&#39;une lettre: 1927, Juin, Santiago, Chili, \u003cbr\u003e\n« À mon cher père Neftali Ricardo » ©Fondation \u003cb\u003ePablo\u003c/b\u003e Neruda/ Bernardo Reyes, \u003cbr\u003e\narchives personnelles; p.55 Le jeune poète \u003cb\u003ePablo\u003c/b\u003e Neruda et sa sœur Laura&nbsp;..."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "zsHayTqUCTsC",
+      "etag": "ofsm376lY7M",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/zsHayTqUCTsC",
+      "volumeInfo": {
+       "title": "Pablo Picasso",
+       "authors": [
+        "Victoria Charles"
+       ],
+       "publisher": "Parkstone International",
+       "publishedDate": "2011-07-01",
+       "description": "Pablo Picasso (Málaga, 1881 – Mougins, 1973) Picasso naquit en Espagne et l’on dit même qu’il commença à dessiner avant de savoir parler. Enfant, il fut nstinctivement attiré par les instruments de l’artiste. Il pouvait passer des heures de joyeuse concentration à dessiner des spirales pourvues d’un sens qu’il était seul à connaître. Fuyant les jeux d’enfants, il traça ses premiers tableaux dans le sable. Cette manière précoce de s’exprimer contenait la promesse d’un rare talent. Nous nous devons de mentionner Málaga, car c’est là, le 25 Octobre 1881, que Pablo Ruiz Picasso naquit et qu’il passa les dix premières années de sa vie. Le père de Picasso était lui-même peintre et professeur à l’école des Beaux-Arts de la ville. Picasso apprit auprès de lui les rudiments de la peinture académique. Puis il poursuivit ses études à l’académie des Arts de Madrid mais n’obtint jamais son diplôme. Picasso, qui n’avait pas encore 18 ans, avait atteint le point culminant de sa rébellion, répudiant l’esthétique anémique de l’académisme et le prosaïsme du réalisme. Tout naturellement, il se joignit à ceux qui se qualifiaient de modernistes, c’est à dire, les artistes et les écrivains non-conformistes, ceux que Sabartés appelait «l’élite de la pensée catalane » et qui se retrouvaient au café des artistes Els Quatre Gats. Durant les années 1899 et 1900, les seuls sujets dignes d’être peints aux yeux de Picasso étaient ceux qui reflétaient la vérité ultime : le caractère éphémère de la vie humaine et l’inéluctabilité de la mort. Ses premières oeuvres, cataloguées sous le nom de «période bleue » (1901-1904), consistent en peintures exécutées dans des teintes bleues, inspirées par un voyage à travers l’Espagne et la mort de son ami Casagemas. Même si Picasso lui-même insistait fréquemment sur la nature intérieure et subjective de la période bleue, sa genèse et, en particulier, ce monochromatisme bleu, furent des années durant, expliqués comme les résultats de diverses influences esthétiques. Entre 1905 et 1907, Picasso entra dans une nouvelle phase, appelée la «période rose » caractérisée par un style plus enjoué, dominé par l’orange et le rose. A Gosal, au cours de l’été 1906, le nu féminin prit une importance considérable pour Picasso – une nudité dépersonnalisée, aborigène, simple, comme le concept de «femme ». La dimension que les nus féminins allaient prendre chez Picasso dans les mois suivants, précisément durant l’hiver et le printemps 1907, s’imposa lorsqu’il élabora la composition de son impressionnante peinture connue sous le titre des Demoiselles d’Avignon. S’il est vrai que l’art africain est habituellement considéré comme le facteur déterminant du développement d’une sthétique classique en 1907, les leçons de Cézanne sont quand à elles perçues comme la pierre angulaire de cette nouvelle progression. Ceci est lié tout d’abord à une conception spatiale de la toile comme une entité composée, soumise à un certain système de construction. Georges Braque, dont Picasso devint l’ami à l’automne 1908 et avec lequel il mena le cubisme à son apogée en six ans, fut surpris pas les similitudes entre les expériences picturales de Picasso et les siennes. Il expliquait que le «principal objectif du Cubisme était la matérialisation de l’espace. A l’issue de sa période cubiste, dans les années 1920, Picasso revint à un style plus figuratif et se rapprocha du ouvement surréaliste. Il représenta des corps difformes et monstrueux mais d’une manière très personnelle. Après le bombardement de Guernica en 1937, Picasso réalisa l’une de ses oeuvres les plus célèbres, symbole des horreurs de la guerre. Dans les années 1960, son art changea à nouveau et Picasso commença à regarder de plus près les grands maîtres, s’inspirant dans ses tableaux des oeuvres de Velázquez, Poussin, Goya, Manet, Courbet, Delacroix. Les dernières oeuvres de Picasso étaient un mélange de styles, devenant plus colorées, expressives et optimistes. Picasso mourut en 1973, dans sa villa de Mougins. Le symboliste russe Georgy Chulkov écrivit : «La mort de Picasso est une chose tragique. Pourtant, combien ceux qui croient pouvoir imiter Picasso ou apprendre de lui sont en vérité aveugles et naïfs. Apprendre quoi ? Ces formes ne correspondent à aucune émotion existant hors de l’Enfer. Mais être en Enfer signifie anticiper la mort, et les Cubistes ne s’intéressent guère à ce genre de connaissance infinie. »",
+       "industryIdentifiers": [
+        {
+         "type": "ISBN_13",
+         "identifier": "9781780422855"
+        },
+        {
+         "type": "ISBN_10",
+         "identifier": "1780422857"
+        }
+       ],
+       "readingModes": {
+        "text": false,
+        "image": true
+       },
+       "pageCount": 160,
+       "printType": "BOOK",
+       "categories": [
+        "Art"
+       ],
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "0.1.0.0.preview.1",
+       "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+       },
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=zsHayTqUCTsC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=zsHayTqUCTsC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=zsHayTqUCTsC&pg=PA144&dq=pablo&hl=&cd=6&source=gbs_api",
+       "infoLink": "https://play.google.com/store/books/details?id=zsHayTqUCTsC&source=gbs_api",
+       "canonicalVolumeLink": "https://play.google.com/store/books/details?id=zsHayTqUCTsC"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "FOR_SALE",
+       "isEbook": true,
+       "listPrice": {
+        "amount": 7.38,
+        "currencyCode": "EUR"
+       },
+       "retailPrice": {
+        "amount": 7.01,
+        "currencyCode": "EUR"
+       },
+       "buyLink": "https://play.google.com/store/books/details?id=zsHayTqUCTsC&rdid=book-zsHayTqUCTsC&rdot=1&source=gbs_api",
+       "offers": [
+        {
+         "finskyOfferType": 1,
+         "listPrice": {
+          "amountInMicros": 7380000.0,
+          "currencyCode": "EUR"
+         },
+         "retailPrice": {
+          "amountInMicros": 7010000.0,
+          "currencyCode": "EUR"
+         },
+         "giftable": true
+        }
+       ]
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": false
+       },
+       "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Pablo_Picasso-sample-pdf.acsm?id=zsHayTqUCTsC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=zsHayTqUCTsC&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Chronologie de la vie de l&#39;artiste 1881 1888–1889 1891 1894 1895 1897 1898 \u003cbr\u003e\n1899 Naissance à Malaga de \u003cb\u003ePablo\u003c/b\u003e Ruiz Picasso, fils de José Ruiz Blasco, \u003cbr\u003e\npeintre et professeur de dessin à l&#39;École des Arts décoratifs, conservateur au \u003cbr\u003e\nmusée&nbsp;..."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "6Q4HAgAAQBAJ",
+      "etag": "/kInaediuBQ",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/6Q4HAgAAQBAJ",
+      "volumeInfo": {
+       "title": "Pablo Limaceau Sentait Des Pinceaux",
+       "authors": [
+        "Jérôme LAMBALLE"
+       ],
+       "publisher": "Lulu.com",
+       "industryIdentifiers": [
+        {
+         "type": "ISBN_13",
+         "identifier": "9781445282305"
+        },
+        {
+         "type": "ISBN_10",
+         "identifier": "1445282305"
+        }
+       ],
+       "readingModes": {
+        "text": false,
+        "image": true
+       },
+       "printType": "BOOK",
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "0.1.0.0.preview.1",
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=6Q4HAgAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=6Q4HAgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=6Q4HAgAAQBAJ&pg=PT24&dq=pablo&hl=&cd=7&source=gbs_api",
+       "infoLink": "http://books.google.fr/books?id=6Q4HAgAAQBAJ&dq=pablo&hl=&source=gbs_api",
+       "canonicalVolumeLink": "https://books.google.com/books/about/Pablo_Limaceau_Sentait_Des_Pinceaux.html?hl=&id=6Q4HAgAAQBAJ"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "NOT_FOR_SALE",
+       "isEbook": false
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": false
+       },
+       "pdf": {
+        "isAvailable": false
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=6Q4HAgAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Alors \u003cb\u003ePablo\u003c/b\u003e, tu reviens me voir cartes pieds sont bien lourds à porter ? \u003cb\u003ePablo\u003c/b\u003e \u003cbr\u003e\nrépond oui en inclinant la tête, déjà prêt à repartir... − Et bien je vais te les retirer \u003cbr\u003e\ndéfinitivement car tu as eu le courage de revenir. Mais c&#39;est la dernière fois car je\u003cbr\u003e\n&nbsp;..."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "RjOB6wq3Y3MC",
+      "etag": "OVx0Ik2sTMk",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/RjOB6wq3Y3MC",
+      "volumeInfo": {
+       "title": "Don Pablo et ses amis",
+       "publisher": "Editions Aden",
+       "publishedDate": "1994-05-01",
+       "industryIdentifiers": [
+        {
+         "type": "ISBN_10",
+         "identifier": "2872620907"
+        },
+        {
+         "type": "ISBN_13",
+         "identifier": "9782872620906"
+        }
+       ],
+       "readingModes": {
+        "text": false,
+        "image": true
+       },
+       "pageCount": 184,
+       "printType": "BOOK",
+       "categories": [
+        "Cocaine industry"
+       ],
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "0.0.1.0.preview.1",
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=RjOB6wq3Y3MC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=RjOB6wq3Y3MC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&pg=PA54&dq=pablo&hl=&cd=8&source=gbs_api",
+       "infoLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&dq=pablo&hl=&source=gbs_api",
+       "canonicalVolumeLink": "https://books.google.com/books/about/Don_Pablo_et_ses_amis.html?hl=&id=RjOB6wq3Y3MC"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "NOT_FOR_SALE",
+       "isEbook": false
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": false
+       },
+       "pdf": {
+        "isAvailable": false
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=RjOB6wq3Y3MC&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Examinons maintenant les «mobiles», ou les indices, qui contribuèrent à faire de \u003cbr\u003e\n\u003cb\u003ePablo\u003c/b\u003e Escobar le cerveau du meurtre de Lara Bonilla. L&#39;observateur officiel de l&#39;\u003cbr\u003e\nEtat colombien mentionna dans ses notes: «Des mobiles d&#39;ordre sociologique (."
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "iKX1NFD7Z9gC",
+      "etag": "vbYkpFyRocs",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/iKX1NFD7Z9gC",
+      "volumeInfo": {
+       "title": "Le testament de Pablo Escobar",
+       "authors": [
+        "Jean-François Fogel"
+       ],
+       "publisher": "Grasset",
+       "publishedDate": "2014-04-01",
+       "description": "Ce livre ignore le bien. Pablo Escobar représente même son contraire : la figure achevée du mal. Le patron du cartel de Medellin a fait fortune en contrôlant la production de cocaïne dans le monde, usant de toutes les violences. Lorsqu'il fut abattu, en décembre 1993, on lui imputait plusieurs milliers de morts. Il faut pourtant se garder de lancer ce héros trop vite vers les poubelles de l'Histoire. Ce qu'il possède de monstrueux témoigne d'un désarroi de l'univers hispano-américain. Jean-François Fogel glisse ainsi de la saga d'un bandit vers l'économie politique, le récit de voyage, l'étude des relations internationales et de la littérature. Dans le destin d'un criminel hors pair apparaissent le poids du passé, l'ombre des Etats-Unis, les difficultés des plus pauvres, l'inertie de la violence, le romanesque des caudillos, l'Etat fiction. Escobar - voilà pourquoi ce livre ignore le bien - n'est dès lors qu'un homme qui raconte comme Bolivar, comme les héros de Gabriel Garcia Marquez, un continent éloigné du monde.",
+       "industryIdentifiers": [
+        {
+         "type": "ISBN_13",
+         "identifier": "9782246496298"
+        },
+        {
+         "type": "ISBN_10",
+         "identifier": "2246496292"
+        }
+       ],
+       "readingModes": {
+        "text": true,
+        "image": true
+       },
+       "pageCount": 210,
+       "printType": "BOOK",
+       "categories": [
+        "Literary Collections"
+       ],
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": true,
+       "contentVersion": "1.4.4.0.preview.3",
+       "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+       },
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=iKX1NFD7Z9gC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=iKX1NFD7Z9gC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=iKX1NFD7Z9gC&pg=PT5&dq=pablo&hl=&cd=9&source=gbs_api",
+       "infoLink": "https://play.google.com/store/books/details?id=iKX1NFD7Z9gC&source=gbs_api",
+       "canonicalVolumeLink": "https://play.google.com/store/books/details?id=iKX1NFD7Z9gC"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "FOR_SALE",
+       "isEbook": true,
+       "listPrice": {
+        "amount": 5.99,
+        "currencyCode": "EUR"
+       },
+       "retailPrice": {
+        "amount": 5.99,
+        "currencyCode": "EUR"
+       },
+       "buyLink": "https://play.google.com/store/books/details?id=iKX1NFD7Z9gC&rdid=book-iKX1NFD7Z9gC&rdot=1&source=gbs_api",
+       "offers": [
+        {
+         "finskyOfferType": 1,
+         "listPrice": {
+          "amountInMicros": 5990000.0,
+          "currencyCode": "EUR"
+         },
+         "retailPrice": {
+          "amountInMicros": 5990000.0,
+          "currencyCode": "EUR"
+         },
+         "giftable": true
+        }
+       ]
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "PARTIAL",
+       "embeddable": true,
+       "publicDomain": false,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Le_testament_de_Pablo_Escobar-sample-epub.acsm?id=iKX1NFD7Z9gC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "pdf": {
+        "isAvailable": true,
+        "acsTokenLink": "http://books.google.fr/books/download/Le_testament_de_Pablo_Escobar-sample-pdf.acsm?id=iKX1NFD7Z9gC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=iKX1NFD7Z9gC&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "SAMPLE",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "Cette fois, il n&#39;aeuque le temps de mourir. Son uniquegarde ducorps abattu d&#39;\u003cbr\u003e\nentrée au rezdechaussée, une cachette hors d&#39;atteinte au premier étage, son \u003cbr\u003e\nseul recours restait une fuite impossible parune fenêtredu deuxième étage. «\u003cbr\u003e\n\u003cb\u003ePablo\u003c/b\u003e!"
+      }
+     },
+     {
+      "kind": "books#volume",
+      "id": "mEHG6Rg_3-4C",
+      "etag": "KTc4nTjBRh0",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/mEHG6Rg_3-4C",
+      "volumeInfo": {
+       "title": "Histoire de Don Pablo de Ségovie, surnommé l'Aventurier buscon",
+       "authors": [
+        "Francisco de Quevedo"
+       ],
+       "publishedDate": "1843",
+       "industryIdentifiers": [
+        {
+         "type": "OTHER",
+         "identifier": "BAB:1005350145"
+        }
+       ],
+       "readingModes": {
+        "text": false,
+        "image": true
+       },
+       "pageCount": 400,
+       "printType": "BOOK",
+       "maturityRating": "NOT_MATURE",
+       "allowAnonLogging": false,
+       "contentVersion": "0.0.2.0.full.1",
+       "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=mEHG6Rg_3-4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=mEHG6Rg_3-4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+       },
+       "language": "fr",
+       "previewLink": "http://books.google.fr/books?id=mEHG6Rg_3-4C&pg=PA349&dq=pablo&hl=&cd=10&source=gbs_api",
+       "infoLink": "https://play.google.com/store/books/details?id=mEHG6Rg_3-4C&source=gbs_api",
+       "canonicalVolumeLink": "https://play.google.com/store/books/details?id=mEHG6Rg_3-4C"
+      },
+      "saleInfo": {
+       "country": "FR",
+       "saleability": "FREE",
+       "isEbook": true,
+       "buyLink": "https://play.google.com/store/books/details?id=mEHG6Rg_3-4C&rdid=book-mEHG6Rg_3-4C&rdot=1&source=gbs_api"
+      },
+      "accessInfo": {
+       "country": "FR",
+       "viewability": "ALL_PAGES",
+       "embeddable": true,
+       "publicDomain": true,
+       "textToSpeechPermission": "ALLOWED",
+       "epub": {
+        "isAvailable": false,
+        "downloadLink": "http://books.google.fr/books/download/Histoire_de_Don_Pablo_de_S%C3%A9govie_surnom.epub?id=mEHG6Rg_3-4C&hl=&output=epub&source=gbs_api"
+       },
+       "pdf": {
+        "isAvailable": true,
+        "downloadLink": "http://books.google.fr/books/download/Histoire_de_Don_Pablo_de_S%C3%A9govie_surnom.pdf?id=mEHG6Rg_3-4C&hl=&output=pdf&sig=ACfU3U2KVX7hWhTpH9fhgIBB2_1HTjIf4g&source=gbs_api"
+       },
+       "webReaderLink": "http://play.google.com/books/reader?id=mEHG6Rg_3-4C&hl=&printsec=frontcover&source=gbs_api",
+       "accessViewStatus": "FULL_PUBLIC_DOMAIN",
+       "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+       "textSnippet": "\u003cb\u003ePablo\u003c/b\u003e salua et se retira. — £ Qu&#39;est-ce que cela prouve? ditBacchus en se \u003cbr\u003e\nfrottant les yeux et en se détirant. — A boire! j&#39;ai la gorge sèche d&#39;avoir tant \u003cbr\u003e\nécouté. &gt; Où diable est Ganymède, ce garçon n&#39;est jamais là ; j&#39;aimais mieux \u003cbr\u003e\nHébé. A boire&nbsp;..."
+      }
+     }
+    ]
+   }

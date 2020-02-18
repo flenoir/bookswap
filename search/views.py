@@ -150,9 +150,7 @@ def main(request):
         print('post')        
         inviteform = InviteForm(request.POST)
         if inviteform.is_valid():
-            print("valid")
             cleaned_email = inviteform.cleaned_data["post"]
-            print("email is:", cleaned_email)
             invite_new_user(request,cleaned_email)
             return render(request, "main.html")
         return render(request, 'main.html')

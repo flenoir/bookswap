@@ -57,6 +57,7 @@ class MainPagetestCase(TestCase):
             availability=True,
         )        
         self.user.user_books.add(self.book2)
+        # fixtures = ['../fixtures/isbn_api_data.json']
 
     def test_main_page_display_all_user_books(self):
         response = self.client.get(reverse('main'))
@@ -91,19 +92,19 @@ class MainPagetestCase(TestCase):
         self.assertTemplateUsed(response, 'book_list.html')
         self.failUnlessEqual(response.status_code, 200)
 
-    def test_save_book(self):
-        self.client.login(username="toto", password="12345")
-        response = self.client.post(reverse("main"), kwargs={"post": self.book1.isbn})
-        print(response.context) 
+    # def test_save_book(self):
+    #     self.client.login(username="toto", password="12345")
+    #     response = self.client.get(reverse("main"), kwargs={"post": self.book1.isbn})
+    #     print(response.context) 
 
 
 
-    # def test_request_response():
-    #     # Send a request to the API server and store the response.
-    #     response = requests.get('https://www.googleapis.com/books/v1/volumes?q=pablo')
+    def test_request_response(self):
+        # Send a request to the API server and store the response.
+        response = requests.get('https://www.googleapis.com/books/v1/volumes?q=pablo')
 
-    #     # Confirm that the request-response cycle completed successfully.
-    #     assert_true(response.ok)
+        # Confirm that the request-response cycle completed successfully.
+        self.assertEquals(response.ok, True)
 
     # def test_isbn_api_result():
     #     result = [{
