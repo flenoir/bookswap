@@ -99,14 +99,14 @@ class MainPagetestCase(TestCase):
 
 
 
-    def test_request_response(self):
-        # Send a request to the API server and store the response.
-        response = requests.get('https://www.googleapis.com/books/v1/volumes?q=pablo')
+    # def test_request_response(self):
+    #     # Send a request to the API server and store the response.
+    #     response = requests.get('https://www.googleapis.com/books/v1/volumes?q=pablo')
 
-        # Confirm that the request-response cycle completed successfully.
-        self.assertEquals(response.ok, True)
+    #     # Confirm that the request-response cycle completed successfully.
+    #     self.assertEquals(response.ok, True)
 
-    # def test_isbn_api_result():
+    # def test_isbn_api_return(monkeypatch):
     #     result = [{
     #         "kind": "books#volumes",
     #         "totalItems": 1,
@@ -160,4 +160,6 @@ class MainPagetestCase(TestCase):
     #             }
     #         ],
     #     }]
+
+      
 
