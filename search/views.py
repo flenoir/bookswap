@@ -17,7 +17,7 @@ def isbn_text_search(words):
     # Voir si pertinent de resoumettre la requete sur le titre pour avoir la cover
     r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
     parsed = json.loads(r.text)
-    print(parsed)
+    # print(parsed)
     # check if isbn identifier is not null
     for x in parsed['items']:
         if 'industryIdentifiers' not in x['volumeInfo']:            
