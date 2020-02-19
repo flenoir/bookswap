@@ -81,7 +81,8 @@ def save_book(request, isbn):
 
             else:
                 print("not matched")
-        return render(request, 'main.html', {'result': data})
+                context = book_search(request)   
+        return render(request, 'book_list.html', context)
     else:
         print("save method had been called !")
     
@@ -147,7 +148,6 @@ def get_all_users_books():
 
 def main(request):
     if request.method == "POST":
-        print('post')        
         inviteform = InviteForm(request.POST)
         if inviteform.is_valid():
             cleaned_email = inviteform.cleaned_data["post"]
@@ -155,29 +155,11 @@ def main(request):
             return render(request, "main.html")
         return render(request, 'main.html')
     else:
-        print('get')
-        form = SearchForm(request.GET)        
         inviteform =  InviteForm()
         library = get_all_users_books()
-        if form.is_valid():
-            data = form.cleaned_data["post"].casefold()
-            invite_data = inviteform
-            if data:
-                # check if input is isbn number or title
-                checked_input = input_cleaner(str(data))
-                # search on title
-                result = isbn_text_search(str(checked_input))
-                request.session['temp_json'] = result
-                context = {"form": form, "inviteform": invite_data, "result": result, "library": library}
-                return render(request, "search_result.html", context)
-            else:
-                context = {"form": form, "inviteform": invite_data, "library": library}
-                return render(request, "main.html", context)
-
-        return render(request, "main.html", {"form": form, "inviteform": inviteform, "library": library})
+        return render(request, "main.html", {"inviteform": inviteform, "library": library})
 
 def search_result(request):
-    print('search get')
     form = SearchForm(request.GET)
     if form.is_valid():
         data = form.cleaned_data["post"].casefold()            
