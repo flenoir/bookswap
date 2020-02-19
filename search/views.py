@@ -132,11 +132,11 @@ def invite_new_user(request, email):
     ''' 
     invite new users to application
     '''  
-    if request.method == "POST":
-        Invitation = get_invitation_model()
-        invite = Invitation.create(email, inviter=request.user)
-        invite.send_invitation(request)
-        return render(request, 'main.html')
+    # if request.method == "POST":
+    Invitation = get_invitation_model()
+    invite = Invitation.create(email, inviter=request.user)
+    invite.send_invitation(request)
+    return render(request, 'main.html')
 
 
 def get_all_users_books():
@@ -169,9 +169,27 @@ def main(request):
                 result = isbn_text_search(str(checked_input))
                 request.session['temp_json'] = result
                 context = {"form": form, "inviteform": invite_data, "result": result, "library": library}
-                return render(request, "main.html", context)
+                return render(request, "search_result.html", context)
             else:
                 context = {"form": form, "inviteform": invite_data, "library": library}
                 return render(request, "main.html", context)
 
         return render(request, "main.html", {"form": form, "inviteform": inviteform, "library": library})
+
+def search_result(request):
+    print('search get')
+    form = SearchForm(request.GET)
+    if form.is_valid():
+        data = form.cleaned_data["post"].casefold()            
+        if data:
+            # check if input is isbn number or title
+            checked_input = input_cleaner(str(data))
+            # search on title
+            result = isbn_text_search(str(checked_input))
+            request.session['temp_json'] = result
+            context = {"form": form, "result": result}
+            return render(request, "search_result.html", context)
+        else:
+            context = {"form": form}
+            return render(request, "search_result.html", context)
+
