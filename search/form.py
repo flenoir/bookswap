@@ -16,6 +16,10 @@ class BookForm(forms.ModelForm):
             "description",
             "state",
         )
+        widget =  {
+            'cover': forms.ImageField(),
+            'description': forms.Textarea(attrs={'cols': 80, 'rows': 20}),
+        }
 
 
 class SearchForm(forms.Form):

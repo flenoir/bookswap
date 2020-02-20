@@ -125,15 +125,14 @@ def book_detail(request, isbn):
     form = BookForm(request.POST or None, instance=current_book)
     if form.is_valid():
         form.save()
-        return render(request, "detail.html", {'form' : form })
-    return render(request, "detail.html", {'form' : form })
+        return render(request, "detail.html", {'form' : form, 'current_book': current_book })
+    return render(request, "detail.html", {'form' : form, 'current_book': current_book  })
 
 
 def invite_new_user(request, email):
     ''' 
     invite new users to application
     '''  
-    # if request.method == "POST":
     Invitation = get_invitation_model()
     invite = Invitation.create(email, inviter=request.user)
     invite.send_invitation(request)
@@ -141,8 +140,10 @@ def invite_new_user(request, email):
 
 
 def get_all_users_books():
+    ''' 
+    display entire bookswap library
+    ''' 
     library = Book.objects.all()
-    print(library)
     return library
 
 
@@ -158,6 +159,7 @@ def main(request):
         inviteform =  InviteForm()
         library = get_all_users_books()
         return render(request, "main.html", {"inviteform": inviteform, "library": library})
+
 
 def search_result(request):
     form = SearchForm(request.GET)
