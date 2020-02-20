@@ -122,6 +122,8 @@ def book_detail(request, isbn):
     Display details and update book
     '''   
     current_book = Book.objects.filter(uuid=isbn).first()
+    book_owner = CustomUser.objects.filter(user_books__uuid=isbn)
+    print("thee book owner is :", book_owner)
     form = BookForm(request.POST or None, instance=current_book)
     if form.is_valid():
         form.save()

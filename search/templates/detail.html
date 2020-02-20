@@ -2,23 +2,34 @@
 
 {% block first_row %}
 
-<div class="flex flex-col content-center justify-center h-full items-center">
 
-    <div class="w-full max-w-lg bg-orange-200 p-6 rounded-lg">
-
-        <h1>Detail page</h1>
-        
-        <h2>{{ current_book }}</h2>
-        <img src="{{ current_book.cover }}" alt="current_book cover">
-       
     
-        <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  type=submit>Update</button>
-        </form>
 
+
+
+<div class="flex">
+    <div class="w-1/5 bg-gray-500 h-12"></div>
+    <div class="w-3/5 bg-gray-400 h-12">
+        
+        <div class="bg-orange-300 rounded-lg p-6 mt-8">
+
+            <h1>Detail page</h1>
+            <h2>connecté avec : {{ current_book.user_books }}</h2>
+                                               
+            <h2>{{ current_book }}</h2>
+            <img src="{{ current_book.cover }}" alt="current_book cover">
+        
+        
+            <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  type=submit>Update</button>
+            </form>
+
+         </div>
+    
     </div>
+    <div class="w-1/5 bg-gray-500 h-12"></div>
 </div>
 
 
