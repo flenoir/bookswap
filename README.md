@@ -11,11 +11,19 @@ It's a great way to share knowledge and entertainment while preserving the plane
 
 Projet runs under Pipenv virtual environment
 
-Please run it with command
+Please install dependecies
+
+```bash
+pipenv install
+```
+
+then run application with command
 
 ```bash
 pipenv run manage.py runserver
 ```
+
+You can connect on http://127.0.0.1:8000
 
 ## Usage
 
