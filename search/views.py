@@ -122,13 +122,13 @@ def book_detail(request, isbn):
     Display details and update book
     '''   
     current_book = Book.objects.filter(uuid=isbn).first()
-    book_owner = CustomUser.objects.filter(user_books__uuid=isbn)
-    print("thee book owner is :", book_owner)
+    book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
     form = BookForm(request.POST or None, instance=current_book)
+    context = {'form' : form, 'current_book': current_book, 'book_owner': book_owner }
     if form.is_valid():
         form.save()
-        return render(request, "detail.html", {'form' : form, 'current_book': current_book })
-    return render(request, "detail.html", {'form' : form, 'current_book': current_book  })
+        return render(request, "detail.html", context)
+    return render(request, "detail.html", context)
 
 
 def invite_new_user(request, email):

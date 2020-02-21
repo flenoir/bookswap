@@ -17,8 +17,7 @@ class BookForm(forms.ModelForm):
             "state",
         )
         widget =  {
-            'cover': forms.ImageField(),
-            'description': forms.Textarea(attrs={'cols': 80, 'rows': 20}),
+            'state': forms.Select(choices=[('neuf', 'neuf'),('bon état', 'bon état')])
         }
 
 
