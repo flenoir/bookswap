@@ -16,7 +16,7 @@ class BookForm(forms.ModelForm):
             "description",
             "state",
         )
-        widget =  {
+        widgets =  {
             'state': forms.Select(choices=[('neuf', 'neuf'),('bon état', 'bon état')])
         }
 
