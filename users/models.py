@@ -4,5 +4,5 @@ from search.models import Book
 
 
 class CustomUser(AbstractUser):
-    user_books = models.ManyToManyField(Book)
+    user_books = models.ManyToManyField(Book, related_name='owner')
     friends = models.ManyToManyField("self")
