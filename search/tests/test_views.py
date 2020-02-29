@@ -12,6 +12,7 @@ from search.views import (
     invite_new_user,
     get_all_users_books,
     main,
+    google_api_request,
 )
 from django.shortcuts import get_object_or_404
 from users.models import CustomUser
@@ -101,8 +102,54 @@ class MainPagetestCase(TestCase):
     @mock.patch("search.views.requests.get")
     def test_isbn_text_search_return(self, mock_get):
         mock_get.return_value.json.return_value = {
-            "items": []  # ajouter ce dont tu as besoin pour ton test
+            "items": {
+                    "kind": "books#volume",
+                    "id": "RjOB6wq3Y3MC",
+                    "etag": "DYk6HRNSWc8",
+                    "selfLink": "https://www.googleapis.com/books/v1/volumes/RjOB6wq3Y3MC",
+                    "volumeInfo": {
+                        "title": "Don Pablo et ses amis",
+                        "publisher": "Editions Aden",
+                        "publishedDate": "1994-05-01",
+                        "industryIdentifiers": [
+                            {"type": "ISBN_10", "identifier": "2872620907"},
+                            {"type": "ISBN_13", "identifier": "9782872620906"},
+                        ],
+                        "readingModes": {"text": False, "image": True},
+                        "pageCount": 184,
+                        "printType": "BOOK",
+                        "categories": ["Cocaine industry"],
+                        "maturityRating": "NOT_MATURE",
+                        "allowAnonLogging": False,
+                        "contentVersion": "0.0.1.0.preview.1",
+                        "imageLinks": {
+                            "smallThumbnail": "http://books.google.com/books/content?id=RjOB6wq3Y3MC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                            "thumbnail": "http://books.google.com/books/content?id=RjOB6wq3Y3MC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                        },
+                        "language": "fr",
+                        "previewLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&printsec=frontcover&dq=isbn:9782872620906&hl=&cd=1&source=gbs_api",
+                        "infoLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&dq=isbn:9782872620906&hl=&source=gbs_api",
+                        "canonicalVolumeLink": "https://books.google.com/books/about/Don_Pablo_et_ses_amis.html?hl=&id=RjOB6wq3Y3MC",
+                    },
+                    "saleInfo": {
+                        "country": "FR",
+                        "saleability": "NOT_FOR_SALE",
+                        "isEbook": False,
+                    },
+                    "accessInfo": {
+                        "country": "FR",
+                        "viewability": "PARTIAL",
+                        "embeddable": True,
+                        "publicDomain": False,
+                        "textToSpeechPermission": "ALLOWED",
+                        "epub": {"isAvailable": False},
+                        "pdf": {"isAvailable": False},
+                        "webReaderLink": "http://play.google.com/books/reader?id=RjOB6wq3Y3MC&hl=&printsec=frontcover&source=gbs_api",
+                        "accessViewStatus": "SAMPLE",
+                        "quoteSharingAllowed": False,
+                    }
+            }
         }
-        response = isbn_text_search("pablo")
+        response = google_api_request("pablo")
         self.assertEquals(response, mock_get.return_value.json.return_value)
 
