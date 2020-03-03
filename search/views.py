@@ -10,10 +10,12 @@ import requests
 import dateparser
 
 def google_api_request(words):
+    ''' 
+    make a search on google books api 
+    '''
     r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
     parsed = r.json()
     return parsed
-
 
 
 def isbn_text_search(words):
@@ -39,8 +41,8 @@ def input_cleaner(search_data):
     try:
         if type(int(search_data)):
             res = requests.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ str(search_data))
-            parsed_res = json.loads(res.text)
-            return parsed_res['items'][0]['volumeInfo']['title']
+            parsed_res = res.json()
+            return parsed_res['items'][0]['volumeInfo']['title']    
     except ValueError as error:
         print(error)
         return search_data

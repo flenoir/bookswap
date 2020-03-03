@@ -73,15 +73,15 @@ class MainPagetestCase(TestCase):
         )
         self.assertEquals(response.status_code, 200)
 
-    def test_isbn_text_search(self):
-        # response = requests.get('https://www.googleapis.com/books/v1/volumes?q=pablo')
-        # parsed = json.loads(response.text)
-        response = isbn_text_search("pablo")
-        self.assertEquals(response[0]["volumeInfo"]["title"], "Pablo de la Courneuve")
+    # def test_isbn_text_search(self):
+    #     # response = requests.get('https://www.googleapis.com/books/v1/volumes?q=pablo')
+    #     # parsed = json.loads(response.text)
+    #     response = isbn_text_search("pablo")
+    #     self.assertEquals(response[0]["volumeInfo"]["title"], "Pablo de la Courneuve")
 
-    def test_input_cleaner_returns_string(self):
-        result = input_cleaner(9782872620906)
-        self.assertEquals(result, "Don Pablo et ses amis")
+    # def test_input_cleaner_returns_string(self):
+    #     result = input_cleaner(9782872620906)
+    #     self.assertEquals(result, "Don Pablo et ses amis")
 
     def test_input_cleaner_returns_ValueError(self):
         result = input_cleaner("pablo")
@@ -153,3 +153,40 @@ class MainPagetestCase(TestCase):
         response = google_api_request("pablo")
         self.assertEquals(response, mock_get.return_value.json.return_value)
 
+    @mock.patch('search.views.requests.get')
+    def test_input_cleaner_mock(self, mock_get):
+        # print(mock_get.return_value.json.return_value)
+        mock_get.return_value.json.return_value = {
+            "items": [{
+                    "volumeInfo": {
+                        "title": "Don Pablo et ses amis",
+                        "publisher": "Editions Aden",
+                        "publishedDate": "1994-05-01",
+                        "industryIdentifiers": [
+                            {"type": "ISBN_10", "identifier": "2872620907"},
+                            {"type": "ISBN_13", "identifier": "9782872620906"},
+                        ],
+                        "readingModes": {"text": False, "image": True},
+                        "pageCount": 184,
+                        "printType": "BOOK",
+                        "categories": ["Cocaine industry"],
+                        "maturityRating": "NOT_MATURE",
+                        "allowAnonLogging": False,
+                        "contentVersion": "0.0.1.0.preview.1",
+                        "imageLinks": {
+                            "smallThumbnail": "http://books.google.com/books/content?id=RjOB6wq3Y3MC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+                            "thumbnail": "http://books.google.com/books/content?id=RjOB6wq3Y3MC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                        },
+                        "language": "fr",
+                        "previewLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&printsec=frontcover&dq=isbn:9782872620906&hl=&cd=1&source=gbs_api",
+                        "infoLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&dq=isbn:9782872620906&hl=&source=gbs_api",
+                        "canonicalVolumeLink": "https://books.google.com/books/about/Don_Pablo_et_ses_amis.html?hl=&id=RjOB6wq3Y3MC",
+                    },              
+            }]
+        }
+        response = input_cleaner(9782872620906)
+        self.assertEquals(response,mock_get.return_value.json.return_value['items'][0]['volumeInfo']['title'])
+
+    def test_book_search(self):
+        result = book_search(self)
+        self.assertEquals(len(result), 1)
