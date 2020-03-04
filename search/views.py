@@ -9,22 +9,29 @@ import json
 import requests
 import dateparser
 
+def google_api_request(words):
+    ''' 
+    make a search on google books api 
+    '''
+    r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
+    parsed = r.json()
+    return parsed
+
 
 def isbn_text_search(words):
     ''' 
     make a search request based on title or authors 
     '''
-    # Voir si pertinent de resoumettre la requete sur le titre pour avoir la cover
-    r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
-    parsed = json.loads(r.text)
-    # print(parsed)
+    # r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
+    # parsed = r.json()
+    parsed_words = google_api_request(words)
     # check if isbn identifier is not null
-    for x in parsed['items']:
+    for x in parsed_words['items']:
         if 'industryIdentifiers' not in x['volumeInfo']:            
-            parsed['items'].remove(x)            
+            parsed_words['items'].remove(x)            
         else:
-            print("NO Isbn number")
-    return parsed['items']
+            print("No ISBN number found")
+    return parsed_words['items']
 
 
 def input_cleaner(search_data):
@@ -34,8 +41,8 @@ def input_cleaner(search_data):
     try:
         if type(int(search_data)):
             res = requests.get('https://www.googleapis.com/books/v1/volumes?q=isbn:'+ str(search_data))
-            parsed_res = json.loads(res.text)
-            return parsed_res['items'][0]['volumeInfo']['title']
+            parsed_res = res.json()
+            return parsed_res['items'][0]['volumeInfo']['title']    
     except ValueError as error:
         print(error)
         return search_data

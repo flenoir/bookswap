@@ -17,7 +17,7 @@
     </div>
 
 
-  {% if result %}
+  <!-- {% if result %}
 
     <div class="bg-orange-300">
 
@@ -74,7 +74,7 @@
             </tbody>
         </table>
       
-      {% endif %}
+      {% endif %} -->
         
 
 
@@ -82,9 +82,14 @@
 
     {% for book in library %}
 
-    <div class="flex-2 bg-orange-100 m-2">
-      <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover" class=" rounded-sm shadow-xl"></a>
-    </div>
+        {%  if book.owner.all.first != user %}
+
+        <div class="flex-2 bg-orange-100 m-2">
+            <!-- <h2>{{book.owner.all.first}}</h2> -->
+        <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover" class=" rounded-sm shadow-xl"></a>
+        </div>
+
+        {% endif %}
 
     {% endfor %}
 
