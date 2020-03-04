@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pages',
     'debug_toolbar',
     'invitations',
+    'crispy_forms',
 
     'allauth',
     'allauth.account',
@@ -181,4 +182,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'decidonscastelnau@gmail.com'
 EMAIL_HOST_PASSWORD = 'C45teln4u2K20!'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

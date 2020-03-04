@@ -1,9 +1,34 @@
 from django import forms
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Submit, Row, Column
 
 from .models import Book
 
 
 class BookForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('isbn', css_class='form-group col-md-6 mb-0'),
+                Column('title', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            'author',
+            'availability',
+            Row(
+                Column('category', css_class='form-group col-md-6 mb-0'),
+                Column('description', css_class='form-group col-md-4 mb-0'),
+                Column('state', css_class='form-group col-md-2 mb-0'),
+                css_class='form-row'
+            ),
+            'check_me_out',
+            Submit('submit', 'Sign in')
+        )
+
+
     class Meta:
         model = Book
         fields = (
