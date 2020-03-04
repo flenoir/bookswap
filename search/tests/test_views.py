@@ -190,3 +190,11 @@ class MainPagetestCase(TestCase):
     def test_book_search(self):
         result = book_search(self)
         self.assertEquals(len(result), 1)
+
+    def test_book_list(self):
+        self.client.login(username="toto", password="12345")
+        response = self.client.get(
+            reverse("book_list")
+        )
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(len(response.context["full_list"]), 1)
