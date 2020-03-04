@@ -11,6 +11,6 @@ class SignUpView(CreateView):
 
 class UpdateUserView(UpdateView):
     form_class = CustomUserChangeForm
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('main')
     template_name = 'edit_user.html'
     queryset = CustomUser.objects.all()
