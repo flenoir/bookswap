@@ -135,6 +135,8 @@ def book_detail(request, isbn):
     if form.is_valid():
         form.save()
         return render(request, "detail.html", context)
+    else:
+        print('form is not valid')
     return render(request, "detail.html", context)
 
 

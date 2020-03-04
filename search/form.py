@@ -11,21 +11,22 @@ class BookForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
+            'title',
             Row(
                 Column('isbn', css_class='form-group col-md-6 mb-0'),
-                Column('title', css_class='form-group col-md-6 mb-0'),
+                Column('publisher', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
             'author',
-            'availability',
+            'description',
+            'cover',
             Row(
                 Column('category', css_class='form-group col-md-6 mb-0'),
-                Column('description', css_class='form-group col-md-4 mb-0'),
+                Column('availability', css_class='form-group col-md-4 mb-0'),
                 Column('state', css_class='form-group col-md-2 mb-0'),
                 css_class='form-row'
             ),
-            'check_me_out',
-            Submit('submit', 'Sign in')
+            Submit('submit', 'Update')
         )
 
 
@@ -40,6 +41,7 @@ class BookForm(forms.ModelForm):
             "cover",
             "description",
             "state",
+            "publisher",
         )
         widgets =  {
             'state': forms.Select(choices=[('neuf', 'neuf'),('bon état', 'bon état')])
