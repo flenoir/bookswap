@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'crispy_forms',
     'search',
     'users',
     'pages',
@@ -181,4 +182,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'decidonscastelnau@gmail.com'
 EMAIL_HOST_PASSWORD = 'C45teln4u2K20!'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

@@ -1,31 +1,41 @@
-{% extends 'base.html' %} {% block first_row %}
+{% extends 'base.html' %} 
+
+{% load crispy_forms_tags %}
+
+
+{% block first_row %}
 
 <div class="flex">
   <div class="w-1/5 bg-gray-500 h-12"></div>
   <div class="w-3/5 bg-gray-400 h-12">
+    <h3>Editez les informations de ce livre</h3>
     <div class="bg-orange-300 rounded-lg p-6 mt-8">
       {% if user == current_book.owner.all.first %}
 
-      <h1>Editez les informations de ce livre</h1>
-      <h2>connecté avec : {{ user.username }}</h2>
+      
+      <!-- <h4>connecté avec : {{ user.username }}</h4> -->
 
-      <h2>
-        Ce livre est actuellement possédé par : {{
-        current_book.owner.all.first.email }}
-      </h2>
+      
       <!-- we could have used customuser_set instead of owner -->
+      <div class="row">
+        <div  class="form-group col-md-8 mb-0">
+          <h5>
+            Ce livre est actuellement possédé par : {{ current_book.owner.all.first.email }}
+          </h5>
+        </div>
 
-      <img src="{{ current_book.cover }}" alt="current_book cover" />
+        <div  class="form-group col-md-4 mb-0">
+          <img src="{{ current_book.cover }}" alt="current_book cover" />
+        </div>
+
+      </div>
+
+      
 
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >
-          Update
-        </button>
+        {% crispy form %}
+        {{ form.errors }}
       </form>
 
       {% else %}

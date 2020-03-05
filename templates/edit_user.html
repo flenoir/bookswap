@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block first_row %}
 
 
 <div class="flex">
     <div class="w-1/5 bg-gray-500 h-12"></div>
     <div class="w-3/5 bg-gray-400 h-12">
-        
+
+        <h1>Edition utilisateur</h1>
         <div class="bg-orange-300 rounded-lg p-6 mt-8">
 
-            <h1>Edition utilisateur</h1>
+            
             
      
             <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% crispy form %}
+            {{ form.errors }}
+            <!-- {{ form.as_p }} -->
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  type=submit>Update</button>
             </form>
 
