@@ -16,25 +16,46 @@ class CustomUserChangeForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
+        # self.helper.layout = Layout(
+        #     Row(
+        #         Column("username", css_class="form-group col-md-6 mb-0"),
+        #         Column("email", css_class="form-group col-md-6 mb-0"),
+        #         css_class="form-row",
+        #     ),
+        #     Row(
+        #         Column("first_name", css_class="form-group col-md-6 mb-0"),
+        #         Column("last_name", css_class="form-group col-md-6 mb-0"),
+        #         css_class="form-row",
+        #     ),
+        #     Row(
+        #         Column("user_books", css_class="form-group col-md-8 mb-0"),
+        #         Column("friends", css_class="form-group col-md-4 mb-0"),
+        #         css_class="form-row",
+        #     ),
+        #     "password",
+        #     Submit("submit", "Update User"),
+        # )
         self.helper.layout = Layout(
             Row(
-                Column("username", css_class="form-group col-md-6 mb-0"),
-                Column("email", css_class="form-group col-md-6 mb-0"),
+                Column("username", css_class="grid-cols-6 mr-3"),
+                Column("email", css_class="grid-cols-6"),
                 css_class="form-row",
             ),
             Row(
-                Column("first_name", css_class="form-group col-md-6 mb-0"),
-                Column("last_name", css_class="form-group col-md-6 mb-0"),
+                Column("first_name", css_class="grid-cols-6 mr-3"),
+                Column("last_name", css_class="grid-cols-6"),
                 css_class="form-row",
             ),
             Row(
-                Column("user_books", css_class="form-group col-md-8 mb-0"),
-                Column("friends", css_class="form-group col-md-4 mb-0"),
+                Column("user_books", css_class="grid-cols-6 mr-2"),
+                Column("friends", css_class="grid-cols-4"),
                 css_class="form-row",
             ),
             "password",
             Submit("submit", "Update User"),
         )
+
+
     class Meta:
         model = CustomUser
         fields = CustomUserCreationForm.Meta.fields
