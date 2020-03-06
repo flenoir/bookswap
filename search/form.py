@@ -1,6 +1,16 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Row, Column, HTML
+from crispy_forms.layout import (
+    Layout,
+    Submit,
+    Row,
+    Column,
+    HTML,
+    Div,
+    Field,
+    Fieldset,
+    ButtonHolder,
+)
 
 from .models import Book
 
@@ -12,26 +22,33 @@ class BookForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            "title",
-            Row(
-                Column("author", css_class="form-group col-md-6 mb-0"),
-                Column("publisher", css_class="form-group col-md-6 mb-0"),
-                css_class="form-row",
-            ),
-            "description",
-            Row(
-                Column("isbn", css_class="form-group col-md-6 mb-0"),
-                Column("cover", css_class="form-group col-md-6 mb-0"),
-                # HTML('<img src="{{ "cover" }}"/>'),
-                css_class="form-row",
-            ),
-            Row(
-                Column("category", css_class="form-group col-md-6 mb-0"),
-                Column("availability", css_class="form-group col-md-4 mb-0"),
-                Column("state", css_class="form-group col-md-2 mb-0"),
-                css_class="form-row",
-            ),
-            Submit("submit", "Update"),
+            Div(                
+                Field("title", css_class="w-full"),
+                Div(
+                    Field("author", css_class="my-1 px-1 w-1/2 overflow-hidden"),
+                    Field("publisher", css_class="my-1 px-1 w-1/2 overflow-hidden"),
+                ),
+                Field("description", css_class="w-full"),
+                Div(
+                    Field("isbn", css_class="my-1 px-1 w-1/2 overflow-hidden"),
+                    Field("cover", css_class="my-1 px-1 w-1/2 overflow-hidden"),
+                    # HTML('<img src="{{ "cover" }}"/>'),
+                ),
+                Div(
+                    Field("category", css_class="my-1 px-1 w-1/3 overflow-hidden"),
+                    Field("availability", css_class="my-1 px-1 w-1/3 overflow-hidden"),
+                    Field("state", css_class="my-1 px-1 w-1/3 overflow-hidden"),
+                ),
+                Div(
+                    ButtonHolder(
+                        Submit(
+                            "submit",
+                            "Update",
+                            css_class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
+                        ),
+                    ),
+                ),                
+            )
         )
 
     class Meta:
