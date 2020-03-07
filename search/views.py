@@ -4,6 +4,7 @@ from users.models import CustomUser
 from django.urls import reverse_lazy
 from .form import BookForm, SearchForm, InviteForm
 from invitations.utils import get_invitation_model
+from django.core.mail import send_mail
 
 import json
 import requests
@@ -148,6 +149,21 @@ def invite_new_user(request, email):
     invite = Invitation.create(email, inviter=request.user)
     invite.send_invitation(request)
     return render(request, 'main.html')
+
+
+def exchange_request(request, title, user):
+    ''' 
+    send request to owner for an exchange
+    '''  
+    send_mail("Demande d'échange de livre via la plateforme Bookswap", 
+    "Bonjour, Je souhaiterais échanger le livre '"+ title +"' avec vous, pouvez-vous vous connecter sur la plateforme sur mon compte afin de voir si vous trouvez un livre qui vous intéresse ? ",
+    "toto@bookswap.com",
+    ["flenoir@gmail.com"],
+    fail_silently=False,
+    )
+    print(request, user)
+    context = book_search(request)  
+    return render(request, 'main.html', context)
 
 
 def get_all_users_books():
