@@ -3,23 +3,23 @@
 
 {% block first_row %}
 
-<div class="flex flex-col" >
+<div class="container-fluid ml-2 mr-2" >
 
-    <div class="bg-gray-600 text-center pt-1 pb-1">
+    <div class="text-center pt-1 pb-1">
 
-        <h3 class="text-white">Voici la liste des livres de nos utilisateurs</h3>
+        <h3 class="text-gray">Voici la liste des livres de nos utilisateurs</h3>
 
-        <h4 class="text-white">Faites votre choix pour les emprunter ou les échanger avec les votres !</h4>
+        <h4 class="text-gray">Faites votre choix pour les emprunter ou les échanger avec les votres !</h4>
 
     </div>
 
-  <div class="flex flex-wrap m-4">
+  <div class="row">
 
     {% for book in library %}
 
         {%  if book.owner.all.first != user %}
 
-        <div class="flex-2 bg-orange-100 m-2">
+        <div class="col-1">
             <!-- <h2>{{book.owner.all.first}}</h2> -->
         <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover" class=" rounded-sm shadow-xl"></a>
         </div>
@@ -29,30 +29,6 @@
     {% endfor %}
 
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
 

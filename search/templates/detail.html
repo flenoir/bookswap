@@ -40,11 +40,11 @@
 
       {% else %}
 
-      <h1>Détails du livre séléctionné</h1>
+      <h3>Détails du livre séléctionné</h3>
 
-      <h2>
+      <h4>
         Ce livre est actuellement possédé par {{ current_book.owner.all.first }}
-      </h2>
+      </h4>
 
       <div  class="form-group col-md-4 mb-0">
         <img src="{{ current_book.cover }}" alt="current_book cover" />
@@ -62,8 +62,8 @@
         </button> -->
       </form>
       
-      <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Demander un prêt</button>
-      <a href="{% url 'exchange_request' current_book.title current_book.owner.all.first %}"><button class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Demander une échange</button></a> 
+      <button class="btn btn-outline-success">Demander un prêt</button>
+      <a href="{% url 'exchange_request' current_book.title current_book.owner.all.first %}"><button class="btn btn-outline-danger">Demander une échange</button></a> 
 
       {% endif %}
     </div>

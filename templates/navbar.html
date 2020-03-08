@@ -1,76 +1,56 @@
 {% load socialaccount %}
 {% load static %}
 
-<header class="border-b md:flex md:items-center md:justify-between p-4 pb-0 shadow-lg md:pb-4">
-  
-    <!-- Logo text or image -->
-    <div class="flex items-center justify-between mb-4 md:mb-0">
-      <h1 class="leading-none text-2xl text-grey-darkest">
-        <a class="no-underline text-grey-darkest hover:text-black" href="{% url 'main' %}">          
-          <img src="{% static 'images/bookswap_logo.JPG' %}" alt="bookswap_logo" style="width: 220px;">
-        </a>
-      </h1>
-  
-      <a class="text-black hover:text-orange md:hidden" href="#">
-        <i class="fa fa-2x fa-bars"></i>
-      </a>
-    </div>
-    <!-- END Logo text or image -->
-    
-  
+
+<header class="" style='background-color: #fef8f3;'>
     
     {% if user.is_authenticated %}
-    <!-- Global navigation -->
-    <nav>
-      <ul class="list-reset md:flex md:items-center">
-        <li>
-          <button class="modal-open bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded">Inviter un ami</button>
-        </li>
-        <li> 
-          <a href="{% url 'search_result' %}">
-            <button class="bg-transparent border border-gray-500 hover:border-indigo-500 text-gray-500 hover:text-indigo-500 font-bold py-2 px-4 rounded ml-2">Rechercher un livre</button>
+    <nav class="navbar navbar-expand-lg navbar-light" style='background-color: #fef8f3;'>
+      <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/bookswap_logo.JPG' %}" alt="bookswap_logo" style="width: 220px;"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+             <a class="nav-link" href="{% url 'search_result' %}"><button class="btn btn-outline-secondary btn-block" type="submit">Rechercher un livre</button></a>
+             <a href="{% url 'book_list' %}"> <button class="btn btn-outline-success my-2 my-sm-0 ml-2 mr-2" type="submit">Ma librairie</button></a>
+             <button class="modal-open btn btn-outline-primary my-2 my-sm-0 ml-2 mr-2" type="submit">Inviter un ami</button>
+        <li class="nav-item dropdown list-unstyled">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ user.username }}
           </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'edit_user' user.id %}">Edition utilisateur</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{% url 'account_logout' %}">Déconnexion</a>         
+          </div>
         </li>
-        <li class="md:ml-4"></li>
-          <a class="bg-transparent border border-blue-500 hover:border-indigo-500 text-blue-500 hover:text-indigo-500 font-bold py-2 px-4 rounded ml-2" href="{% url 'book_list' %}">
-            Ma librairie
-          </a>
-        </li>
-
-        <div class="dropdown inline-block relative ml-4">
-          <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-            <span class="mr-1">{{ user.username }}</span>
-            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
-          </button>
-          <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-            <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{% url 'edit_user' user.id %}">Edition utilisateur</a></li>
-            <li class=""><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{% url 'account_logout' %}">Déconnexion</a></li>           
-          </ul>
-        </div>
-        
-      </ul>
+      </div>
     </nav>
-    <!-- END Global navigation -->
     {% else %}
-    <nav>
-        <ul class="list-reset md:flex md:items-center">
-          <li class="md:ml-4">
-            <a class="block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="{% url 'account_login' %}">
-              Login
-            </a>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/bookswap_logo.JPG' %}" alt="bookswap_logo" style="width: 220px;"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="md:ml-4">
-            <a class="block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="{% provider_login_url 'google' %}">
-              Google login
-            </a>
-          </li>
-          <li class="md:ml-4">
-            <a class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0" href="{% url 'account_signup' %}">
-              Sign up
-            </a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
           </li>
         </ul>
-      </nav>
+             <a href="{% provider_login_url 'google' %}"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Google Login</button></a>
+             <a href="{% url 'account_signup' %}"> <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button></a>      
+          </li>
+      </div>
+    </nav>
 
     {% endif %}
   </header>
