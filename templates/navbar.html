@@ -2,6 +2,7 @@
 {% load static %}
 
 
+
 <header class="" style='background-color: #fef8f3;'>
     
     {% if user.is_authenticated %}
@@ -16,7 +17,11 @@
         </ul>
              <a class="nav-link" href="{% url 'search_result' %}"><button class="btn btn-outline-secondary btn-block" type="submit">Rechercher un livre</button></a>
              <a href="{% url 'book_list' %}"> <button class="btn btn-outline-success my-2 my-sm-0 ml-2 mr-2" type="submit">Ma librairie</button></a>
-             <button class="modal-open btn btn-outline-primary my-2 my-sm-0 ml-2 mr-2" type="submit">Inviter un ami</button>
+
+             <button type="button" class="btn btn-outline-primary my-2 my-sm-0 ml-2 mr-2" data-toggle="modal" data-target="#inviteModal">
+              Inviter un ami
+            </button>
+
         <li class="nav-item dropdown list-unstyled">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ user.username }}

@@ -21,7 +21,7 @@
 
         <div class="col-1">
             <!-- <h2>{{book.owner.all.first}}</h2> -->
-        <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover" class=" rounded-sm shadow-xl"></a>
+        <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover" class="shadow-lg"></a>
         </div>
 
         {% endif %}
@@ -34,4 +34,6 @@
 
 </div>
 
+
+  
 {% endblock %}

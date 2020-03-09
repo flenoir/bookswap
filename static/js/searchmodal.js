@@ -4,6 +4,7 @@ window.addEventListener('load', function(){
  for (var i = 0; i < opensearchmodal.length; i++) {
    opensearchmodal[i].addEventListener('click', function(event){
      event.preventDefault()
+     console.log("clicked")
      toggleModal()
    })
  }
