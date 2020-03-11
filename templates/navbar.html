@@ -2,11 +2,10 @@
 {% load static %}
 
 
-
 <header class="" style='background-color: #fef8f3;'>
     
     {% if user.is_authenticated %}
-    <nav class="navbar navbar-expand-lg navbar-light" style='background-color: #fef8f3;'>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style='background-color: #fef8f3;'>
       <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/bookswap_logo.JPG' %}" alt="bookswap_logo" style="width: 220px;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,8 +14,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
+             {% if request.get_full_path == "/book_list/" %}
              <a class="nav-link" href="{% url 'search_result' %}"><button class="btn btn-outline-secondary btn-block" type="submit">Rechercher un livre</button></a>
+             {% else %}
              <a href="{% url 'book_list' %}"> <button class="btn btn-outline-success my-2 my-sm-0 ml-2 mr-2" type="submit">Ma librairie</button></a>
+             {% endif%}
+             
 
              <button type="button" class="btn btn-outline-primary my-2 my-sm-0 ml-2 mr-2" data-toggle="modal" data-target="#inviteModal">
               Inviter un ami
@@ -59,6 +62,7 @@
 
     {% endif %}
   </header>
+
 
 
 

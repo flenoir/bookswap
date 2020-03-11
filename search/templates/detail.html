@@ -1,9 +1,4 @@
-{% extends 'base.html' %} 
-
-{% load crispy_forms_tags %}
-
-
-{% block first_row %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block first_row %}
 
 <div class="flex">
   <div class="w-1/5 bg-gray-500 h-12"></div>
@@ -12,63 +7,89 @@
     <div class="bg-orange-300 rounded-lg p-6 mt-8">
       {% if user == current_book.owner.all.first %}
 
-      
       <!-- <h4>connecté avec : {{ user.username }}</h4> -->
 
-      
       <!-- we could have used customuser_set instead of owner -->
       <div class="row">
-        <div  class="form-group col-md-8 mb-0">
+        <div class="form-group col-md-8 mb-0">
           <h5>
             Ce livre est actuellement possédé par : {{ current_book.owner.all.first.email }}
           </h5>
         </div>
 
-        <div  class="form-group col-md-4 mb-0">
+        <div class="form-group col-md-4 mb-0">
           <img src="{{ current_book.cover }}" alt="current_book cover" />
         </div>
-
       </div>
 
-      
-
       <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% crispy form %}
-        {{ form.errors }}
+        {% csrf_token %} {% crispy form %} {{ form.errors }}
       </form>
 
       {% else %}
+      
+      <div class="row">
 
       <h3>Détails du livre séléctionné</h3>
 
-      <h4>
-        Ce livre est actuellement possédé par {{ current_book.owner.all.first }}
-      </h4>
+      <!-- Boostrap card -->
 
-      <div  class="form-group col-md-4 mb-0">
-        <img src="{{ current_book.cover }}" alt="current_book cover" />
+      <div class="col-lg-9">
+        <div class="card mt-5 shadow" id="detail_card">
+          <div class="row">
+           
+            <div class="col-lg-9">
+                <div class="card-body">
+                  <h3 class="card-title">{{ current_book.title }}</h3>
+                  <h4>{{ current_book.authors }}</h4>
+                  <p class="card-text">{{ current_book.description }}</p>
+                  <span class="text-warning"
+                    >&#9733; &#9733; &#9733; &#9733; &#9734;</span
+                  >
+                  4.0 stars
+                </div>
+            </div>
+            <div class="col-lg-3">
+              <img
+                class="card-img-top img-fluid align-self-end mr-4 mt-4 border border-secondary"
+                src="{{ current_book.cover }}"
+                alt=""
+                style="width:fit-content"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4 shadow" id="detail_card">
+          <div class="card-header">
+            {{ current_book.state }}
+          </div>
+          <div class="card-body">
+            <p>
+              Ce livre est actuellement possédé par {{ current_book.owner.all.first }}
+            </p>
+            <small class="text-muted">{{ current_book.availability }}</small>
+            <hr />
+            <button class="btn btn-outline-success">Demander un prêt</button>
+            <a
+              href="{% url 'exchange_request' current_book.title current_book.owner.all.first %}">
+              <button class="btn btn-outline-danger">
+                Demander une échange
+              </button>
+            </a>
+          </div>
+        </div>
+        <!-- /.card -->
       </div>
 
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% crispy form %}
-        {{ form.errors }}
-        <!-- <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-        >
-          Update
-        </button> -->
-      </form>
-      
-      <button class="btn btn-outline-success">Demander un prêt</button>
-      <a href="{% url 'exchange_request' current_book.title current_book.owner.all.first %}"><button class="btn btn-outline-danger">Demander une échange</button></a> 
+    </div>
+
 
       {% endif %}
     </div>
   </div>
-  <div class="w-1/5 bg-gray-500 h-12"></div>
+  <div class="row pb-5 mb-5"></div>
 </div>
 
 {% endblock %}

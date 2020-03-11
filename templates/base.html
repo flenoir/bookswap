@@ -12,20 +12,32 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <!-- <script src="{% static 'js/emailmodal.js' %}"></script>
     <script src="{% static 'js/searchmodal.js' %}"></script> -->
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet" />
   </head>
 
-  <body class="container-fluid" style='background-color: #fef8f3;'>
-    {% include 'navbar.html' %} 
-    {% include 'modals.html' %}
+  <body class="container-fluid" style="background-color: #fef8f3;">
+    {% include 'navbar.html' %} {% include 'modals.html' %} {% block first_row%}
+    {% endblock %} {% block second_row %} {% endblock %}
 
-    {% block first_row%}
-    {% endblock %}
-
-    {% block second_row %}
-    {% endblock %}
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Bookswap 2020
+        </p>
+      </div>
+    </footer>
   </body>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"
+  ></script>
 </html>

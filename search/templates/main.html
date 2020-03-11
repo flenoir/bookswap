@@ -1,10 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 
 
 {% block first_row %}
 
-<div class="container-fluid ml-2 mr-2" >
 
+
+<div class="container-fluid ml-2 mr-2 my-5" >
+
+  <header class="bg-primary text-white pt-5 mt-5 shadow" id="banner">
+      <div class="row">
+
+        <div class="col-5 align-self-start h-60 mt-5">
+          <h3 class="text-white ml-5" id="title1">Bienvenue dans la bibliothèque collaborative de nos utilisateurs</h3>
+
+          <h4 class="text-gray ml-5 mt-5 mb-4" id="title1">Faites votre choix parmi les lives ci-dessous afin de les emprunter ou les échanger avec les votres !</h4>
+
+          <p class="ml-5" id="title1">Si vous ne l'avez pas encore fait, la première étape consiste à remplir votre librairie personnelle avec les livres que vous souhaitez échanger ou prêter</p>
+        </div>
+    </div>
+  </header>
+
+
+  <!-- <div class="row">
+
+    
     <div class="text-center pt-1 pb-1">
 
         <h3 class="text-gray">Voici la liste des livres de nos utilisateurs</h3>
@@ -12,25 +32,33 @@
         <h4 class="text-gray">Faites votre choix pour les emprunter ou les échanger avec les votres !</h4>
 
     </div>
+  </div> -->
 
-  <div class="row">
+<div class="container py-3 bg-faded">
+ 
 
-    {% for book in library %}
+    <div class="card-columns">
 
-        {%  if book.owner.all.first != user %}
+      {% for book in library %}
 
-        <div class="col-1">
-            <!-- <h2>{{book.owner.all.first}}</h2> -->
-        <a href="{% url 'book_detail' book.uuid %}"><img src="{{ book.cover }}" alt="cover" class="shadow-lg"></a>
-        </div>
+          {%  if book.owner.all.first != user %}
 
-        {% endif %}
+          <div class="card shadow">
+            <a href="{% url 'book_detail' book.uuid %}"><img class="card-img-top img-fluid" src="{{ book.cover }}" alt="Card image"></a>
+          </div>
 
-    {% endfor %}
+          {% endif %}
 
+      {% endfor %}
+
+    
   </div>
 
-    </div>
+</div>
+
+  <div class="row"></div>
+
+    
 
 </div>
 
