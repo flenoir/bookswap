@@ -1,11 +1,13 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %} {% block first_row %}
 
-<div class="flex">
-  <div class="w-1/5 bg-gray-500 h-12"></div>
-  <div class="w-3/5 bg-gray-400 h-12">
-    <h3>Editez les informations de ce livre</h3>
-    <div class="bg-orange-300 rounded-lg p-6 mt-8">
-      {% if user == current_book.owner.all.first %}
+<div class="container-fluid" style="padding-top: 80px;">
+  {% if user == current_book.owner.all.first %}
+
+  <div class="row">
+    <div class="col-1"></div>
+
+    <div class="col-10">
+      <h4>Editez les informations de ce livre</h4>
 
       <!-- <h4>connecté avec : {{ user.username }}</h4> -->
 
@@ -23,72 +25,101 @@
       </div>
 
       <form method="post" enctype="multipart/form-data">
-        {% csrf_token %} {% crispy form %} {{ form.errors }}
+        {% csrf_token %} 
+        
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-0">
+            {{ form.isbn|as_crispy_field }}
+          </div>
+          <div class="form-group col-md-6 mb-0">
+            {{ form.title|as_crispy_field }}
+          </div>
+        </div>
+        {{ form.author|as_crispy_field }}
+        {{ form.availability|as_crispy_field }}
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-0">
+            {{ form.description|as_crispy_field }}
+          </div>
+          <div class="form-group col-md-4 mb-0">
+            {{ form.state|as_crispy_field }}
+          </div>
+          <div class="form-group col-md-2 mb-0">
+            {{ form.category|as_crispy_field }}
+          </div>
+        </div>
+        {{ form.publisher|as_crispy_field }}
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        
+        
+        
+        
+        {% crispy form %} {{ form.errors }}
       </form>
-
-      {% else %}
-      
-      <div class="row">
-
-      <h3>Détails du livre séléctionné</h3>
-
-      <!-- Boostrap card -->
-
-      <div class="col-lg-9">
-        <div class="card mt-5 shadow" id="detail_card">
-          <div class="row">
-           
-            <div class="col-lg-9">
-                <div class="card-body">
-                  <h3 class="card-title">{{ current_book.title }}</h3>
-                  <h4>{{ current_book.authors }}</h4>
-                  <p class="card-text">{{ current_book.description }}</p>
-                  <span class="text-warning"
-                    >&#9733; &#9733; &#9733; &#9733; &#9734;</span
-                  >
-                  4.0 stars
-                </div>
-            </div>
-            <div class="col-lg-3">
-              <img
-                class="card-img-top img-fluid align-self-end mr-4 mt-4 border border-secondary"
-                src="{{ current_book.cover }}"
-                alt=""
-                style="width:fit-content"
-              />
-            </div>
-          </div>
-        </div>
-        <!-- /.card -->
-
-        <div class="card card-outline-secondary my-4 shadow" id="detail_card">
-          <div class="card-header">
-            {{ current_book.state }}
-          </div>
-          <div class="card-body">
-            <p>
-              Ce livre est actuellement possédé par {{ current_book.owner.all.first }}
-            </p>
-            <small class="text-muted">{{ current_book.availability }}</small>
-            <hr />
-            <button class="btn btn-outline-success">Demander un prêt</button>
-            <a
-              href="{% url 'exchange_request' current_book.title current_book.owner.all.first %}">
-              <button class="btn btn-outline-danger">
-                Demander une échange
-              </button>
-            </a>
-          </div>
-        </div>
-        <!-- /.card -->
-      </div>
-
     </div>
 
+    <div class="col-1"></div>
+  </div>
 
-      {% endif %}
+  {% else %}
+
+  <div class="row">
+    <h3>Détails du livre séléctionné</h3>
+
+    <!-- Boostrap card -->
+
+    <div class="col-lg-9">
+      <div class="card mt-5 shadow" id="detail_card">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="card-body">
+              <h3 class="card-title">{{ current_book.title }}</h3>
+              <h4>{{ current_book.authors }}</h4>
+              <p class="card-text">{{ current_book.description }}</p>
+              <span class="text-warning"
+                >&#9733; &#9733; &#9733; &#9733; &#9734;</span
+              >
+              4.0 stars
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <img
+              class="card-img-top img-fluid align-self-end mr-4 mt-4 border border-secondary"
+              src="{{ current_book.cover }}"
+              alt=""
+              style="width:fit-content"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+
+      <div class="card card-outline-secondary my-4 shadow" id="detail_card">
+        <div class="card-header">
+          {{ current_book.state }}
+        </div>
+        <div class="card-body">
+          <p>
+            Ce livre est actuellement possédé par {{ current_book.owner.all.first }}
+          </p>
+          <small class="text-muted">{{ current_book.availability }}</small>
+          <hr />
+          <button class="btn btn-outline-success">Demander un prêt</button>
+          <a
+            href="{% url 'exchange_request' current_book.title current_book.owner.all.first %}"
+          >
+            <button class="btn btn-outline-danger">
+              Demander une échange
+            </button>
+          </a>
+        </div>
+      </div>
+      <!-- /.card -->
     </div>
   </div>
+
+  {% endif %}
+
   <div class="row pb-5 mb-5"></div>
 </div>
 
