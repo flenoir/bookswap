@@ -13,5 +13,5 @@ urlpatterns = [
     path('detail/<str:isbn>', views.book_detail, name = 'book_detail'),
     path('send_invite/', views.invite_new_user, name = 'invite_new_user'),
     path('search_result/', views.search_result, name = "search_result"),
-    path('exchange_request/<str:title>/<str:user>', views.exchange_request, name = "exchange_request"),
+    path('exchange_request/<str:title>/<str:ownersmail>', views.exchange_request, name = "exchange_request"),
 ]

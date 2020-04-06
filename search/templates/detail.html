@@ -49,12 +49,12 @@
           </div>
         </div>
         {{ form.publisher|as_crispy_field }}
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
         
         
         
         
-        {% crispy form %} {{ form.errors }}
+        <!-- {% crispy form %} {{ form.errors }} -->
       </form>
     </div>
 
@@ -106,7 +106,7 @@
           <hr />
           <button class="btn btn-outline-success">Demander un prêt</button>
           <a
-            href="{% url 'exchange_request' current_book.title current_book.owner.all.first %}"
+            href="{% url 'exchange_request' current_book.title current_book.owner.all.first.email %}"
           >
             <button class="btn btn-outline-danger">
               Demander une échange

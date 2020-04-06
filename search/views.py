@@ -4,7 +4,7 @@ from users.models import CustomUser
 from django.urls import reverse_lazy
 from .form import BookForm, SearchForm, InviteForm
 from invitations.utils import get_invitation_model
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 
 import json
 import requests
@@ -151,17 +151,24 @@ def invite_new_user(request, email):
     return render(request, 'main.html')
 
 
-def exchange_request(request, title, user):
+def exchange_request(request, title, ownersmail):
     ''' 
     send request to owner for an exchange
     '''  
-    send_mail("Demande d'échange de livre via la plateforme Bookswap", 
-    "Bonjour, Je souhaiterais échanger le livre '"+ title +"' avec vous, pouvez-vous vous connecter sur la plateforme sur mon compte afin de voir si vous trouvez un livre qui vous intéresse ? ",
-    "toto@bookswap.com",
-    ["flenoir@gmail.com"],
-    fail_silently=False,
+    # send_mail("Demande d'échange de livre via la plateforme Bookswap", 
+    # "Bonjour, \n Je souhaiterais échanger le livre '"+ title +"' avec vous, pouvez-vous vous connecter sur la plateforme sur mon compte afin de voir si vous trouvez un livre qui vous intéresse ?\n request.user",
+    # "request.user",  #request.user
+    # [ownersmail],
+    # fail_silently=False,
+    # )
+    email = EmailMessage("Demande d'échange de livre via la plateforme Bookswap", 
+    "Bonjour, \n Je souhaiterais échanger le livre '"+ title +"' avec vous, pouvez-vous vous connecter sur la plateforme sur mon compte afin de voir si vous trouvez un livre qui vous intéresse ?\n "+ str(request.user),
+    request.user.email,  #request.user
+    [ownersmail],
+    headers = {'Reply-To': request.user.email},
     )
-    print(request, user)
+    email.send()
+    print(request, ownersmail, request.path)
     context = book_search(request)  
     return render(request, 'main.html', context)
 
