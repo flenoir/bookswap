@@ -104,7 +104,11 @@
           </p>
           <small class="text-muted">{{ current_book.availability }}</small>
           <hr />
+
+          
           <button class="btn btn-outline-success">Demander un prêt</button>
+          
+          
           <a
             href="{% url 'exchange_request' current_book.title current_book.owner.all.first.email %}"
           >

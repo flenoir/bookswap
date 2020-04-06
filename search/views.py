@@ -59,13 +59,12 @@ def save_book(request, isbn):
             if i['volumeInfo']['industryIdentifiers'][0]['identifier'] == isbn:
                 print("found match !")
                 print("user is:", request.user.username)
-                
-                # save book
-                try:
-                    book, not_yet_created = Book.objects.get_or_create(isbn=isbn)                
-                    
-                    if not_yet_created:                        
-                        print('pas encore en base de donnée')
+                # search in user library if current user already owns the book
+                res = [ele.isbn for ele in request.user.user_books.all()]
+                if i['volumeInfo']['industryIdentifiers'][0]['identifier'] not in res:
+                    # save book
+                    try:                        
+                        book = Book.objects.create(isbn=isbn)                        
                         book.isbn=i['volumeInfo']['industryIdentifiers'][0]['identifier']
                         book.title=i['volumeInfo']['title']
                         book.author=i['volumeInfo'].get('authors', "...")
@@ -80,12 +79,12 @@ def save_book(request, isbn):
                         book.published_date = cured_date.date()
                         book.save()
                         print("je l'associe à l'utilisateur courant")                        
-                    request.user.user_books.add(book)                        
-                    print("saved")
+                        request.user.user_books.add(book)                        
+                        print("saved")
 
-                except Exception as e:
-                    print("not saved :", e)
-    
+                    except Exception as e:
+                        print("not saved :", e)
+        
 
             else:
                 print("not matched")
