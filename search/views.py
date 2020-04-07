@@ -60,8 +60,8 @@ def save_book(request, isbn):
                 print("found match !")
                 print("user is:", request.user.username)
                 # search in user library if current user already owns the book
-                res = [ele.isbn for ele in request.user.user_books.all()]
-                if i['volumeInfo']['industryIdentifiers'][0]['identifier'] not in res:
+                user_library = [item.isbn for item in request.user.user_books.all()]
+                if i['volumeInfo']['industryIdentifiers'][0]['identifier'] not in user_library:
                     # save book
                     try:                        
                         book = Book.objects.create(isbn=isbn)                        
