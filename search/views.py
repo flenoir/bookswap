@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from users.models import CustomUser
 from django.urls import reverse_lazy
-from .form import BookForm, SearchForm, InviteForm
+from .form import BookForm, SearchForm, InviteForm, RentForm
 from invitations.utils import get_invitation_model
 from django.core.mail import send_mail, EmailMessage
 
@@ -128,16 +128,24 @@ def book_detail(request, isbn):
     ''' 
     Display details and update book
     '''   
-    current_book = Book.objects.filter(uuid=isbn).first()
-    book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
-    form = BookForm(request.POST or None, instance=current_book)
-    context = {'form' : form, 'current_book': current_book, 'book_owner': book_owner }
-    if form.is_valid():
-        form.save()
+    if request.method == "GET":
+        print("get")
+        current_book = Book.objects.filter(uuid=isbn).first()
+        book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
+        form = BookForm(request.POST or None, instance=current_book)
+        rentform =  RentForm()
+        context = {'form' : form, 'current_book': current_book, 'book_owner': book_owner, 'rentform': rentform }
+        if form.is_valid():
+            form.save()
+            return render(request, "detail.html", context)
+        else:
+            print('form is not valid')
         return render(request, "detail.html", context)
-    else:
-        print('form is not valid')
-    return render(request, "detail.html", context)
+    else: 
+        print("post")
+        rentform = RentForm(request.POST) # will put date values in database to book the books, they will be removed if owner refuses rental
+        print(rentform)
+        return render(request, "detail.html", {"rentform": rentform} )
 
 
 def invite_new_user(request, email):

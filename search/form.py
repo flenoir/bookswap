@@ -22,7 +22,7 @@ class BookForm(forms.ModelForm):
     #     super().__init__(*args, **kwargs)
     #     self.helper = FormHelper()
     #     self.helper.layout = Layout(
-    #         Div(                
+    #         Div(
     #             Field("title", css_class="w-full"),
     #             Div(
     #                 Field("author", css_class="my-1 px-1 w-1/2 overflow-hidden"),
@@ -47,7 +47,7 @@ class BookForm(forms.ModelForm):
     #                         css_class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
     #                     ),
     #                 ),
-    #             ),                
+    #             ),
     #         )
     #     )
 
@@ -93,3 +93,19 @@ class InviteForm(forms.Form):
         ),
     )
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class RentForm(forms.Form):
+    rent_start_field = forms.DateField(
+        label="début d'emprunt",
+        required=False,
+        # widget=forms.TextInput(attrs={"placeholder": "début d'emprunt", "size": "20",}),
+        widget=DateInput,
+    )
+    rent_end_field = forms.DateField(
+        label="fin d'emprunt",
+        required=False,
+        # widget=forms.TextInput(attrs={"placeholder": "fin d'emprunt", "size": "20",}),
+        widget=DateInput,
+    )

@@ -105,8 +105,13 @@
           <small class="text-muted">{{ current_book.availability }}</small>
           <hr />
 
-          
-          <button class="btn btn-outline-success">Demander un prêt</button>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ rentform }}
+            <button class="btn btn-outline-success"  type=submit>Demander un prêt</button>
+        </form>
+
+          <!-- <button class="btn btn-outline-success">Demander un prêt</button> -->
           
           
           <a

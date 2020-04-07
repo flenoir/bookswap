@@ -25,6 +25,8 @@ class Book(models.Model):
     page_count = models.PositiveSmallIntegerField(null=True)
     creation_date = models.DateTimeField(auto_now=True)
     published_date  = models.DateField(auto_now=False, null=True)
+    rental_start = models.DateField(auto_now=False, null=True)
+    rental_end = models.DateField(auto_now=False, null=True)
     availability = models.BooleanField(null=True)
     
     def  __str__(self):
