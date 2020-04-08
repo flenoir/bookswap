@@ -74,6 +74,8 @@ def save_book(request, isbn):
                         book.category = i['volumeInfo'].get('categories', "uncategorized")
                         book.page_count  = i['volumeInfo'].get('pageCount', 0)
                         book.state = "good condition"
+                        request.user.user_books.state = "neuf" # relation needs to be on book
+                        request.user.user_books.availability = True
                         book.availability = True                        
                         cured_date = dateparser.parse(i['volumeInfo']['publishedDate'])
                         book.published_date = cured_date.date()
@@ -88,23 +90,23 @@ def save_book(request, isbn):
 
             else:
                 print("not matched")
-                context = book_search(request)   
+                context = Book().book_search(request)   
         return render(request, 'book_list.html', context)
     else:
         print("save method had been called !")
     
 
-def book_search(request):
-    ''' 
-    select all uuid of current user book list
-    '''
-    books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
-    if books:
-        main_book_list = [i for i in books]
-        sub_books = [j for j in main_book_list[0].user_books.all()]     
-        return {"full_list": sub_books}
-    else:
-        return {"full_list": ""}
+# def book_search(request):
+#     ''' 
+#     select all uuid of current user book list
+#     '''
+#     books = CustomUser.objects.filter(user_books__isnull=False).filter(id=request.user.id)
+#     if books:
+#         main_book_list = [i for i in books]
+#         sub_books = [j for j in main_book_list[0].user_books.all()]     
+#         return {"full_list": sub_books}
+#     else:
+#         return {"full_list": ""}
 
 def remove_book(request, isbn):
     ''' 
@@ -112,7 +114,7 @@ def remove_book(request, isbn):
     '''
     if request.method == 'POST':
         request.user.user_books.remove(isbn)
-        context = book_search(request)       
+        context = Book().book_search(request)       
         return render(request, 'book_list.html', context)
 
    
@@ -120,7 +122,7 @@ def book_list(request):
     ''' 
     list all books saved by an user
     '''   
-    context = book_search(request)    
+    context = Book().book_search(request)    
     return render(request, 'book_list.html', context)
 
 
@@ -128,7 +130,7 @@ def book_detail(request, isbn):
     ''' 
     Display details and update book
     '''   
-    if request.method == "GET":
+    if request.method == "GET": # peut-on simplifier/séparer les request GET et POST ? 
         print("get")
         current_book = Book.objects.filter(uuid=isbn).first()
         book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
@@ -143,9 +145,25 @@ def book_detail(request, isbn):
         return render(request, "detail.html", context)
     else: 
         print("post")
+        current_book = Book.objects.filter(uuid=isbn).first()
+        book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
+        form = BookForm(request.POST or None, instance=current_book)
         rentform = RentForm(request.POST) # will put date values in database to book the books, they will be removed if owner refuses rental
-        print(rentform)
-        return render(request, "detail.html", {"rentform": rentform} )
+        context = {'form' : form, 'current_book': current_book, 'book_owner': book_owner, 'rentform': rentform }
+        if rentform.is_valid():            
+            current_book.rental_start = rentform.cleaned_data["rent_start_field"]
+            current_book.rental_end = rentform.cleaned_data["rent_end_field"]
+            # print(current_book.rental_start, current_book.rental_end)
+
+            # send an email to owner
+            email = EmailMessage("Demande de prêt du livre '"+ current_book.title +"' via la plateforme Bookswap", 
+            "Bonjour, \n Je souhaiterais vous emprunter le livre '"+ current_book.title +"'. \n Les dates que je vous proposent sont entre le "+ str(current_book.rental_start) + " et "+ str(current_book.rental_end) + ". Pouvez-vous vous connecter sur la plateforme sur votre compte afin de valider ma demande ? \n Merci \n"+ str(request.user),
+            request.user.email, # idée d'ajouter un attribut sur un booleen qui est en état False, le propriétaire doit le valider et le passer en True pour valider l'échange. Le proriétaie peut aussi "rejecter" la demande " effacement des champs start et end + si demande pas traitée sous 2 jours, , on efface les champs start et end
+            [book_owner.email],
+            headers = {'Reply-To': request.user.email},
+            )
+            email.send()
+        return render(request, "detail.html", context )
 
 
 def invite_new_user(request, email):
