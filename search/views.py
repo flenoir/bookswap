@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
-from users.models import CustomUser
+from users.models import CustomUser, Ownership, Borrowing
 from django.urls import reverse_lazy
 from .form import BookForm, SearchForm, InviteForm, RentForm
 from invitations.utils import get_invitation_model
 from django.core.mail import send_mail, EmailMessage
+from django.db.models.functions import Now
 
 import json
 import requests
@@ -73,12 +74,12 @@ def save_book(request, isbn):
                         book.description = i['volumeInfo'].get('description', "...")
                         book.category = i['volumeInfo'].get('categories', "uncategorized")
                         book.page_count  = i['volumeInfo'].get('pageCount', 0)
-                        book.state = "good condition"
-                        request.user.user_books.state = "neuf" # relation needs to be on book
-                        request.user.user_books.availability = True
+                        book.state = "good condition"                
                         book.availability = True                        
                         cured_date = dateparser.parse(i['volumeInfo']['publishedDate'])
                         book.published_date = cured_date.date()
+                        book_status  = Ownership( book = book, customuser = request.user, state= "Neuf", availability=True)
+                        book_status.save()
                         book.save()
                         print("je l'associe à l'utilisateur courant")                        
                         request.user.user_books.add(book)                        
@@ -134,9 +135,11 @@ def book_detail(request, isbn):
         print("get")
         current_book = Book.objects.filter(uuid=isbn).first()
         book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
+        book_status = Ownership.objects.filter(book=current_book, customuser=book_owner).first()
+        print(book_status.state, book_status.availability)
         form = BookForm(request.POST or None, instance=current_book)
         rentform =  RentForm()
-        context = {'form' : form, 'current_book': current_book, 'book_owner': book_owner, 'rentform': rentform }
+        context = {'form' : form, 'current_book': current_book, 'book_owner': book_owner, 'rentform': rentform, 'book_status': book_status }
         if form.is_valid():
             form.save()
             return render(request, "detail.html", context)
@@ -151,13 +154,11 @@ def book_detail(request, isbn):
         rentform = RentForm(request.POST) # will put date values in database to book the books, they will be removed if owner refuses rental
         context = {'form' : form, 'current_book': current_book, 'book_owner': book_owner, 'rentform': rentform }
         if rentform.is_valid():            
-            current_book.rental_start = rentform.cleaned_data["rent_start_field"]
-            current_book.rental_end = rentform.cleaned_data["rent_end_field"]
-            # print(current_book.rental_start, current_book.rental_end)
+            rental_request = Borrowing.objects.create(book=current_book, customuser=book_owner, start_date=rentform.cleaned_data["rent_start_field"], end_date = rentform.cleaned_data["rent_end_field"], rental_request_date = Now() )
 
             # send an email to owner
             email = EmailMessage("Demande de prêt du livre '"+ current_book.title +"' via la plateforme Bookswap", 
-            "Bonjour, \n Je souhaiterais vous emprunter le livre '"+ current_book.title +"'. \n Les dates que je vous proposent sont entre le "+ str(current_book.rental_start) + " et "+ str(current_book.rental_end) + ". Pouvez-vous vous connecter sur la plateforme sur votre compte afin de valider ma demande ? \n Merci \n"+ str(request.user),
+            "Bonjour, \n Je souhaiterais vous emprunter le livre '"+ current_book.title +"'. \n Les dates que je vous proposent sont entre le "+ str(rentform.cleaned_data["rent_start_field"]) + " et "+ str(rentform.cleaned_data["rent_end_field"]) + ". Pouvez-vous vous connecter sur la plateforme sur votre compte afin de valider ma demande ? \n Merci \n"+ str(request.user),
             request.user.email, # idée d'ajouter un attribut sur un booleen qui est en état False, le propriétaire doit le valider et le passer en True pour valider l'échange. Le proriétaie peut aussi "rejecter" la demande " effacement des champs start et end + si demande pas traitée sous 2 jours, , on efface les champs start et end
             [book_owner.email],
             headers = {'Reply-To': request.user.email},

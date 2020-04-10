@@ -96,13 +96,13 @@
 
       <div class="card card-outline-secondary my-4 shadow" id="detail_card">
         <div class="card-header">
-          {{ current_book.state }}
+          {{ book_status.state }}
         </div>
         <div class="card-body">
           <p>
             Ce livre est actuellement possédé par {{ current_book.owner.all.first }}
           </p>
-          <small class="text-muted">{{ current_book.availability }}</small>
+          <small class="text-muted">{{ book_status.availability }}</small>
           <hr />
 
           <form method="post" enctype="multipart/form-data">
