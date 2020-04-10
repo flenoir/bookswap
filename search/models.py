@@ -44,3 +44,11 @@ class Book(models.Model):
             return {"full_list": sub_books}
         else:
             return {"full_list": ""}
+
+
+    def get_all_users_books(self):
+        """
+        display entire bookswap library
+        """
+        library = Book.objects.all()
+        return library

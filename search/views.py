@@ -250,12 +250,12 @@ def exchange_request(request, title, ownersmail):
     return render(request, "main.html", context)
 
 
-def get_all_users_books():
-    """
-    display entire bookswap library
-    """
-    library = Book.objects.all()
-    return library
+# def get_all_users_books():
+#     """
+#     display entire bookswap library
+#     """
+#     library = Book.objects.all()
+#     return library
 
 
 def main(request):
@@ -268,7 +268,7 @@ def main(request):
         return render(request, "main.html")
     else:
         inviteform = InviteForm()
-        library = get_all_users_books()
+        library = Book().get_all_users_books()
         return render(
             request, "main.html", {"inviteform": inviteform, "library": library}
         )
