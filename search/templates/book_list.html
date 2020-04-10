@@ -15,10 +15,10 @@
                     <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Cover</th>
                     <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Title</th>
                     <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Availability</th>
-                    <th class="w-4/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Description</th> 
+                    <th class="w-4/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Description</th>
                     <th class="w-1/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Isbn</th>
                     <th class="w-1/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Actions</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
@@ -50,14 +50,14 @@
                         <form method="post" action="{% url 'remove_book' item.uuid %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-block">Supprimer</button>
-                        </form>               
+                        </form>
                     </td>
                 </tr>
-                
+
                 {% endfor %}
             </tbody>
         </table>
-        
+
     </div>
 
 </div>

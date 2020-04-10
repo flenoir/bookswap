@@ -25,8 +25,8 @@
       </div>
 
       <form method="post" enctype="multipart/form-data">
-        {% csrf_token %} 
-        
+        {% csrf_token %}
+
         <div class="form-row">
           <div class="form-group col-md-6 mb-0">
             {{ form.isbn|as_crispy_field }}
@@ -50,10 +50,10 @@
         </div>
         {{ form.publisher|as_crispy_field }}
         <button type="submit" class="btn btn-primary">Modifier</button>
-        
-        
-        
-        
+
+
+
+
         <!-- {% crispy form %} {{ form.errors }} -->
       </form>
     </div>
@@ -112,8 +112,8 @@
         </form>
 
           <!-- <button class="btn btn-outline-success">Demander un prêt</button> -->
-          
-          
+
+
           <a
             href="{% url 'exchange_request' current_book.title current_book.owner.all.first.email %}"
           >

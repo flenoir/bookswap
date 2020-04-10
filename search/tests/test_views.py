@@ -181,7 +181,7 @@ class MainPagetestCase(TestCase):
                         "previewLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&printsec=frontcover&dq=isbn:9782872620906&hl=&cd=1&source=gbs_api",
                         "infoLink": "http://books.google.fr/books?id=RjOB6wq3Y3MC&dq=isbn:9782872620906&hl=&source=gbs_api",
                         "canonicalVolumeLink": "https://books.google.com/books/about/Don_Pablo_et_ses_amis.html?hl=&id=RjOB6wq3Y3MC",
-                    },              
+                    },
             }]
         }
         response = input_cleaner(9782872620906)
