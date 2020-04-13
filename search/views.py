@@ -140,6 +140,7 @@ def book_list(request):
     list all books saved by an user
     """
     context = Book().book_search(request)
+    print("le context", context)
     return render(request, "book_list.html", context)
 
 
