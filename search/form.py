@@ -74,9 +74,10 @@ class BookForm(forms.ModelForm):
             "state": "Etat",
             "publisher": "Editeur",
         }
-        widgets = {
-            "state": forms.Select(choices=[("neuf", "neuf"), ("bon état", "bon état")])
-        }
+        # widgets = {
+        #     "state": forms.Select(choices=[("neuf", "neuf"), ("bon état", "bon état")]),
+        #     # "cover": forms.CharField(attrs={"required": False})
+        # }
 
 
 class SearchForm(forms.Form):

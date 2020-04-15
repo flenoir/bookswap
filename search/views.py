@@ -139,7 +139,8 @@ def book_list(request):
     """
     list all books saved by an user
     """
-    context = Book().book_search(request)
+    # context = Book().book_search(request)
+    context = request.user.book_search()
     print("le context", context)
     return render(request, "book_list.html", context)
 
@@ -155,16 +156,33 @@ def book_detail(request, isbn):
         book_status = Ownership.objects.filter(
             book=current_book, customuser=book_owner
         ).first()
-        print(book_status.state, book_status.availability)
+        rental_request = Borrowing.objects.filter(
+                book=current_book,
+                customuser=book_owner,
+            ).first()
+        # print("rental info", rental_request.start_date)
+
+        # print(book_status.state, book_status.availability)
         form = BookForm(request.POST or None, instance=current_book)
         rentform = RentForm()
-        context = {
-            "form": form,
-            "current_book": current_book,
-            "book_owner": book_owner,
-            "rentform": rentform,
-            "book_status": book_status,
-        }
+        if rental_request:
+            context = {
+                "form": form,
+                "current_book": current_book,
+                "book_owner": book_owner,
+                "rentform": rentform,
+                "book_status": book_status,
+                "rental_start": rental_request.start_date,
+                "rental_end": rental_request.end_date,
+            }
+        else:
+            context = {
+                "form": form,
+                "current_book": current_book,
+                "book_owner": book_owner,
+                "rentform": rentform,
+                "book_status": book_status,              
+            }
         if form.is_valid():
             form.save()
             return render(request, "detail.html", context)

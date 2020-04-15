@@ -46,6 +46,7 @@ class Book(models.Model):
             sub_books = [j for j in main_book_list[0].user_books.all()]
             print("sub_books_list", sub_books)
             book_rental_status = [Borrowing.objects.filter(book=item, customuser=request.user).first() for item in sub_books]
+            # Borrowing.objects.filter(book__in= sub_books, customuser=request.user).first()
             # for item in sub_books:
             #     book_rental_status = Borrowing.objects.filter(book=item, customuser=request.user).first()
             #     if book_rental_status != None:
