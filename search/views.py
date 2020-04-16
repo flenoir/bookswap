@@ -95,10 +95,13 @@ def save_book(request, isbn):
                             state="Neuf",
                             availability=True,
                         )
+
                         book_status.save()
                         book.save()
                         print("je l'associe à l'utilisateur courant")
-                        request.user.user_books.add(book)
+                        # request.user.user_books.add(book)
+                        request.user.borrower.add(book)
+
                         print("saved")
 
                     except Exception as e:
@@ -106,7 +109,7 @@ def save_book(request, isbn):
 
             else:
                 print("not matched")
-                context = Book().book_search(request)
+                context = request.user.book_search(request)
         return render(request, "book_list.html", context)
     else:
         print("save method had been called !")
@@ -130,8 +133,10 @@ def remove_book(request, isbn):
     remove book from user's list
     """
     if request.method == "POST":
-        request.user.user_books.remove(isbn)
-        context = Book().book_search(request)
+        request.user.delete_book(request, isbn)
+        # request.user.user_books.remove(isbn)
+        # print(request.user.user_books.all(), isbn)
+        context = request.user.book_search(request)
         return render(request, "book_list.html", context)
 
 
@@ -140,7 +145,7 @@ def book_list(request):
     list all books saved by an user
     """
     # context = Book().book_search(request)
-    context = request.user.book_search()
+    context = request.user.book_search(request)
     print("le context", context)
     return render(request, "book_list.html", context)
 
@@ -181,7 +186,7 @@ def book_detail(request, isbn):
                 "current_book": current_book,
                 "book_owner": book_owner,
                 "rentform": rentform,
-                "book_status": book_status,              
+                "book_status": book_status,
             }
         if form.is_valid():
             form.save()
@@ -204,13 +209,13 @@ def book_detail(request, isbn):
             "rentform": rentform,
         }
         if rentform.is_valid():
-            rental_request = Borrowing.objects.create(
-                book=current_book,
-                customuser=book_owner,
-                start_date=rentform.cleaned_data["rent_start_field"],
-                end_date=rentform.cleaned_data["rent_end_field"],
-                rental_request_date=Now(),
-            )
+            # rental_request = Borrowing.objects.create(
+            #     book=current_book,
+            #     customuser=book_owner,
+            #     start_date=rentform.cleaned_data["rent_start_field"],
+            #     end_date=rentform.cleaned_data["rent_end_field"],
+            #     rental_request_date=Now(),
+            # )
 
             # send an email to owner
             email = EmailMessage(
@@ -265,7 +270,7 @@ def exchange_request(request, title, ownersmail):
     )
     email.send()
     print(request, ownersmail, request.path)
-    context = book_search(request)
+    context = request.user.book_search(request)
     return render(request, "main.html", context)
 
 

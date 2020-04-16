@@ -42,7 +42,7 @@
       <!-- /Error messaging -->
     {% endif %}
 
-    
+
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div>{{ form.cover|as_crispy_field }}</div>
@@ -56,7 +56,7 @@
         </div>
         {{ form.author|as_crispy_field }}
         <!-- => change it form Ownership -->
-        {{ form.availability|as_crispy_field }} 
+        {{ form.availability|as_crispy_field }}
         <div class="form-row">
           <div class="form-group col-md-6 mb-0">
             {{ form.description|as_crispy_field }}
@@ -135,9 +135,7 @@
           <!-- <button class="btn btn-outline-success">Demander un prêt</button> -->
 
 
-          <a
-            href="{% url 'exchange_request' current_book.title current_book.owner.all.first.email %}"
-          >
+          <a href="{% url 'exchange_request' current_book.title current_book.owner.all.first.email %}">
             <button class="btn btn-outline-danger">
               Demander une échange
             </button>
