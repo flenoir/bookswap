@@ -26,8 +26,9 @@ class CustomUser(AbstractUser):
         # book_rental_status = Borrowing.objects.filter(book=current_book, customuser=request.user).first()
         print(books)
         if books:
-            sub_books = Borrowing.objects.filter(customuser=self.pk)
-            # print(self.pk)
+            # sub_books = Borrowing.objects.filter(customuser=self.pk)
+            sub_books = Ownership.objects.filter(customuser=self.pk)
+            print("sub", sub_books)
             return {"full_list": sub_books}
         else:
             return {"full_list": ""}
@@ -36,7 +37,7 @@ class CustomUser(AbstractUser):
         """
         remove book from user's list
         """
-        request.user.borrower.remove(uuid)
+        request.user.user_books.remove(uuid)
         # print(request.user_books.all(), uuid)
 
 
