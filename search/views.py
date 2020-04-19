@@ -162,9 +162,8 @@ def book_detail(request, isbn):
             book=current_book, customuser=book_owner
         ).first()
         rental_request = Borrowing.objects.filter(
-                book=current_book,
-                customuser=book_owner,
-            ).first()
+            book=current_book, customuser=book_owner,
+        ).first()
         # print("rental info", rental_request.start_date)
 
         # print(book_status.state, book_status.availability)
@@ -216,6 +215,7 @@ def book_detail(request, isbn):
             #     end_date=rentform.cleaned_data["rent_end_field"],
             #     rental_request_date=Now(),
             # )
+            objToUpdate = Borrowing.objects.filter(book=current_book.uuid, customuser=book_owner.id).update(start_date = rentform.cleaned_data["rent_start_field"],end_date = rentform.cleaned_data["rent_end_field"], rental_request_date=Now() )
 
             # send an email to owner
             email = EmailMessage(
