@@ -63,4 +63,6 @@ class Borrowing(models.Model):
     start_date  = models.DateField(auto_now=False, null=True)
     end_date  = models.DateField(auto_now=False, null=True)
     rental_request_date  = models.DateField(auto_now=False, null=True)
+    rental_validation = models.BooleanField(null=False, default=False)
+    borrowing_user = models.CharField(null=True, max_length=100)
 

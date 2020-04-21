@@ -215,7 +215,14 @@ def book_detail(request, isbn):
             #     end_date=rentform.cleaned_data["rent_end_field"],
             #     rental_request_date=Now(),
             # )
-            objToUpdate = Borrowing.objects.filter(book=current_book.uuid, customuser=book_owner.id).update(start_date = rentform.cleaned_data["rent_start_field"],end_date = rentform.cleaned_data["rent_end_field"], rental_request_date=Now() )
+            objToUpdate = Borrowing.objects.filter(
+                book=current_book.uuid, customuser=book_owner.id
+            ).update(
+                start_date=rentform.cleaned_data["rent_start_field"],
+                end_date=rentform.cleaned_data["rent_end_field"],
+                rental_request_date=Now(),
+                borrowing_user=request.user.id,
+            )
 
             # send an email to owner
             email = EmailMessage(
@@ -236,6 +243,33 @@ def book_detail(request, isbn):
             )
             email.send()
         return render(request, "detail.html", context)
+
+
+def book_rental_validation(request, isbn):
+    current_book = Book.objects.filter(uuid=isbn).first()
+    book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
+    book_status = Ownership.objects.filter(
+        book=current_book, customuser=book_owner
+    ).first()
+    # rental_request = Borrowing.objects.filter(
+    #     book=current_book, customuser=book_owner,
+    # ).first()
+    form = BookForm(request.POST or None, instance=current_book)
+    print("book to validate is :", current_book)
+    context = {
+        "form": form,
+        "current_book": current_book,
+        "book_owner": book_owner,
+        # "rentform": rentform,
+        "book_status": book_status,
+    }
+    Borrowing.objects.filter(
+                book=current_book.uuid, customuser=book_owner.id
+            ).update(
+                rental_validation=True,
+            )
+    # current_book.update() => function to switch availability if current time is between rental date
+    return render(request, "detail.html", context)
 
 
 def invite_new_user(request, email):
