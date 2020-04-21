@@ -1,36 +1,49 @@
 from django.db import models
+from datetime import date
 import uuid
+
 
 # Create your models here.
 
 STATE = (
-    ('Neuf', 'Neuf'),
-    ('Bon état', 'Bon état'),
-    ('Légèrement abimé', 'Légèrement abimé'),
-    ('Très abimé', 'Très abimé'),
-
+    ("Neuf", "Neuf"),
+    ("Bon état", "Bon état"),
+    ("Légèrement abimé", "Légèrement abimé"),
+    ("Très abimé", "Très abimé"),
 )
 
 
 class Book(models.Model):
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, null=False)
-    isbn  = models.CharField(max_length=100)
+    uuid = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False, null=False
+    )
+    isbn = models.CharField(max_length=100)
     title = models.CharField(max_length=150)
     author = models.CharField(max_length=150)
     cover = models.CharField(max_length=300, null=True)
     publisher = models.CharField(max_length=150, null=True)
     description = models.TextField(null=True)
     category = models.CharField(max_length=100, null=True)
-    state = models.CharField(max_length=50, null=True, choices=STATE )
+    state = models.CharField(max_length=50, null=True, choices=STATE)
     page_count = models.PositiveSmallIntegerField(null=True)
     creation_date = models.DateTimeField(auto_now=True)
-    published_date  = models.DateField(auto_now=False, null=True)
+    published_date = models.DateField(auto_now=False, null=True)
     # rental_start = models.DateField(auto_now=False, null=True)
     # rental_end = models.DateField(auto_now=False, null=True)
     availability = models.BooleanField(null=True)
 
-    def  __str__(self):
+    def __str__(self):
         return self.title
+
+
+    def check_availability(self):
+        from users.models import Borrowing
+        from search.models import Book
+        query = Borrowing.objects.filter(start_date__lte=date.today(),end_date__gte=date.today(),rental_validation=True).select_related('book')
+        print(query)
+        for b in query:
+            Book.objects.filter(uuid=b.book.uuid).update(availability=False)
+        # need a routine to update availability each day
 
     # def book_search(self, request):
     #     '''
@@ -58,7 +71,6 @@ class Book(models.Model):
     #         return {"full_list": sub_books, "rental_list": book_rental_status}
     #     else:
     #         return {"full_list": ""}
-
 
     def get_all_users_books(self):
         """

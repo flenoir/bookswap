@@ -6,10 +6,13 @@ from .form import BookForm, SearchForm, InviteForm, RentForm
 from invitations.utils import get_invitation_model
 from django.core.mail import send_mail, EmailMessage
 from django.db.models.functions import Now
+from datetime import date
 
 import json
 import requests
 import dateparser
+# from pprint import pprint
+# from inspect import getmembers
 
 
 def google_api_request(words):
@@ -134,8 +137,6 @@ def remove_book(request, isbn):
     """
     if request.method == "POST":
         request.user.delete_book(request, isbn)
-        # request.user.user_books.remove(isbn)
-        # print(request.user.user_books.all(), isbn)
         context = request.user.book_search(request)
         return render(request, "book_list.html", context)
 
@@ -144,9 +145,7 @@ def book_list(request):
     """
     list all books saved by an user
     """
-    # context = Book().book_search(request)
     context = request.user.book_search(request)
-    print("le context", context)
     return render(request, "book_list.html", context)
 
 
@@ -237,7 +236,7 @@ def book_detail(request, isbn):
                 + str(rentform.cleaned_data["rent_end_field"])
                 + ". Pouvez-vous vous connecter sur la plateforme sur votre compte afin de valider ma demande ? \n Merci \n"
                 + str(request.user),
-                request.user.email,  # idée d'ajouter un attribut sur un booleen qui est en état False, le propriétaire doit le valider et le passer en True pour valider l'échange. Le proriétaie peut aussi "rejecter" la demande " effacement des champs start et end + si demande pas traitée sous 2 jours, , on efface les champs start et end
+                request.user.email,
                 [book_owner.email],
                 headers={"Reply-To": request.user.email},
             )
@@ -248,28 +247,15 @@ def book_detail(request, isbn):
 def book_rental_validation(request, isbn):
     current_book = Book.objects.filter(uuid=isbn).first()
     book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
-    book_status = Ownership.objects.filter(
-        book=current_book, customuser=book_owner
-    ).first()
-    # rental_request = Borrowing.objects.filter(
-    #     book=current_book, customuser=book_owner,
-    # ).first()
-    form = BookForm(request.POST or None, instance=current_book)
-    print("book to validate is :", current_book)
-    context = {
-        "form": form,
-        "current_book": current_book,
-        "book_owner": book_owner,
-        # "rentform": rentform,
-        "book_status": book_status,
-    }
+    context = request.user.book_search(request)
     Borrowing.objects.filter(
                 book=current_book.uuid, customuser=book_owner.id
             ).update(
                 rental_validation=True,
             )
-    # current_book.update() => function to switch availability if current time is between rental date
-    return render(request, "detail.html", context)
+    # 1 envoyer mail d'accord d'emprunt
+    current_book.check_availability()
+    return render(request, "book_list.html", context)
 
 
 def invite_new_user(request, email):
