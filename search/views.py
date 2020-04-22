@@ -254,7 +254,7 @@ def book_rental_validation(request, isbn):
                 rental_validation=True,
             )
     # 1 envoyer mail d'accord d'emprunt
-    current_book.check_availability()
+    current_book.update_availability()
     return render(request, "book_list.html", context)
 
 
