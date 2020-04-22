@@ -9,62 +9,72 @@
 
     <div class="bg-gray-800">
 
-        <table class="table-fixed">
+        <table class="table-fixed" style="margin-top: 80px;">
             <thead>
                 <tr>
-                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Cover</th>
-                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Title</th>
-                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Availability</th>
-                    <th class="w-4/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Description</th> 
-                    <th class="w-1/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Isbn</th>
+                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Couverture</th>
+                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Titre</th>
+                    <th class="w-4/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Description</th>
+                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Disponibilité</th>
+                    <th class="w-2/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Accord d'emprunt</th>
+                    <th class="w-1/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Emprunt en cours</th>
                     <th class="w-1/12 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Actions</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
                 {% for item in full_list %}
+
                 <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <img src="{{ item.cover }}" alt="">
+                        <img src="{{ item.book.cover }}" alt="">
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        {{  item.title }}
-                    </td>
-                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{  item.availability }}</span>
+                        {{  item.book.title }}
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-left border border-b block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                            <a href="#">{{ item.description | truncatechars:150 }}</a>
+                            <a href="#">{{ item.book.description | truncatechars:150 }}</a>
+                    </td>
+                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.book.availability }}</span>
+                    </td>
+                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
+                        <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
+                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.rental_validation }}</span>
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-left border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <a href="#">{{ item.uuid }}</a>
+                        {{ item.start_date}} <br> {{ item.end_date }} <br>
+                        <!-- <a href="#">{{ jitem.start_date}} {{ jitem.end_date}}</a> -->
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <button class="btn btn-outline-warning btn-block mb-2"><a href="{% url 'book_detail' item.uuid %}" class="">Editer</a></button>
-                        <form method="post" action="{% url 'remove_book' item.uuid %}">
+                        <button class="btn btn-outline-warning btn-block mb-2"><a href="{% url 'book_detail' item.book.uuid %}" class="">Editer</a></button>
+                        <button class="btn btn-outline-info btn-block mb-2"><a href="{% url 'validate_rental' item.book.uuid %}" class="">Valider l'emprunt</a></button>
+                        <form method="post" action="{% url 'remove_book' item.book.uuid %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-block">Supprimer</button>
-                        </form>               
+                        </form>
                     </td>
                 </tr>
-                
+
                 {% endfor %}
+
+
             </tbody>
         </table>
-        
+
     </div>
 
 </div>
 
 {% else %}
 
-<h1 class="text-xl text-center text-gray-800 font-semibold mt-8">Sorry, no books to display !</h1>
+<h1 class="text-xl text-center text-gray-800 font-semibold mt-8">Désolé, pas de livres actuellement dans la Librairie !</h1>
 
 {% endif %}
 

@@ -24,7 +24,7 @@
 
   <!-- <div class="row">
 
-    
+
     <div class="text-center pt-1 pb-1">
 
         <h3 class="text-gray">Voici la liste des livres de nos utilisateurs</h3>
@@ -35,11 +35,12 @@
   </div> -->
 
 <div class="container py-3 bg-faded">
- 
+
 
     <div class="card-columns">
 
       {% for book in library %}
+      <!-- {{ book.owner.all.first }} -->
 
           {%  if book.owner.all.first != user %}
 
@@ -51,17 +52,17 @@
 
       {% endfor %}
 
-    
+
   </div>
 
 </div>
 
   <div class="row"></div>
 
-    
+
 
 </div>
 
 
-  
+
 {% endblock %}
