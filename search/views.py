@@ -197,6 +197,7 @@ def book_detail(request, isbn):
         current_book = Book.objects.filter(uuid=isbn).first()
         book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
         form = BookForm(request.POST or None, instance=current_book)
+        form.save()
         rentform = RentForm(
             request.POST
         )  # will put date values in database to book the books, they will be removed if owner refuses rental
