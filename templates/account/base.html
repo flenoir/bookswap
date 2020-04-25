@@ -1,11 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html class="h-full">
   <head>
     <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>{% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
+    <link href="{% static 'css/login.css' %}" rel="stylesheet" />
   </head>
   <body class="bg-gray-200 flex flex-col content-center justify-center h-full items-center">
     {% block body %}
@@ -35,11 +37,39 @@
         {% endif %}
       </ul>
     </div> -->
-    <div class="w-full max-w-lg bg-indigo-200 p-6 rounded-lg">
+
+
+    <!-- <div class="container">
+
+      <div class="row justify-content-center align-items-center">
+    
+        <div class="col-6">
+          <div class="card">
+            <div class="card-body"> -->
+
+
+<!-- -------------------- -->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+
+          <!-- ------------- -->
+
+
+
     {% block content %}
 
     {% endblock %}
-    </div>
+
+  </div>
+</div>
+</div>
+
+</div>
+
+</div>
 
     {% endblock %}
 
