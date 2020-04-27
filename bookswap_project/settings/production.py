@@ -13,8 +13,8 @@ DATABASES = {
         'NAME': 'bookswap_db',
         'USER': 'postgres',
         'PASSWORD': 'l1ghtm4n',
-        'HOST': 'localhost',
-        'PORT': '5433',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -52,11 +52,11 @@ WSGI_APPLICATION = 'bookswap_project.wsgi.application'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))  # reference sur chemin du fichier en cours
 #STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_ROOT  = '/app/bookswap/static' # localisation dans docker
+STATIC_ROOT  = 'bookswap/static' # localisation dans docker
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-     os.path.join(PROJECT_ROOT, 'static'),
-)
+# STATICFILES_DIRS = (
+#      os.path.join(PROJECT_ROOT, 'static'),
+# )
 
 
 # Password validation
@@ -80,7 +80,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'UTC'
 
