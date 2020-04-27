@@ -163,8 +163,7 @@ def book_detail(request, isbn):
         rental_request = Borrowing.objects.filter(
             book=current_book, customuser=book_owner,
         ).first()
-        # print("rental info", rental_request.start_date)
-
+        
         # print(book_status.state, book_status.availability)
         # form = BookForm(request.POST or None, instance=current_book)
         rentform = RentForm()
