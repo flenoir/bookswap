@@ -3,7 +3,7 @@ import os
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '35.209.221.169']
+ALLOWED_HOSTS = ['127.0.0.1', '35.209.221.169', 'bookswap.fr', 'www.bookswap.fr']
 
 SECRET_KEY = "sdjfsdpdq;d,xsldsqd"
 

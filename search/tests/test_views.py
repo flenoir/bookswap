@@ -1,16 +1,17 @@
 from django.test import TestCase
 from django.urls import reverse
 from search.models import Book
+from users.models import CustomUser, Ownership, Borrowing
 from search.views import (
     isbn_text_search,
     input_cleaner,
     save_book,
-    book_search,
+    # book_search,
     remove_book,
     book_list,
     book_detail,
     invite_new_user,
-    get_all_users_books,
+    # get_all_users_books,
     main,
     google_api_request,
 )
@@ -58,7 +59,17 @@ class MainPagetestCase(TestCase):
             published_date="1990-03-09",
             availability=True,
         )
+        book_status = Ownership(
+                        book=self.book2,
+                        customuser=self.user,
+                        state="Neuf",
+                        availability=True,
+                    )
+
+        book_status.save()
+                    # book.save()
         self.user.user_books.add(self.book2)
+        self.user.borrower.add(self.book2)
         # fixtures = ['../fixtures/isbn_api_data.json']
 
     def test_main_page_display_all_user_books(self):
@@ -188,7 +199,8 @@ class MainPagetestCase(TestCase):
         self.assertEquals(response,mock_get.return_value.json.return_value['items'][0]['volumeInfo']['title'])
 
     def test_book_search(self):
-        result = book_search(self)
+        # result = book_search(self)
+        result = self.user.book_search(self)
         self.assertEquals(len(result), 1)
 
     def test_book_list(self):
