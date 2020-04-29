@@ -39,7 +39,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run migrations
-      run: python manage.py migrate
+      run: python manage.py migrate --settings=bookswap_project.settings.ci_cd
     - name: Run Tests
       run: |
         python manage.py test --settings=bookswap_project.settings.ci_cd
