@@ -13,7 +13,7 @@ DATABASES = {
         'NAME': 'bookswap_db',
         'USER': 'postgres',
         'PASSWORD': 'l1ghtm4n',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
