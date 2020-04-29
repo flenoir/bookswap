@@ -314,8 +314,8 @@ def book_owner_detail(request, isbn):
 
 def book_rental_validation(request, isbn):
     current_book = Book.objects.filter(uuid=isbn).first()
-    book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
-    context = request.user.book_search(request)
+    # book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
+    book_owner = current_book.owner.first()
     Borrowing.objects.filter(
                 book=current_book.uuid, customuser=book_owner.id
             ).update(
@@ -323,6 +323,7 @@ def book_rental_validation(request, isbn):
             )
     # 1 envoyer mail d'accord d'emprunt
     current_book.update_availability()
+    context = request.user.book_search(request)
     return render(request, "book_list.html", context)
 
 
