@@ -4,18 +4,18 @@
 
 @media (min-width: 356px) {
   .card-columns {
-    column-count: 4;
+    column-count: 2;
   }
 }
 
 @media (min-width: 576px) {
   .card-columns {
-    column-count: 6;
+    column-count: 2;
   }
 }
 @media (min-width: 768px) {
   .card-columns {
-    column-count: 6;
+    column-count: 4;
   }
 }
 @media (min-width: 992px) {
