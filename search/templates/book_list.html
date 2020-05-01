@@ -40,11 +40,21 @@
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.book.availability }}</span>
+                        <!-- <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.book.availability }}</span> -->
+                        {% if item.book.availability == True %}
+                        <span class="badge badge-success">Disponible</span>
+                        {% else %}
+                        <span class="badge badge-danger">Non-disponible</span>
+                        {% endif %}
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.rental_validation }}</span>
+                        <!-- <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.rental_validation }}</span> -->
+                        {% if item.rental_validation  == True %}
+                        <i class="fas fa-thumbs-up fa-2x" style="color:rgb(24, 102, 245);"></i>
+                        {% else %}
+                        <i class="fas fa-thumbs-down fa-2x" style="color:rgb(252, 48, 13);"></i>
+                        {% endif %}
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-left border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
