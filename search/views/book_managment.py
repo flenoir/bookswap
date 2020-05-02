@@ -76,7 +76,6 @@ def remove_book(request, isbn):
         return render(request, "book_list.html", context)
 
 def check_availability_routine():
-    # all_borrowed_books = Borrowing.objects.all()
     all_borrowed_books = Borrowing.objects.all()
     today = date.today()
     for item in all_borrowed_books:
