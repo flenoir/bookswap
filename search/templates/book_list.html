@@ -6,7 +6,7 @@
 
 
     {% if full_list %}
-    
+
 
     <div class="bg-gray-800">
 
@@ -40,15 +40,33 @@
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.book.availability }}</span>
+                        <!-- <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.book.availability }}</span> -->
+                        {% if item.book.availability == True %}
+                        <span class="badge badge-success">Disponible</span>
+                        {% else %}
+                        <span class="badge badge-danger">Non-disponible</span>
+                        {% endif %}
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.rental_validation }}</span>
+                        <!-- <span class="rounded bg-red-400 py-1 px-3 text-xs font-bold">{{ item.rental_validation }}</span> -->
+                        {% if item.rental_validation  == True %}
+                        <i class="fas fa-thumbs-up fa-2x" style="color:rgb(24, 102, 245);"></i>
+                        {% else %}
+                        <i class="fas fa-thumbs-down fa-2x" style="color:rgb(252, 48, 13);"></i>
+                        {% endif %}
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-left border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        {{ item.start_date}} <br> {{ item.end_date }} <br>
+                        <!-- now "m d Y" as today -->
+                        <!-- if today >= item.start_date|date:"m d Y"  and today <= item.end_date|date:"m d Y" -->
+                        {% if item.rental_request_date and item.rental_validation %}
+                        <span class="badge badge-warning">Emprunt en cours</span>
+                        {{ item.start_date|date:"d M Y" }} <br> {{ item.end_date|date:"d M Y" }} <br>
+                        {% elif item.rental_request_date and item.rental_validation == False %}
+                        <span class="badge badge-success">Emprunt demandé</span>
+                        {{ item.start_date|date:"d M Y" }} <br> {{ item.end_date|date:"d M Y" }} <br>
+                        {% endif %}
                         <!-- <a href="#">{{ jitem.start_date}} {{ jitem.end_date}}</a> -->
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">

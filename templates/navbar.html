@@ -3,14 +3,14 @@
 
 
 <header class="" style='background-color: #fef8f3;'>
-    
+
     {% if user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" style='background-color: #fef8f3;'>
       <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/bookswap_logo.JPG' %}" alt="bookswap_logo" style="width: 220px;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         </ul>
@@ -19,11 +19,12 @@
              {% else %}
              <a href="{% url 'book_list' %}"> <button class="btn btn-outline-success my-2 my-sm-0 ml-2 mr-2" type="submit">Ma librairie</button></a>
              {% endif%}
-             
 
+            {%  if request.get_full_path == "/" %}
              <button type="button" class="btn btn-outline-primary my-2 my-sm-0 ml-2 mr-2" data-toggle="modal" data-target="#inviteModal">
               Inviter un ami
             </button>
+            {% endif %}
 
         <li class="nav-item dropdown list-unstyled">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +33,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'edit_user' user.id %}">Edition utilisateur</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{% url 'account_logout' %}">Déconnexion</a>         
+            <a class="dropdown-item" href="{% url 'account_logout' %}">Déconnexion</a>
           </div>
         </li>
       </div>

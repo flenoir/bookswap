@@ -65,8 +65,18 @@ class MainPagetestCase(TestCase):
                         state="Neuf",
                         availability=True,
                     )
+        book_rental = Borrowing(
+                        book=self.book2,
+                        customuser=self.user,
+                        start_date="2020-04-10",
+                        end_date="2020-05-08",
+                        rental_request_date="2020-05-01",
+                        rental_validation=True,
+                        borrowing_user='mike',
+        )
 
         book_status.save()
+        book_rental.save()
                     # book.save()
         self.user.user_books.add(self.book2)
         self.user.borrower.add(self.book2)

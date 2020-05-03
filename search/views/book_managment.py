@@ -2,6 +2,7 @@ from django.shortcuts import render
 from ..models import Book
 from users.models import CustomUser, Ownership, Borrowing
 import dateparser
+from datetime import date
 
 
 def save_book(request, isbn):
@@ -74,10 +75,31 @@ def remove_book(request, isbn):
         context = request.user.book_search(request)
         return render(request, "book_list.html", context)
 
+def check_availability_routine():
+    all_borrowed_books = Borrowing.objects.all()
+    today = date.today()
+    for item in all_borrowed_books:
+        if item.start_date <= today <= item.end_date:
+            print("in range", item.start_date, item.end_date )
+        else:
+            print("not in range", item.start_date, item.end_date )
+            print(item.book.uuid, item.customuser.id )
+            Book.objects.filter(uuid=item.book.uuid
+                ).update(
+                    availability=True,
+                )
+            Borrowing.objects.filter(book=item.book.uuid, customuser=item.customuser.id
+                ).update(
+                    rental_validation=False,
+                )
+
 
 def book_list(request):
     """
     list all books saved by an user
     """
+    check_availability_routine()
     context = request.user.book_search(request)
     return render(request, "book_list.html", context)
+
+

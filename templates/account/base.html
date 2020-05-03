@@ -1,4 +1,5 @@
 {% load static %}
+{% load fontawesome_5 %}
 <!DOCTYPE html>
 <html class="h-full">
   <head>
@@ -8,6 +9,7 @@
     {% block extra_head %}
     {% endblock %}
     <link href="{% static 'css/login.css' %}" rel="stylesheet" />
+    {% fontawesome_5_static %}
   </head>
   <body class="bg-gray-200 flex flex-col content-center justify-center h-full items-center">
     {% block body %}

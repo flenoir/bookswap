@@ -15,7 +15,8 @@
       <div class="row">
         <div class="form-group col-md-8 mb-0">
           <h5>
-            Ce livre est actuellement possédé par : {{ current_book.owner.all.first.email }}
+            Ce livre est actuellement possédé par : {{
+            current_book.owner.all.first.email }}
           </h5>
 
           <!-- <h4>X utilisateur voudrait vous l'emprunter entre le {{ rental_start }} et {{ rental_end }}, êtes-vous d'accord ? </h4> -->
@@ -30,18 +31,20 @@
       <!-- Error messaging -->
       <div id="errors">
         <div class="inner">
-          <p>There were some errors in the information you entered. Please correct the following:</p>
+          <p>
+            There were some errors in the information you entered. Please
+            correct the following:
+          </p>
           {{ form.non_field_errors }}
           <ul>
-            {% for field in form %}
-              {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
-            {% endfor %}
+            {% for field in form %} {% if field.errors %}
+            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+            {% endif %} {% endfor %}
           </ul>
         </div>
       </div>
       <!-- /Error messaging -->
-    {% endif %}
-
+      {% endif %}
 
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -54,8 +57,8 @@
             {{ form.title|as_crispy_field }}
           </div>
         </div>
-        {{ form.author|as_crispy_field }}
-        {{ form.availability|as_crispy_field }}
+        {{ form.author|as_crispy_field }} {{ form.availability|as_crispy_field
+        }}
         <div class="form-row">
           <div class="form-group col-md-6 mb-0">
             {{ form.description|as_crispy_field }}
@@ -70,11 +73,8 @@
         {{ form.publisher|as_crispy_field }}
         <button type="submit" class="btn btn-primary">Modifier</button>
 
-
-
-
         <!-- {% crispy form %} -->
-         {{ form.errors }}
+        {{ form.errors }}
       </form>
     </div>
 
@@ -84,7 +84,7 @@
   {% else %}
 
   <div class="row">
-    <h3>Détails du livre séléctionné</h3>
+    <!-- <h3>Détails du livre séléctionné</h3> -->
 
     <!-- Boostrap card -->
 
@@ -107,7 +107,7 @@
               class="card-img-top img-fluid align-self-end mr-4 mt-4 border border-secondary"
               src="{{ current_book.cover }}"
               alt=""
-              style="width:fit-content"
+              style="width: fit-content;"
             />
           </div>
         </div>
@@ -116,25 +116,33 @@
 
       <div class="card card-outline-secondary my-4 shadow" id="detail_card">
         <div class="card-header">
-          {{ book_status.state }}
+          Etat : {{ book_status.state }}
         </div>
         <div class="card-body">
           <p>
-            Ce livre est actuellement possédé par {{ current_book.owner.all.first }}
+            Ce livre est actuellement possédé par <b>{{current_book.owner.all.first.email }}</b>
+            et il est actuellement
+            {% if item.book.availability == True %}
+            <span class="badge badge-success">Disponible</span>
+            {% else %}
+            <span class="badge badge-danger">Non-disponible</span>
+            {% endif %}
           </p>
-          <small class="text-muted">{{ book_status.availability }}</small>
+          <!-- <small class="text-muted">{{ book_status.availability }}</small> -->
           <hr />
 
           <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ rentform }}
-            <button class="btn btn-outline-success"  type=submit>Demander un prêt</button>
-        </form>
+            {% csrf_token %} {{ rentform }}
+            <button class="btn btn-outline-success" type="submit">
+              Demander un prêt
+            </button>
+          </form>
 
           <!-- <button class="btn btn-outline-success">Demander un prêt</button> -->
 
-
-          <a href="{% url 'exchange_request' current_book.title current_book.owner.all.first.email %}">
+          <a
+            href="{% url 'exchange_request' current_book.title current_book.owner.all.first.email %}"
+          >
             <button class="btn btn-outline-danger">
               Demander une échange
             </button>

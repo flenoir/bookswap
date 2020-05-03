@@ -14,6 +14,7 @@ django-allauth = "*"
 django-invitations = "*"
 dateparser = "*"
 django-crispy-forms = "*"
+django-fontawesome-5 = "*"
 
 [requires]
 python_version = "3.6"
