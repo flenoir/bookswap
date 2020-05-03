@@ -20,10 +20,11 @@
              <a href="{% url 'book_list' %}"> <button class="btn btn-outline-success my-2 my-sm-0 ml-2 mr-2" type="submit">Ma librairie</button></a>
              {% endif%}
 
-
+            {%  if request.get_full_path == "/" %}
              <button type="button" class="btn btn-outline-primary my-2 my-sm-0 ml-2 mr-2" data-toggle="modal" data-target="#inviteModal">
               Inviter un ami
             </button>
+            {% endif %}
 
         <li class="nav-item dropdown list-unstyled">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
