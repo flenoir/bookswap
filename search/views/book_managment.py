@@ -79,19 +79,25 @@ def check_availability_routine():
     all_borrowed_books = Borrowing.objects.all()
     today = date.today()
     for item in all_borrowed_books:
-        if item.start_date <= today <= item.end_date:
-            print("in range", item.start_date, item.end_date )
-        else:
-            print("not in range", item.start_date, item.end_date )
-            print(item.book.uuid, item.customuser.id )
-            Book.objects.filter(uuid=item.book.uuid
-                ).update(
-                    availability=True,
-                )
-            Borrowing.objects.filter(book=item.book.uuid, customuser=item.customuser.id
-                ).update(
-                    rental_validation=False,
-                )
+        try:
+            if item.start_date <= today <= item.end_date:
+                print("in range", item.start_date, item.end_date )
+            else:
+                print("not in range", item.start_date, item.end_date )
+                print(item.book.uuid, item.customuser.id )
+                Book.objects.filter(uuid=item.book.uuid
+                    ).update(
+                        availability=True,
+                    )
+                Borrowing.objects.filter(book=item.book.uuid, customuser=item.customuser.id
+                    ).update(
+                        rental_validation=False,
+                    )
+        except TypeError as error:
+            print(error," => No date data in Borrowing")
+
+
+
 
 
 def book_list(request):
