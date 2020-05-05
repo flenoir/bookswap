@@ -35,7 +35,7 @@ class Book(models.Model):
 
 
     def update_availability(self):
-         """
+        """
         update availability when there's a new book rental request validated
         """
         from users.models import Borrowing
