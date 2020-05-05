@@ -28,8 +28,6 @@ class Book(models.Model):
     page_count = models.PositiveSmallIntegerField(null=True)
     creation_date = models.DateTimeField(auto_now=True)
     published_date = models.DateField(auto_now=False, null=True)
-    # rental_start = models.DateField(auto_now=False, null=True)
-    # rental_end = models.DateField(auto_now=False, null=True)
     availability = models.BooleanField(null=True)
 
     def __str__(self):
@@ -37,13 +35,14 @@ class Book(models.Model):
 
 
     def update_availability(self):
+         """
+        update availability when there's a new book rental request validated
+        """
         from users.models import Borrowing
         from search.models import Book
         query = Borrowing.objects.filter(start_date__lte=date.today(),end_date__gte=date.today(),rental_validation=True).select_related('book')
-        print(query)
         for b in query:
             Book.objects.filter(uuid=b.book.uuid).update(availability=False)
-        # need a routine to update availability each day
 
     # def book_search(self, request):
     #     '''
