@@ -62,6 +62,7 @@ def save_book(request, isbn):
                 print("not matched")
                 context = request.user.book_search(request)
         return render(request, "book_list.html", context)
+        # return redirect('/detail/68bd0adf-7e98-464b-b04f-120c5a6288fe/')
     else:
         print("save method had been called !")
 

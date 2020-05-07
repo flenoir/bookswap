@@ -27,7 +27,7 @@ class CustomUser(AbstractUser):
         # from users.models import CustomUser, Ownership, Borrowing
         # current_customer = CustomUser.objects.filter(id=request.user.id)
         # books = Book.objects.filter(owner__id=request.user.id)
-        books = Borrowing.objects.filter(customuser=self.pk).select_related('book', 'customuser')
+        books = Borrowing.objects.filter(customuser=request.user).select_related('book', 'customuser')
         # book_rental_status = Borrowing.objects.filter(book=current_book, customuser=request.user).first()
         # print("l'utilisateur est: ", books)
 
