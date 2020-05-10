@@ -27,7 +27,7 @@ class CustomUser(AbstractUser):
         # from users.models import CustomUser, Ownership, Borrowing
         # current_customer = CustomUser.objects.filter(id=request.user.id)
         # books = Book.objects.filter(owner__id=request.user.id)
-        books = Borrowing.objects.filter(customuser=self.pk).select_related('book', 'customuser')
+        books = Borrowing.objects.filter(customuser=request.user).select_related('book', 'customuser')
         # book_rental_status = Borrowing.objects.filter(book=current_book, customuser=request.user).first()
         # print("l'utilisateur est: ", books)
 
@@ -56,6 +56,7 @@ class Ownership(models.Model):
     customuser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     state = models.CharField(max_length=50, null=True, choices=STATE )
     availability = models.BooleanField(null=True)
+
 
 class Borrowing(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)

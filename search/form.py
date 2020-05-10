@@ -63,6 +63,7 @@ class BookForm(forms.ModelForm):
             "description",
             "state",
             "publisher",
+            "rating",
         )
         labels = {
             "title": "Titre",
@@ -73,6 +74,7 @@ class BookForm(forms.ModelForm):
             "description": "Description",
             "state": "Etat",
             "publisher": "Editeur",
+            "rating": "Avis",
         }
         # widgets = {
         #     "state": forms.Select(choices=[("neuf", "neuf"), ("bon état", "bon état")]),
