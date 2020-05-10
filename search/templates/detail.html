@@ -18,7 +18,6 @@
             Ce livre est actuellement possédé par : {{ current_book.owner.all.first.email }}
           </h5>
 
-          <!-- <h4>X utilisateur voudrait vous l'emprunter entre le {{ rental_start }} et {{ rental_end }}, êtes-vous d'accord ? </h4> -->
         </div>
 
         <div class="form-group col-md-4 mb-0">
@@ -104,7 +103,6 @@
               <p class="card-text">{{ current_book.description }}</p>
               {% if current__book.rating %}
                   Avis : {% for i in current_book.rating|times %}
-                  <!-- <img src="redcircle.jpg" > -->
                   <i class="fas fa-heart fa-2x" style="color:rgb(223, 52, 74);"></i>
                   {% endfor %}
                {% endif %}
