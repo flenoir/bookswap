@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from ..models import Book
 from users.models import CustomUser, Ownership, Borrowing
 import dateparser
@@ -61,8 +61,9 @@ def save_book(request, isbn):
             else:
                 print("not matched")
                 context = request.user.book_search(request)
-        return render(request, "book_list.html", context)
-        # return redirect('/detail/68bd0adf-7e98-464b-b04f-120c5a6288fe/')
+        # return render(request, "book_list.html", context)
+        print(book.uuid)
+        return redirect('/owner_detail/'+str(book.uuid))
     else:
         print("save method had been called !")
 
