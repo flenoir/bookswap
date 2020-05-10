@@ -102,14 +102,12 @@
               <h3 class="card-title">{{ current_book.title }}</h3>
               <h4>{{ current_book.authors }}</h4>
               <p class="card-text">{{ current_book.description }}</p>
-              <!-- <span class="text-warning"
-                >&#9733; &#9733; &#9733; &#9733; &#9734;</span
-              > -->
-              <!-- 4.0 stars {{ current_book.rating }} / 5 -->
-              Avis : {% for i in current_book.rating|times %}
-              <!-- <img src="redcircle.jpg" > -->
-              <i class="fas fa-heart fa-2x" style="color:rgb(223, 52, 74);"></i>
-               {% endfor %}
+              {% if current__book.rating %}
+                  Avis : {% for i in current_book.rating|times %}
+                  <!-- <img src="redcircle.jpg" > -->
+                  <i class="fas fa-heart fa-2x" style="color:rgb(223, 52, 74);"></i>
+                  {% endfor %}
+               {% endif %}
             </div>
           </div>
           <div class="col-lg-3">
