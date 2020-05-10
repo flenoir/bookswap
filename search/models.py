@@ -12,6 +12,14 @@ STATE = (
     ("Très abimé", "Très abimé"),
 )
 
+RATING = (
+    (0, "Je n'ai pas aimé"),
+    (1, "Bof, sans plus"),
+    (2, "A lire"),
+    (3, "Bon livre"),
+    (4, "Je recommande"),
+)
+
 
 class Book(models.Model):
     uuid = models.UUIDField(
@@ -29,6 +37,7 @@ class Book(models.Model):
     creation_date = models.DateTimeField(auto_now=True)
     published_date = models.DateField(auto_now=False, null=True)
     availability = models.BooleanField(null=True)
+    rating = models.PositiveSmallIntegerField(null=True, choices=RATING)
 
     def __str__(self):
         return self.title

@@ -57,6 +57,7 @@ class Ownership(models.Model):
     state = models.CharField(max_length=50, null=True, choices=STATE )
     availability = models.BooleanField(null=True)
 
+
 class Borrowing(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     customuser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

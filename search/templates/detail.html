@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %} {% block first_row %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load my_filters %} {% block first_row %}
 
 <div class="container-fluid" style="padding-top: 80px;">
   {% if user == current_book.owner.all.first %}
@@ -56,8 +56,15 @@
             {{ form.title|as_crispy_field }}
           </div>
         </div>
-            {{ form.author|as_crispy_field }}
+        {{ form.author|as_crispy_field }}
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-0">
             {{ form.availability|as_crispy_field}}
+          </div>
+          <div class="form-group col-md-6 mb-0">
+            {{ form.rating|as_crispy_field}}
+          </div>
+        </div>
         <div class="form-row">
           <div class="form-group col-md-6 mb-0">
             {{ form.description|as_crispy_field }}
@@ -69,7 +76,7 @@
             {{ form.category|as_crispy_field }}
           </div>
         </div>
-           {{ form.publisher|as_crispy_field }}
+        {{ form.publisher|as_crispy_field }}
         <button type="submit" class="btn btn-primary">Modifier</button>
 
         <!-- {% crispy form %} -->
@@ -95,10 +102,14 @@
               <h3 class="card-title">{{ current_book.title }}</h3>
               <h4>{{ current_book.authors }}</h4>
               <p class="card-text">{{ current_book.description }}</p>
-              <span class="text-warning"
+              <!-- <span class="text-warning"
                 >&#9733; &#9733; &#9733; &#9733; &#9734;</span
-              >
-              4.0 stars
+              > -->
+              <!-- 4.0 stars {{ current_book.rating }} / 5 -->
+              Avis : {% for i in current_book.rating|times %}
+              <!-- <img src="redcircle.jpg" > -->
+              <i class="fas fa-heart fa-2x" style="color:rgb(223, 52, 74);"></i>
+               {% endfor %}
             </div>
           </div>
           <div class="col-lg-3">
@@ -119,9 +130,9 @@
         </div>
         <div class="card-body">
           <p>
-            Ce livre est actuellement possédé par <b>{{ current_book.owner.all.first.email }}</b>
-            et il est actuellement
-            {% if item.book.availability == True %}
+            Ce livre est actuellement possédé par
+            <b>{{ current_book.owner.all.first.email }}</b>
+            et il est actuellement {% if item.book.availability == True %}
             <span class="badge badge-success">Disponible</span>
             {% else %}
             <span class="badge badge-danger">Non-disponible</span>
