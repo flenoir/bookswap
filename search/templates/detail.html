@@ -101,7 +101,7 @@
               <h3 class="card-title">{{ current_book.title }}</h3>
               <h4>{{ current_book.authors }}</h4>
               <p class="card-text">{{ current_book.description }}</p>
-              {% if current__book.rating %}
+              {% if current_book.rating %}
                   Avis : {% for i in current_book.rating|times %}
                   <i class="fas fa-heart fa-2x" style="color:rgb(223, 52, 74);"></i>
                   {% endfor %}
