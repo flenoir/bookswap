@@ -73,7 +73,7 @@ def remove_book(request, isbn):
     remove book from user's list
     """
     if request.method == "POST":
-        request.user.delete_book(request, isbn)
+        Book.objects.filter(uuid=isbn).delete()
         context = request.user.book_search(request)
         return render(request, "book_list.html", context)
 

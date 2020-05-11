@@ -128,7 +128,7 @@
           <p>
             Ce livre est actuellement possédé par
             <b>{{ current_book.owner.all.first.email }}</b>
-            et il est actuellement {% if item.book.availability == True %}
+            et il est actuellement {% if book_status.availability %}
             <span class="badge badge-success">Disponible</span>
             {% else %}
             <span class="badge badge-danger">Non-disponible</span>
