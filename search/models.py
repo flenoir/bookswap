@@ -86,3 +86,6 @@ class Book(models.Model):
         """
         library = Book.objects.all()
         return library
+
+    # def delete_book(self, uuid):
+    #     Book.objects.filter(uuid=uuid).delete()

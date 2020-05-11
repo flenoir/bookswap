@@ -47,7 +47,8 @@ class CustomUser(AbstractUser):
         """
         remove book from user's list
         """
-        request.user.borrower.remove(uuid)
+        # request.user.borrower.remove(uuid)
+        Book.remove(uuid)
         # print(request.user_books.all(), uuid)
 
 
