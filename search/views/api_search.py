@@ -39,7 +39,7 @@ def input_cleaner(search_data):
             )
             parsed_res = res.json()
             return parsed_res["items"][0]["volumeInfo"]["title"]
-    except ValueError as error:
+    except (ValueError, KeyError) as error:
         print(error)
         return search_data
 
