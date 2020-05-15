@@ -5,6 +5,8 @@ from ..form import BookForm, RentForm
 from django.core.mail import EmailMessage
 from django.db.models.functions import Now
 
+
+
 def book_detail(request, isbn):
     """
     Display details of non-owned books
@@ -20,12 +22,9 @@ def book_detail(request, isbn):
             book=current_book, customuser=book_owner,
         ).first()
 
-        # print(book_status.state, book_status.availability)
-        # form = BookForm(request.POST or None, instance=current_book)
         rentform = RentForm()
         if rental_request:
             context = {
-                # "form": form,
                 "current_book": current_book,
                 "book_owner": book_owner,
                 "rentform": rentform,
@@ -35,17 +34,12 @@ def book_detail(request, isbn):
             }
         else:
             context = {
-                # "form": form,
                 "current_book": current_book,
                 "book_owner": book_owner,
                 "rentform": rentform,
                 "book_status": book_status,
             }
-        # if form.is_valid():
-        #     # form.save()
-        #     return render(request, "detail.html", context)
-        # else:
-        #     print("form is not valid")
+
         return render(request, "detail.html", context)
     else:
         print("post")
@@ -57,7 +51,6 @@ def book_detail(request, isbn):
             return render(request, "detail.html", context)
         else:
             print("form is not valid")
-        # form.save()
         rentform = RentForm(
             request.POST
         )  # will put date values in database to book the books, they will be removed if owner refuses rental
@@ -68,13 +61,6 @@ def book_detail(request, isbn):
             "rentform": rentform,
         }
         if rentform.is_valid():
-            # rental_request = Borrowing.objects.create(
-            #     book=current_book,
-            #     customuser=book_owner,
-            #     start_date=rentform.cleaned_data["rent_start_field"],
-            #     end_date=rentform.cleaned_data["rent_end_field"],
-            #     rental_request_date=Now(),
-            # )
             objToUpdate = Borrowing.objects.filter(
                 book=current_book.uuid, customuser=book_owner.id
             ).update(
@@ -118,20 +104,14 @@ def book_owner_detail(request, isbn):
         rental_request = Borrowing.objects.filter(
             book=current_book, customuser=book_owner,
         ).first()
-        # print("rental info", rental_request.start_date)
 
-        # print(book_status.state, book_status.availability)
         form = BookForm(request.POST or None, instance=current_book)
-        # rentform = RentForm()
         if rental_request:
             context = {
                 "form": form,
                 "current_book": current_book,
                 "book_owner": book_owner,
-                # "rentform": rentform,
                 "book_status": book_status,
-                # "rental_start": rental_request.start_date,
-                # "rental_end": rental_request.end_date,
             }
         else:
             context = {
@@ -153,14 +133,10 @@ def book_owner_detail(request, isbn):
         book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
         form = BookForm(request.POST or None, instance=current_book)
         form.save()
-        # rentform = RentForm(
-        #     request.POST
-        # )  # will put date values in database to book the books, they will be removed if owner refuses rental
         context = {
             "form": form,
             "current_book": current_book,
             "book_owner": book_owner,
-            # "rentform": rentform,
         }
 
         return render(request, "detail.html", context)
