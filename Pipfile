@@ -8,7 +8,7 @@ django-debug-toolbar = "*"
 coverage = "*"
 
 [packages]
-django = "==2.2.8"
+django = "==2.2.10"
 psycopg2 = "*"
 django-allauth = "*"
 django-invitations = "*"
