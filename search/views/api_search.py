@@ -16,8 +16,6 @@ def isbn_text_search(words):
     """
     make a search request based on title or authors
     """
-    # r = requests.get('https://www.googleapis.com/books/v1/volumes?q='+ words)
-    # parsed = r.json()
     parsed_words = google_api_request(words)
     # check if isbn identifier is not null
     for x in parsed_words["items"]:

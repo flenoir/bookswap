@@ -61,7 +61,6 @@ def save_book(request, isbn):
             else:
                 print("not matched")
                 context = request.user.book_search(request)
-        # return render(request, "book_list.html", context)
         print(book.uuid)
         return redirect('/owner_detail/'+str(book.uuid))
     else:
