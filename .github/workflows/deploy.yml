@@ -25,4 +25,4 @@ jobs:
         PROJECT_ID: bookswap-265316
         APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       with:
-        args: info
+        args: gcloud compute ssh bookswapserver --project=bookswap-265316 --zone=us-central1-a --command="pwd"
