@@ -31,6 +31,4 @@ jobs:
           project_id: bookswap-265316
 
       - name: Deploy
-        run: |-
-          gcloud compute instances list \
-            --zone "$GCE_INSTANCE_ZONE" \
+        run: gcloud compute instances list --zone "$GCE_INSTANCE_ZONE"
