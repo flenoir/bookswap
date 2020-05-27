@@ -31,4 +31,4 @@ jobs:
           project_id: bookswap-265316
 
       - name: Deploy
-        run: gcloud compute ssh --project bookswap-265316 --zone us-central1-a bookswapserver --command pwd
+        run: gcloud compute ssh --project bookswap-265316 --zone us-central1-a bookswapserver --command cd app/backup/bookswap && docker-compose ps
