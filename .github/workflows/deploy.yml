@@ -1,34 +1,23 @@
-name: Django CD on GCP instance
+name: 
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
 
-env:
-  PROJECT_ID: bookswap-265316
-  APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
-  GCE_INSTANCE: bookswapserver
-  GCE_INSTANCE_ZONE: us-central1-a
+name: Django CD on GCP instance
+on: [push]
+  branches: [master]
 
 jobs:
-  setup-build-publish-deploy:
-    name: Setup, Build, Publish, and Deploy
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      # Setup gcloud CLI
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-        with:
-          version: "290.0.1"
-          service_account_key: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
-          project_id: bookswap-265316
+      - uses: actions/checkout@v1
+      - uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: bookswap-265316
+          APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
 
       - name: Deploy
         run: gcloud compute ssh bookswapserver --project bookswap-265316 --zone us-central1-a --command="pwd && ls"
