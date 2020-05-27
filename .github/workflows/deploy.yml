@@ -8,16 +8,30 @@ on:
   pull_request:
     branches: [master]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+      PROJECT_ID: bookswap-265316
+      APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+      GCE_INSTANCE: bookswapserver
+      GCE_INSTANCE_ZONE: us-central1-a
+
 jobs:
-  deploy:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: exelban/gcloud@master
-        env:
-          PROJECT_ID: bookswap-265316
-          APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
-        with:
-          args: app deploy app.yaml cron.yaml
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Setup gcloud CLI
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        version: '290.0.1'
+        service_account_key: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+        project_id: bookswap-265316
+
+    - name: Deploy
+      run: |-
+        gcloud compute instances "$GCE_INSTANCE" \
+          --zone "$GCE_INSTANCE_ZONE" \
+          --command "pwd"
