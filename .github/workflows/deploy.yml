@@ -9,10 +9,10 @@ on:
     branches: [master]
 
 env:
-      PROJECT_ID: bookswap-265316
-      APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
-      GCE_INSTANCE: bookswapserver
-      GCE_INSTANCE_ZONE: us-central1-a
+  PROJECT_ID: bookswap-265316
+  APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+  GCE_INSTANCE: bookswapserver
+  GCE_INSTANCE_ZONE: us-central1-a
 
 jobs:
   setup-build-publish-deploy:
@@ -20,18 +20,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    # Setup gcloud CLI
-    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-      with:
-        version: '290.0.1'
-        service_account_key: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
-        project_id: bookswap-265316
+      # Setup gcloud CLI
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "290.0.1"
+          service_account_key: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+          project_id: bookswap-265316
 
-    - name: Deploy
-      run: |-
-        gcloud compute instances "$GCE_INSTANCE" \
-          --zone "$GCE_INSTANCE_ZONE" \
-          --command "pwd"
+      - name: Deploy
+        run: |-
+          gcloud compute instances list \
+            --zone "$GCE_INSTANCE_ZONE" \
