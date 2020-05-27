@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CD
+name: Django CD on GCP instance
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -25,9 +23,7 @@ jobs:
         PROJECT_ID: bookswap-265316
         APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         CLI: gcloud
-      # with:
+      with:
         # args: gcloud compute ssh bookswapserver --project=bookswap-265316 --zone=us-central1-a --command="pwd"
         # args: ['compute', 'ssh', 'bookswapserver', '--zone', 'us-central1-a', '--command', 'pwd']
-    
-    - name: Deploy
-      run: gcloud compute instances  "bookswapserver" --zone "us-central1-a" --command "pwd"
+        args: gcloud compute ssh --verbosity=debug bookswapserver --command "pwd"
