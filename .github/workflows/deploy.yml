@@ -10,17 +10,15 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  deploy:
+    needs: set-env-vars
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions-hub/gcloud@master
-      env:
-        PROJECT_ID: bookswap-265316
-        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      with:
-        args: compute ssh --verbosity=debug bookswapserver --command "pwd"
+      - uses: actions/checkout@v1
+      - uses: exelban/gcloud@master
+        env:
+          PROJECT_ID: bookswap-265316
+          APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+        with:
+          args: app deploy app.yaml cron.yaml 
