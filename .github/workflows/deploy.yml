@@ -30,7 +30,4 @@ jobs:
         # args: ['compute', 'ssh', 'bookswapserver', '--zone', 'us-central1-a', '--command', 'pwd']
     
     - name: Deploy
-      run: |-
-        gcloud compute instances  "bookswapserver" \
-          --zone "us-central1-a" \
-          --command "pwd"
+      run: gcloud compute instances  "bookswapserver" --zone "us-central1-a" --command "pwd"
