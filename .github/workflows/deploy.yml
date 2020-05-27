@@ -22,8 +22,5 @@ jobs:
       env:
         PROJECT_ID: bookswap-265316
         APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-        CLI: gcloud
       with:
-        # args: gcloud compute ssh bookswapserver --project=bookswap-265316 --zone=us-central1-a --command="pwd"
-        # args: ['compute', 'ssh', 'bookswapserver', '--zone', 'us-central1-a', '--command', 'pwd']
-        args: gcloud compute ssh --verbosity=debug bookswapserver --command "pwd"
+        args: compute ssh --verbosity=debug bookswapserver --command "pwd"
