@@ -28,4 +28,4 @@ jobs:
           gcloud --quiet auth configure-docker
 
       - name: Deploy
-        run: gcloud compute ssh bookswapserver --project bookswap-265316 --zone us-central1-a --command="cd .. && ls"
+        run: gcloud compute ssh bookswapserver --project bookswap-265316 --zone us-central1-a --command="cd ../flenoir/app/backup/bookswap && docker-compose top"
