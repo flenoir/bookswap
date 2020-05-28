@@ -28,4 +28,4 @@ jobs:
           gcloud --quiet auth configure-docker
 
       - name: Deploy
-        run: gcloud compute ssh bookswapserver --project bookswap-265316 --zone us-central1-a --command="cd ../flenoir/app/backup/bookswap && sudo chown -R $(whoami) .git/ && sudo chmod -R ug+w . && pwd && docker-compose down && git pull origin master && docker-compose up"
+        run: gcloud compute ssh bookswapserver --project bookswap-265316 --zone us-central1-a --command="cd ../flenoir/app/backup/bookswap && sudo chown -R $(whoami) .git/ && sudo chown -R $(whoami) .github/ && pwd && docker-compose down && git pull origin master && docker-compose up"
