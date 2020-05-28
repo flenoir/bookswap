@@ -16,4 +16,4 @@ jobs:
           APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
 
       - name: Deploy
-        run: gcloud compute ssh bookswapserver --project bookswap-265316 --zone us-central1-a --command="pwd && ls"
+        run: gcloud compute ssh bookswapserver --project bookswap-265316 --zone us-central1-a --command="cd .. && ls"
