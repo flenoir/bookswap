@@ -137,6 +137,7 @@
           <!-- <small class="text-muted">{{ book_status.availability }}</small> -->
           <hr />
 
+          {% if user.is_authenticated %}
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %} {{ rentform }}
             <button class="btn btn-outline-success" type="submit">
@@ -153,6 +154,9 @@
               Demander une échange
             </button>
           </a>
+          {% else %}
+          Inscrivez-vous pour pouvoir l'échanger ou l'emprunter !
+          {% endif %}
         </div>
       </div>
       <!-- /.card -->

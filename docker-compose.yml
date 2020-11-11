@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.5-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=l1ghtm4n
+      - POSTGRES_DB=bookswap_db
+    ports:
+      - 5432:5432
+
+volumes:
+  postgres_data:
