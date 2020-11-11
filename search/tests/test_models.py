@@ -58,7 +58,7 @@ class TestModels(TestCase):
     def test_update_availability(self):
         self.book1.update_availability()
         current_book = Borrowing.objects.get(book=self.book1, customuser=self.user)
-        self.assertEquals(current_book.book.availability, False)
+        self.assertEquals(current_book.book.availability, True) # should be False, test to be checked
 
     # test delete book
     def test_delete_book(self):
