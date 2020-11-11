@@ -3,3 +3,6 @@ env
 *.pyc
 __pycache__
 /bookswap_project/settings/production.py
+venv/
+postgres_data/
+docker-compose.yml
