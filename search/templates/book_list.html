@@ -72,7 +72,9 @@
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
                         <button class="btn btn-outline-warning btn-block mb-2"><a href="{% url 'book_owner_detail' item.book.uuid %}" class="">Editer</a></button>
+                        {% if item.rental_request_date %}
                         <button class="btn btn-outline-info btn-block mb-2"><a href="{% url 'validate_rental' item.book.title item.book.uuid %}" class="">Valider l'emprunt</a></button>
+                        {% endif %}
                         <form method="post" action="{% url 'remove_book' item.book.uuid %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-block">Supprimer</button>
