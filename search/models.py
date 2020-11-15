@@ -47,6 +47,7 @@ class Book(models.Model):
         """
         update availability when there's a new book rental request validated
         """
+        print("availability triggered")
         from users.models import Borrowing
         from search.models import Book
         query = Borrowing.objects.filter(start_date__lte=date.today(),end_date__gte=date.today(),rental_validation=True).select_related('book')
