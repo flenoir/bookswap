@@ -58,14 +58,16 @@
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-left border border-b block lg:table-cell relative lg:static">
                         <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase"></span>
-                        <!-- now "m d Y" as today -->
+                        <!-- {% now "d M Y" as today %} -->
                         <!-- if today >= item.start_date|date:"m d Y"  and today <= item.end_date|date:"m d Y" -->
-                        {% if item.rental_request_date and item.rental_validation %}
+                        {% if item.rental_request_date and item.rental_validation and item.start_date|date:"d M Y"%}
                         <span class="badge badge-warning">Emprunt en cours</span>
                         {{ item.start_date|date:"d M Y" }} <br> {{ item.end_date|date:"d M Y" }} <br>
                         {% elif item.rental_request_date and item.rental_validation == False %}
                         <span class="badge badge-success">Emprunt demandé</span>
                         {{ item.start_date|date:"d M Y" }} <br> {{ item.end_date|date:"d M Y" }} <br>
+                        <!-- {% elif item.start_date|date:"d M Y" >= today and item.end_date|date:"d M Y" >= today %}
+                        <span> hors date </span> -->
                         {% endif %}
                         <!-- <a href="#">{{ jitem.start_date}} {{ jitem.end_date}}</a> -->
                     </td>
