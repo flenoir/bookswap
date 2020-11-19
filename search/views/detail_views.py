@@ -132,6 +132,15 @@ def book_owner_detail(request, isbn):
         current_book = Book.objects.filter(uuid=isbn).first()
         book_owner = CustomUser.objects.filter(user_books__uuid=isbn).first()
         form = BookForm(request.POST or None, instance=current_book)
+        print(form['availability'].value(), "date => ", Borrowing.objects.filter(
+            book=current_book, customuser=book_owner,
+        ).first().start_date)
+        if form['availability'].value():
+            # Borrowing.objects.filter(book=current_book, customuser=book_owner).first().start_date
+            Borrowing.objects.filter(book=current_book, customuser=book_owner).update(start_date=None, end_date=None)
+            print("the value is true")
+        else:
+            print("the value is false")
         form.save()
         context = {
             "form": form,
