@@ -15,7 +15,7 @@
         <ul class="navbar-nav mr-auto">
         </ul>
              {% if request.get_full_path == "/book_list/" %}
-             <a class="nav-link" href="{% url 'search_result' %}"><button class="btn btn-outline-secondary btn-block" type="submit">Rechercher un livre</button></a>
+             <a class="nav-link" href="{% url 'search_result' %}"><button class="btn btn-outline-secondary btn-block" type="submit">Ajouter un livre à ma librairie personnelle</button></a>
              {% else %}
              <a href="{% url 'book_list' %}"> <button class="btn btn-outline-success my-2 my-sm-0 ml-2 mr-2" type="submit">Ma librairie</button></a>
              {% endif%}
