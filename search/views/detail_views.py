@@ -137,7 +137,7 @@ def book_owner_detail(request, isbn):
         ).first().start_date)
         if form['availability'].value():
             # Borrowing.objects.filter(book=current_book, customuser=book_owner).first().start_date
-            Borrowing.objects.filter(book=current_book, customuser=book_owner).update(start_date=None, end_date=None)
+            Borrowing.objects.filter(book=current_book, customuser=book_owner).update(start_date=None, end_date=None, rental_request_date= None, rental_validation=False)
             print("the value is true")
         else:
             print("the value is false")
